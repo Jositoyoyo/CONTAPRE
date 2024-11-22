@@ -25,5 +25,16 @@ namespace Dimatica.ContaPre.PresentationUnitTest
 
             Assert.AreNotEqual(6, result, "La suma de 2 y 3 no debería ser 6.");
         }
+
+
+        [TestMethod]
+        public void Addition03Test()
+        {
+            int a = 3;
+            int b = 3;
+            bool result = a == b;
+
+            Assert.IsTrue(result, "La suma de 2 y 3 no debería ser 6.");
+        }
     }
 }
