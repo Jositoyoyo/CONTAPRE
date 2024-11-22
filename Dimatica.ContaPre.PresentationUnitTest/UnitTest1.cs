@@ -36,5 +36,15 @@ namespace Dimatica.ContaPre.PresentationUnitTest
 
             Assert.IsTrue(result, "La suma de 2 y 3 no debería ser 6.");
         }
+
+        [TestMethod]
+        public void Addition04Test()
+        {
+            int a = 3;
+            int b = 4;
+            bool result = a == b;
+
+            Assert.IsFalse(result, "La suma de 2 y 3 no debería ser 6.");
+        }
     }
 }
