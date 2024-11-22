@@ -209,6 +209,8 @@
     <Content Include="Content\Contapre.min.css">
       <DependentUpon>Contapre.css</DependentUpon>
     </Content>
+    <Content Include="Content\Images\UIMP_Conf_Horizontal_RGB.png" />
+    <Content Include="Content\Images\UIMP_Conf_Pricipal_RGB.png" />
     <Content Include="Views\Shared\Components\Alerts\CustomRadAlert\CustomRawAlert.css">
       <DependentUpon>CustomRawAlert.scss</DependentUpon>
     </Content>
