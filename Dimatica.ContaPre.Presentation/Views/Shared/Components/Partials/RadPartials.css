@@ -1,0 +1,46 @@
+﻿#RadCustomFormPanel h4 {
+  margin-bottom: 10px; }
+
+#RadCustomFormPanel select {
+  border: black 1px solid;
+  width: 100%;
+  font-size: 16px;
+  margin: 0;
+  padding: 0; }
+
+#RadCustomFormPanel .text-danger {
+  width: 190px;
+  margin-top: 48px;
+  position: absolute;
+  color: red;
+  font-size: 12px; }
+
+#RadCustomFormPanel .nif-guion {
+  display: inline-block;
+  text-align: center;
+  width: 12px;
+  height: 40px;
+  line-height: 66px;
+  margin-right: 12px; }
+
+#RadCustomFormPanel .field-container {
+  height: 40px;
+  display: flex;
+  margin-bottom: 15px;
+  /* Espaciado entre filas */ }
+
+#RadCustomFormPanel .buttons a {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer; }
+  #RadCustomFormPanel .buttons a.insert {
+    background-color: #007bff;
+    color: #fff; }
+  #RadCustomFormPanel .buttons a.close {
+    background-color: #6c757d;
+    color: #fff; }
+  #RadCustomFormPanel .buttons a.clear {
+    background-color: #dc3545;
+    /* Rojo */
+    color: #fff; }

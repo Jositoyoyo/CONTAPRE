@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FFC53514-9D68-407C-AB21-955AA7C47EB2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dimatica.ContaPre.OL</RootNamespace>
+    <AssemblyName>Dimatica.ContaPre.OL</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
+    <OutputPath>bin\Development\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\Response.cs" />
+    <Compile Include="Business\ResponseCode.cs" />
+    <Compile Include="Business\SiteDataItem.cs" />
+    <Compile Include="Business\StatusRecord.cs" />
+    <Compile Include="Migrations\202006151230360_AddObsoleteToUser.cs" />
+    <Compile Include="Migrations\202006151230360_AddObsoleteToUser.designer.cs">
+      <DependentUpon>202006151230360_AddObsoleteToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\ContaPreModel.cs" />
+    <Compile Include="Models\dtproperty.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\PRE_ARTICULO.cs" />
+    <Compile Include="Models\PRE_BACKUP_DETALLE_HOJA_ARQUEO.cs" />
+    <Compile Include="Models\PRE_BACKUP_DOCUMENTO_APLICACION.cs" />
+    <Compile Include="Models\PRE_BACKUP_HOJA_ARQUEO.cs" />
+    <Compile Include="Models\PRE_BACKUP_MODIFICACION_CREDITO.cs" />
+    <Compile Include="Models\PRE_BACKUP_MODIF_CREDITO_PRESUPUESTO.cs" />
+    <Compile Include="Models\PRE_BACKUP_PRESUPUESTO.cs" />
+    <Compile Include="Models\PRE_BACKUP_SENALAMIENTO.cs" />
+    <Compile Include="Models\PRE_BACKUP_SENALAMIENTO_DOCUMENTO.cs" />
+    <Compile Include="Models\PRE_CAPITULO.cs" />
+    <Compile Include="Models\PRE_CENTRO_COSTE.cs" />
+    <Compile Include="Models\PRE_CONCEPTO.cs" />
+    <Compile Include="Models\PRE_CUENTA_PGCP.cs" />
+    <Compile Include="Models\PRE_CUENTA_RESTRINGIDA.cs" />
+    <Compile Include="Models\PRE_DETALLE_HOJA_ARQUEO.cs" />
+    <Compile Include="Models\PRE_DOCUMENTOS_LISTADOS_DOCUMENTOS_INTERVENCION.cs" />
+    <Compile Include="Models\PRE_DOCUMENTO_APLICACION.cs" />
+    <Compile Include="Models\PRE_DOCUMENTO_CONTABLE.cs" />
+    <Compile Include="Models\PRE_EXPEDIENTE_ADMINISTRATIVO.cs" />
+    <Compile Include="Models\PRE_EXPEDIENTE_CONTABLE.cs" />
+    <Compile Include="Models\PRE_EXP_CENTRO_COSTE.cs" />
+    <Compile Include="Models\PRE_EXP_EXTRAPRE.cs" />
+    <Compile Include="Models\PRE_EXTRAPRESUPUESTARIA.cs" />
+    <Compile Include="Models\PRE_FACTURA_COMPRA.cs" />
+    <Compile Include="Models\PRE_FORMA_PAGO.cs" />
+    <Compile Include="Models\PRE_HOJA_ARQUEO.cs" />
+    <Compile Include="Models\PRE_LINEA_TESORERIA.cs" />
+    <Compile Include="Models\PRE_LISTADOS_DOCUMENTOS_INTERVENCION.cs" />
+    <Compile Include="Models\PRE_MODIFICACION_CREDITO.cs" />
+    <Compile Include="Models\PRE_MODIF_CREDITO_PRESUPUESTO.cs" />
+    <Compile Include="Models\PRE_MONEDA.cs" />
+    <Compile Include="Models\PRE_ORIGEN.cs" />
+    <Compile Include="Models\PRE_PARAMETROS.cs" />
+    <Compile Include="Models\PRE_PRESUPUESTO.cs" />
+    <Compile Include="Models\PRE_PROCEDENCIA.cs" />
+    <Compile Include="Models\PRE_PROGRAMA.cs" />
+    <Compile Include="Models\PRE_PROVEEDOR.cs" />
+    <Compile Include="Models\pre_proveedor_expediente_contable.cs" />
+    <Compile Include="Models\PRE_SENALAMIENTO.cs" />
+    <Compile Include="Models\PRE_SENALAMIENTOS_LISTADOS_DOCUMENTOS_INTERVENCION.cs" />
+    <Compile Include="Models\PRE_SENALAMIENTO_DOCUMENTO.cs" />
+    <Compile Include="Models\PRE_SUBCONCEPTO.cs" />
+    <Compile Include="Models\PRE_TESORERIA.cs" />
+    <Compile Include="Models\PRE_TESORERIA_DOCUMENTO.cs" />
+    <Compile Include="Models\PRE_TIPO_CONTRATO.cs" />
+    <Compile Include="Models\PRE_TIPO_DOCUMENTO.cs" />
+    <Compile Include="Models\PRE_TIPO_EXTRAP.cs" />
+    <Compile Include="Models\PRE_TIPO_MODIFICACION_CREDITO.cs" />
+    <Compile Include="Models\PRE_TIPO_PAGO.cs" />
+    <Compile Include="Models\PRE_TIPO_REGISTRO.cs" />
+    <Compile Include="Models\Proveedor_UIMPPRESUP.cs" />
+    <Compile Include="Models\Provincia.cs" />
+    <Compile Include="Models\Tercero_UIMPPRESUP.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Procedures\Application.cs" />
+    <Compile Include="Procedures\Budget.cs" />
+    <Compile Include="Procedures\BudgetApplication.cs" />
+    <Compile Include="Procedures\Rectification.cs" />
+    <Compile Include="Procedures\Year.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006151230360_AddObsoleteToUser.resx">
+      <DependentUpon>202006151230360_AddObsoleteToUser.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+</Project>

@@ -1,0 +1,124 @@
+﻿volvamos un momento a CustomRawWindow.
+
+Puedo añadir una hoja de estilos aparte en Contapre.scss pero importandola ?? Quiero tambien usar las variablesen la nueva hoja de estilos
+O tal vez creo una nueva y la importo dentro del siguiente vista ??
+
+<%@ Control
+    Language="C#"
+    AutoEventWireup="true"
+    CodeBehind="CustomRawWindow.ascx.cs"
+    Inherits="Dimatica.ContaPre.Presentation.Views.MyUserControl.CustomRawWindow.CustomRawWindow" %>
+
+
+<div id="customModalWrapper" class="RadWindow RadWindow_Metro rwNormalWindow rwTransparentWindow" style="display: none;">
+    <table cellspacing="0" cellpadding="0" class="rwTable">
+        <tr class="rwTitleRow">
+            <td class="rwCorner rwTopLeft">&nbsp;</td>
+            <td class="rwTitlebar">
+                <div class="rwTopResize"></div>
+                <table align="left" cellspacing="0" cellpadding="0" class="rwTitlebarControls">
+                    <tr>
+                        <td style="width: 16px;"><a class="rwIcon"></a></td>
+                        <td><em id="customModalTitle" unselectable="on">ATENCIÓN</em></td>
+                        <td style="white-space: nowrap;">
+                            <ul class="rwControlButtons">
+                                <li><a href="javascript:void(0);" class="rwCloseButton" title="Close" onclick="closeCustomModal(false);"><span>Close</span></a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="rwCorner rwTopRight">&nbsp;</td>
+        </tr>
+        <tr class="rwContentRow">
+            <td class="rwCorner rwBodyLeft">&nbsp;</td>
+            <td class="rwWindowContent">
+                <div id="customModalContent" class="rwDialogPopup radconfirm">
+                    <div class="rwDialogText" id="customModalMessage">
+                        ¿ Está seguro que desea cambiar el estado de este Usuario ?
+                    </div>
+                    <div class="rwDialogButtons">
+                        <a onclick="closeCustomModal(true);" class="rwPopupButton" href="javascript:void(0);">
+                            <span class="rwOuterSpan"><span class="rwInnerSpan" id="customModalOkText">OK</span></span>
+                        </a>
+                        <a onclick="closeCustomModal(false);" class="rwPopupButton" href="javascript:void(0);">
+                            <span class="rwOuterSpan"><span class="rwInnerSpan" id="customModalCancelText">Cancel</span></span>
+                        </a>
+                    </div>
+                </div>
+            </td>
+            <td class="rwCorner rwBodyRight">&nbsp;</td>
+        </tr>
+        <tr class="rwFooterRow">
+            <td class="rwCorner rwFooterLeft">&nbsp;</td>
+            <td class="rwFooterCenter">&nbsp;</td>
+            <td class="rwCorner rwFooterRight">&nbsp;</td>
+        </tr>
+    </table>
+</div>
+
+
+<script>
+
+    let customModalCallback = null;
+
+
+    function openCustomModal(message = "¿Está seguro?", width = 400, height = 150, title = 'ATENCIÓN', callback = null)
+    {
+        document.getElementById("customModalMessage").innerText     = message;
+        document.getElementById("customModalWrapper").style.display = "block";
+
+        document.getElementById("customModalTitle").innerText      = title;
+        document.getElementById("customModalMessage").innerHTML    = message;
+        document.getElementById("customModalOkText").innerText     = "OK";
+        document.getElementById("customModalCancelText").innerText = "Cancel";
+
+        const wrapper = document.getElementById("customModalWrapper");
+        wrapper.style.width   = width + "px";
+        wrapper.style.height  = height + "px";
+        wrapper.style.display = "block";
+        customModalCallback   = callback;
+    }
+
+    function openCustomModal2(options)
+    {
+        // Configuración por defecto
+        const defaultOptions = {
+            title: "ATENCIÓN",
+            message: "¿Está seguro?",
+            width: 400,
+            height: 150,
+            okText: "OK",
+            cancelText: "Cancel",
+            callback: null
+        };
+
+        // Fusionar opciones por defecto con las opciones proporcionadas
+        const config = { ...defaultOptions, ...options };
+
+        // Aplicar las configuraciones
+        document.getElementById("customModalTitle").innerText = config.title;
+        document.getElementById("customModalMessage").innerHTML = config.message;
+        document.getElementById("customModalOkText").innerText = config.okText;
+        document.getElementById("customModalCancelText").innerText = config.cancelText;
+
+        // Cambiar tamaño de la ventana
+        const wrapper = document.getElementById("customModalWrapper");
+        wrapper.style.width = config.width + "px";
+        wrapper.style.height = config.height + "px";
+
+        // Mostrar el modal y asignar el callback
+        wrapper.style.display = "block";
+        customModalCallback = config.callback;
+    }
+
+
+    function closeCustomModal(isConfirmed)
+    {
+        document.getElementById("customModalWrapper").style.display = "none";
+        if (typeof customModalCallback === "function") {
+            customModalCallback(isConfirmed);
+        }
+        customModalCallback = null;
+    }
+</script>

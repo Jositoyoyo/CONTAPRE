@@ -1,0 +1,134 @@
+﻿        private bool ValidateNif(string nif)
+        {
+            var type = this.SpainIdType(nif);
+
+            if (string.IsNullOrWhiteSpace(type))
+            {
+                return false;
+            }
+
+            var valid = false;
+
+            switch (type)
+            {
+                case "dni":
+                    valid = this.ValidDni(nif);
+
+                    break;
+                case "cif":
+                    valid = this.ValidCif(nif);
+
+                    break;
+                case "nie":
+                    valid = this.ValidNie(nif);
+
+                    break;
+            }
+
+            return valid;
+        }
+
+        private string SpainIdType(string nif)
+        {
+            var dniRegex = new Regex(@"(\d{8})([A-Z])$");
+
+            if (dniRegex.IsMatch(nif))
+            {
+                return "dni";
+            }
+
+            var cifRegex = new Regex(@"([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$");
+
+            if (cifRegex.IsMatch(nif))
+            {
+                return "cif";
+            }
+
+            var nieRegex = new Regex(@"[XYZ]\d{7,8}[A-Z]$");
+
+            if (nieRegex.IsMatch(nif))
+            {
+                return "nie";
+            }
+
+            return string.Empty;
+        }
+
+        private bool ValidDni(string dni)
+        {
+            var dniLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
+            var letter = dniLetters[Convert.ToInt32(dni, 10) % 23];
+
+            return letter == dni[8];
+        }
+
+        private bool ValidCif(string cif)
+        {
+            var cifRegex = new Regex(@"([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$");
+            var matches = cifRegex.Matches(cif);
+            var letter = matches[0].Groups[1];
+            var number = matches[0].Groups[2];
+            var control = matches[0].Groups[3];
+
+            var evenSum = 0;
+            var oddSum = 0;
+            int n;
+
+            for (var i = 0; i < number.Length; i++)
+            {
+                n = Convert.ToInt32(number.Value[i].ToString(), 10);
+
+                if (i % 2 == 0)
+                {
+                    n *= 2;
+
+                    oddSum += n < 10 ? n : n - 9;
+                }
+                else
+                {
+                    evenSum += n;
+                }
+            }
+
+            var controlDigit = 10 - Convert.ToInt32((evenSum + oddSum).ToString().Substring((evenSum + oddSum).ToString().Length - 1));
+            var controlLetter = "JABCDEFGHI".Substring(controlDigit, 1);
+
+            var reg = new Regex("[ABEH]");
+
+            if (reg.IsMatch(letter.Value))
+            {
+                return control.Value.Equals(controlDigit.ToString());
+            }
+
+            reg = new Regex("[KPQS]");
+
+            if (reg.IsMatch(letter.Value))
+            {
+                return control.Value.Equals(controlLetter);
+            }
+
+            return control.Value.Equals(controlDigit.ToString()) || control.Value.Equals(controlLetter);
+        }
+
+        private bool ValidNie(string nie)
+        {
+            var niePrefix = nie[0];
+
+            switch (niePrefix)
+            {
+                case 'X':
+                    niePrefix = '0';
+
+                    break;
+                case 'Y':
+                    niePrefix = '1';
+
+                    break;
+                case 'Z':
+                    niePrefix = '2';
+
+                    break;
+            }
+
+            return this.ValidDni(niePrefix + nie.Substring(1));
+        }

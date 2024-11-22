@@ -1,0 +1,29 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Partials.master.cs" Inherits="Dimatica.ContaPre.Presentation.Views.Shared.Components.Partials.Partials" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" />Contabilidad Presupuestaria</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="/Content/Contapre.css" />
+    <link rel="stylesheet" href="/Content/fontawesome-all.css" />
+    <script src="/Scripts/jquery-3.7.1.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            console.log("jQuery funciona correctamente.");
+        });
+       
+        var $telerik = {};
+        $telerik.$ = null;
+
+</script>
+</head>
+<body>
+    <form runat="server">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </form>
+</body>
+</html>

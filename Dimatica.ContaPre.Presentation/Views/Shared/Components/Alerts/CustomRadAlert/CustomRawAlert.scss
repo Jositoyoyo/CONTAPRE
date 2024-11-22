@@ -1,0 +1,69 @@
+@import '../../../../../Content/variables.scss';
+
+.custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 3003;
+    display: none;
+}
+
+#customRadAlertWrapper {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3004;
+    display: none;
+    width: 400px;
+    background-color: $white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: "Lato-Regular", sans-serif;
+
+
+    .rwDialogPopup {
+        margin: 16px;
+        color: black;
+        font: normal 12px "Segoe UI", Arial, Verdana;
+        cursor: default;
+    }
+
+    .rwTitleRow {
+        background-color: $sec-color;
+        color: $white;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .rwContentRow {
+        padding: $padding;
+        text-align: center;
+    }
+
+    .rwDialogText {
+        font-size: $m;
+        color: $greytext;
+        margin-bottom: 20px;
+    }
+
+    .rwPopupButton {
+        background-color: $prim-color;
+        color: $white;
+        height: 26px;
+        padding: 2px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: $m;
+        cursor: pointer;
+        transition: background-color $trans;
+
+        &:hover {
+            background-color: darken($prim-color, 10%);
+        }
+    }
+}

@@ -1,0 +1,46 @@
+﻿[
+  {
+    "outputFile": "Content/ContaPre.css",
+    "inputFile": "Content/ContaPre.scss"
+  },
+  {
+    "outputFile": "Content/CustomRawWindow.css",
+    "inputFile": "Content/CustomRawWindow.scss"
+  },
+  {
+    "outputFile": "Content/variables.css",
+    "inputFile": "Content/variables.scss"
+  },
+  {
+    "outputFile": "Content/CustomRawAlert.css",
+    "inputFile": "Content/CustomRawAlert.scss"
+  },
+  {
+    "outputFile": "Content/RadPartials.css",
+    "inputFile": "Content/RadPartials.scss"
+  },
+  {
+    "outputFile": "Views/SharedComponents/Components/Partials/RadPartials.css",
+    "inputFile": "Views/SharedComponents/Components/Partials/RadPartials.scss"
+  },
+  {
+    "outputFile": "Views/SharedComponents/Components/Modals/CustomRawWindow/CustomRawWindow.css",
+    "inputFile": "Views/SharedComponents/Components/Modals/CustomRawWindow/CustomRawWindow.scss"
+  },
+  {
+    "outputFile": "Views/SharedComponents/Components/Alerts/CustomRadAlert/CustomRawAlert.css",
+    "inputFile": "Views/SharedComponents/Components/Alerts/CustomRadAlert/CustomRawAlert.scss"
+  },
+  {
+    "outputFile": "Views/Shared/Components/Modals/CustomRawWindow/CustomRawWindow.css",
+    "inputFile": "Views/Shared/Components/Modals/CustomRawWindow/CustomRawWindow.scss"
+  },
+  {
+    "outputFile": "Views/Shared/Components/Alerts/CustomRadAlert/CustomRawAlert.css",
+    "inputFile": "Views/Shared/Components/Alerts/CustomRadAlert/CustomRawAlert.scss"
+  },
+  {
+    "outputFile": "Views/Shared/Components/Modals/CustomRawWindow/CustomModalWrapper.css",
+    "inputFile": "Views/Shared/Components/Modals/CustomRawWindow/CustomModalWrapper.scss"
+  }
+]
