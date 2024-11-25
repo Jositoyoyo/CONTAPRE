@@ -47,15 +47,21 @@ Start-Sleep -Seconds 3
 
 # Confirmación para proceder con el despliegue
 $confirmation2 = Read-Host -Prompt "¿Deseas continuar con el despliegue? (S para continuar / N para cancelar)"
-if ($confirmation2 -ne "S") {
+if ($confirmation2 -ne "S") 
+{
     Write-Host "Despliegue cancelado por el usuario."
     exit
 }
 
-# Crear copia de seguridad en una ruta externa
-Write-Host "Creando copia de seguridad en $backupPath..."
-New-Item -ItemType Directory -Path $backupPath -Force | Out-Null
-Start-Process -NoNewWindow -Wait -FilePath "robocopy" -ArgumentList "$destinationPath", "$backupPath", "/MIR"
+$confirmationBackup = Read-Host -Prompt "¿Deseas continuar realizar una copia de seguridad del proyecto publicado? (S para continuar / N para cancelar)"
+
+if ($confirmationBackup -ne "S") 
+{
+    # Crear copia de seguridad en una ruta externa
+    Write-Host "Creando copia de seguridad en $backupPath..."
+    New-Item -ItemType Directory -Path $backupPath -Force | Out-Null
+    Start-Process -NoNewWindow -Wait -FilePath "robocopy" -ArgumentList "$destinationPath", "$backupPath", "/MIR"
+}
 
 # Confirmación antes de eliminar contenido actual en el destino
 $deleteConfirmation = Read-Host -Prompt "Vas a eliminar el contenido actual de $destinationPath, excepto 'aspnet_client' y 'Logs'. ¿Deseas continuar? (S para continuar / N para cancelar)"
