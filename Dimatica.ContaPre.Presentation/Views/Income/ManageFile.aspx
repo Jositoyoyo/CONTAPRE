@@ -111,9 +111,14 @@
                     </telerik:RadComboBox>
 
                     <!-- boton para añadir un nuevo proveedor -->
-                    <a href="#" id="btnNewProvider" role="button" onclick="openNewProviderWindow(); return false;">
-                        Nuevo proveedor
-                    </a>
+               
+                    <telerik:RadLinkButton 
+                        runat="server" 
+                        Text="Nuevo Proveedor" 
+                         RenderMode="Native"
+                         AutoPostBack="True"
+                        OnClientClicked="openNewProviderWindow" 
+                        style="margin-top: 1px; border: none;"></telerik:RadLinkButton>
 
                 </div>
 

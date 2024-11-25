@@ -338,6 +338,16 @@
                                 this.RntRestrictedAccount.SelectedValue = "23";
 
                                 break;
+
+                            case "6": // DR
+
+                                restrictedAccount = this.accountRestrictedService.GetAccountsRestricted("G");
+                                this.RntRestrictedAccount.DataSource = restrictedAccount.ToList();
+                                this.RntRestrictedAccount.DataBind();
+
+                                this.RntRestrictedAccount.SelectedValue = "23";
+
+                                break;
                         }
 
                         if (this.ExtraBudgetary.CUE_CODIGO_PAGADOR != null)
@@ -444,6 +454,13 @@
                     this.RntRestrictedAccount.SelectedValue = "23";
 
                     break;
+                case "6": // DR
+                    restrictedAccount = this.accountRestrictedService.GetAccountsRestricted("G");
+                    this.RntRestrictedAccount.DataSource = restrictedAccount.ToList();
+                    this.RntRestrictedAccount.DataBind();
+
+                    this.RntRestrictedAccount.SelectedValue = "23";
+                    break;
             }
         }
 
@@ -476,8 +493,6 @@
         protected void Page_PreRender(object sender, EventArgs e)
         {
             var typeCode = this.RcTypes.SelectedValue;
-            var pmpEnable = false;
-            var miEnable = false;
 
             if (!string.IsNullOrWhiteSpace(typeCode))
             {
@@ -485,29 +500,34 @@
                 {
                     case "2":
                     case "4":
-                        miEnable = true;
+                        this.RcThirds.Enabled = true;
+                        this.RntTonnageSheet.Enabled = true;
+                        this.RmyTonnageSheetYear.Enabled = true;
+                        this.RntTonnageSheet50.Enabled = true;
+                        this.RmyTonnageSheet50Year.Enabled = true;
 
                         break;
                     case "1":
                     case "3":
                     case "5":
-                        pmpEnable = true;
+                        this.RcInterested.Enabled = true;
+                        this.RcPayForms.Enabled = true;
+                        this.RcPercertor.Enabled = true;
+                        this.RcPayTypes.Enabled = true;
+                        this.RtbCheckNumber.Enabled = true;
 
+                        break;
+
+                    case "6": // DR
+                        this.RcInterested.Enabled = true;
+                        this.RcPayForms.Enabled = true;
+                        this.RcPercertor.Enabled = true;
+                        this.RcPayTypes.Enabled = true;
+                        this.RtbCheckNumber.Enabled = true;
                         break;
                 }
             }
-
-            this.RcInterested.Enabled = pmpEnable;
-            this.RcPayForms.Enabled = pmpEnable;
-            this.RcPercertor.Enabled = pmpEnable;
-            this.RcPayTypes.Enabled = pmpEnable;
-            this.RtbCheckNumber.Enabled = pmpEnable;
-
-            this.RcThirds.Enabled = miEnable;
-            this.RntTonnageSheet.Enabled = miEnable;
-            this.RmyTonnageSheetYear.Enabled = miEnable;
-            this.RntTonnageSheet50.Enabled = miEnable;
-            this.RmyTonnageSheet50Year.Enabled = miEnable;
+  
 
             this.btnStatusApplication.Enabled = !this.RcExtraBudgetaryApplications.SelectedValue.Equals("-1");
             this.btnShowTreasury.Enabled = this.ExtraBudgetary.TES_CODIGO != null;
@@ -643,7 +663,22 @@
                     }
                 }
 
-                try
+                // es un DR
+                if (typeCode == 6)
+                {
+                    extraBudgetary.PROV_CODIGO_PROVEEDOR = this.RcInterested.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcInterested.SelectedValue);
+                    extraBudgetary.FOR_CODIGO = this.RcPayForms.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcPayForms.SelectedValue);
+                    extraBudgetary.CUE_CODIGO = this.RcPercertor.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcPercertor.SelectedValue);
+                    extraBudgetary.TIPP_CODIGO = this.RcPayTypes.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcPayTypes.SelectedValue);
+
+                    extraBudgetary.PROV_CODIGO_TERCERO = this.RcThirds.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcThirds.SelectedValue);
+                    extraBudgetary.HOJ_NUMERO = this.RntTonnageSheet.Value == null ? (int?)null : Convert.ToInt32(this.RntTonnageSheet.Value);
+                    extraBudgetary.ANO_HOJA = this.RmyTonnageSheetYear.SelectedDate == null ? (short?)null : Convert.ToInt16(((DateTime)this.RmyTonnageSheetYear.SelectedDate).Year);
+                    extraBudgetary.HOJ_NUMERO50 = this.RntTonnageSheet50.Value == null ? (int?)null : Convert.ToInt32(this.RntTonnageSheet50.Value);
+                    extraBudgetary.ANO_HOJA50 = this.RmyTonnageSheet50Year.SelectedDate == null ? (short?)null : Convert.ToInt16(((DateTime)this.RmyTonnageSheet50Year.SelectedDate).Year);
+                }
+
+                    try
                 {
                     var insert = extraBudgetaryRecordsService.InsertExtraBudgetary(extraBudgetary);
 
@@ -723,6 +758,21 @@
                         extraBudgetary.TIPP_CODIGO = null;
                         extraBudgetary.EXP_EXTRAP_NUMERO_CHEQUE = null;
                     }
+                }
+
+                // es un DR
+                if (typeCode == 6)
+                {
+                    extraBudgetary.PROV_CODIGO_PROVEEDOR = this.RcInterested.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcInterested.SelectedValue);
+                    extraBudgetary.FOR_CODIGO = this.RcPayForms.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcPayForms.SelectedValue);
+                    extraBudgetary.CUE_CODIGO = this.RcPercertor.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcPercertor.SelectedValue);
+                    extraBudgetary.TIPP_CODIGO = this.RcPayTypes.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcPayTypes.SelectedValue);
+
+                    extraBudgetary.PROV_CODIGO_TERCERO = this.RcThirds.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcThirds.SelectedValue);
+                    extraBudgetary.HOJ_NUMERO = this.RntTonnageSheet.Value == null ? (int?)null : Convert.ToInt32(this.RntTonnageSheet.Value);
+                    extraBudgetary.ANO_HOJA = this.RmyTonnageSheetYear.SelectedDate == null ? (short?)null : Convert.ToInt16(((DateTime)this.RmyTonnageSheetYear.SelectedDate).Year);
+                    extraBudgetary.HOJ_NUMERO50 = this.RntTonnageSheet50.Value == null ? (int?)null : Convert.ToInt32(this.RntTonnageSheet50.Value);
+                    extraBudgetary.ANO_HOJA50 = this.RmyTonnageSheet50Year.SelectedDate == null ? (short?)null : Convert.ToInt16(((DateTime)this.RmyTonnageSheet50Year.SelectedDate).Year);
                 }
 
                 try

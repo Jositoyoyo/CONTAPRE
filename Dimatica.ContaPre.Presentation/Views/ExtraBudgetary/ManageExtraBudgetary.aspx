@@ -311,7 +311,7 @@
 
                     <div class="form-group form-group-fake">
                         <div style="width: calc(50% - 1.25rem); margin: .625rem .625rem 0;">
-                            <strong>Datos Necesarios para P.M.P.:</strong>
+                            <strong>Datos Necesarios para P.M.P Y DR:</strong>
                             <%--Interesado--%>
                             <div class="field-container">
                                 <span>Interesado:</span>
@@ -370,7 +370,7 @@
                             </div>
                         </div>
                         <div style="width: calc(50% - 1.25rem); margin: .625rem .625rem 0;">
-                            <strong>Datos Necesarios para M.I. y rectificaciones:</strong>
+                            <strong>Datos Necesarios para M.I, rectificaciones y DR:</strong>
                             <%--Tercero--%>
                             <div class="field-container">
                                 <span>Tercero:</span>
@@ -452,6 +452,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <%--BUTTONS--%>
                     <div class="form-group buttons">
