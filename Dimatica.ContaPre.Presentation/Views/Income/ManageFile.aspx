@@ -8,16 +8,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    
-            <telerik:RadAjaxLoadingPanel
-                ID="RadAjaxLoadingPanel1"
-                runat="server"
-                Skin="Material"
-                Transparency="0"
-                Modal="True">
-                <asp:Label ID="Label2" runat="server" ForeColor="Red">Loading...</asp:Label>
-            </telerik:RadAjaxLoadingPanel>
-
     <%--Modales--%>
     <telerik:RadWindowManager ID="rwmManageFile" runat="server">
         <Windows>
@@ -40,28 +30,7 @@
         </Windows>
     </telerik:RadWindowManager>
 
-    <telerik:RadWindowManager ID="RadWindowManager1" runat="server">
-        <Windows>
-            <telerik:RadWindow
-                ID="NewProviderWindow"
-                runat="server"
-                Modal="True"
-                RenderMode="Lightweight"
-                NavigateUrl="~/Views/Shared/Components/Partials/Providers/NewProvider.aspx"
-                Title="Nuevo Proveedor"
-                InitialBehaviors="Maximize"
-                CenterIfModal="True"
-                EnableShadow="True"
-                VisibleStatusbar="False"
-                Behaviors="Close, Move, Resize"
-                OnClientClose="refreshComboBox"
-                OnClientBeforeShow="showSpinnerInWindow"
-                OnClientPageLoad="hideSpinnerInWindow">
-            </telerik:RadWindow>
-        </Windows>
-    </telerik:RadWindowManager>
-
-    <!-- Page Content -->
+     <!-- Page Content -->
     <div id="section_income" class="container" style="height: calc(100vh - 56px) !important">
 
         <h3 id="titleHeader" runat="server">Nuevo Expediente</h3>
@@ -111,14 +80,15 @@
                     </telerik:RadComboBox>
 
                     <!-- boton para añadir un nuevo proveedor -->
-               
-                    <telerik:RadLinkButton 
-                        runat="server" 
-                        Text="Nuevo Proveedor" 
-                         RenderMode="Native"
-                         AutoPostBack="True"
-                        OnClientClicked="openNewProviderWindow" 
-                        style="margin-top: 1px; border: none;"></telerik:RadLinkButton>
+
+                    <telerik:RadButton ButtonType="LinkButton" ID="btnNewThirds"
+                        runat="server"
+                        RenderMode="Native"
+                        Text="Nuevo Proveedor"
+                        AutoPostBack="True"
+                        Style="margin-top: 1px; border: none;"
+                        OnClick="btnNewProvider_OnClick">
+                    </telerik:RadButton>
 
                 </div>
 
@@ -786,77 +756,7 @@
 
             var modalDiv = null;
 
-            function confirmChangesHoja()
-            {
-                var currentYear = document.getElementById("hiddenCurrentYear").value;
-                var updatedYear = document.getElementById("hiddenUpdatedYear").value;
-                var currentSheetNumber = document.getElementById("hiddenCurrentSheetNumber").value;
-                var updatedSheetNumber = document.getElementById("hiddenUpdatedSheetNumber").value;
-
-                if (currentYear !== updatedYear || currentSheetNumber !== updatedSheetNumber)
-                {
-                    return confirm("Se han cambiado los datos de la hoja. ¿Desea continuar?");
-                }
-                return true;
-            }
-
-            function showLoading(app, args) {
-                var loadingPanel = $find('<%= RadAjaxLoadingPanel1.ClientID %>');
-                loadingPanel.show('<%= RadAjaxLoadingPanel1.ClientID %>');
-            }
-
-            function hideLoading(app, args) {
-                var loadingPanel = $find('<%= RadAjaxLoadingPanel1.ClientID %>');
-                loadingPanel.hide('<%= RadAjaxLoadingPanel1.ClientID %>');
-            }
-
-            function refreshComboBox()
-            {
-                showLoading();
-                window.setTimeout(function () {
-                    window.location.reload();
-                }, 1500)   
-            }
-
-            function openNewProviderWindow()
-            {
-                var window = $find("<%= NewProviderWindow.ClientID %>");
-                window.show();
-                window.center();
-            }
-
-            function showSpinnerInWindow()
-            {
-
-                // Obtener la instancia de la ventana
-                var window = $find("<%= NewProviderWindow.ClientID %>");
-
-                if (window) {
-                    // Crear un spinner dentro de la ventana
-                    var contentElement = window.get_contentElement();
-                    var spinner = document.createElement("div");
-                    spinner.id = "spinner";
-                    spinner.style.position = "absolute";
-                    spinner.style.top = "50%";
-                    spinner.style.left = "50%";
-                    spinner.style.transform = "translate(-50%, -50%)";
-                    spinner.style.zIndex = "9999";
-                    spinner.innerHTML = '<p>Cargando el contenido, espere por favor...</p>';
-                    contentElement.appendChild(spinner);
-                }
-            }
-
-            function hideSpinnerInWindow()
-            {
-                // Ocultar el spinner una vez que el contenido esté cargado
-                var spinner = document.getElementById("spinner");
-                if (spinner) {
-                    spinner.remove();
-                }
-            }
-
-            function showModalDiv(sender, args)
-            {
+            function showModalDiv(sender, args) {
                 if (!modalDiv) {
                     modalDiv = document.createElement("div");
                     modalDiv.style.width = "100%";
@@ -875,19 +775,16 @@
                 modalDiv.style.display = "";
             }
 
-            function hideModalDiv()
-            {
+            function hideModalDiv() {
                 modalDiv.style.display = "none";
             }
 
-            function hideGrids()
-            {
+            function hideGrids() {
                 $('#<%=this.btnDelete.ClientID %>').hide();
                 $('#page_manageFile').hide();
             }
 
-            function moveNewButtons()
-            {
+            function moveNewButtons() {
                 var $this = $("a[title*='Nuevo']");
                 $this.each(function () {
                     var $destino = $(this).closest('.field-document').children(".new-document");

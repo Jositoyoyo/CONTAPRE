@@ -294,15 +294,6 @@ namespace Dimatica.ContaPre.Presentation.Views.ExtraBudgetary
         protected global::Telerik.Web.UI.RadComboBox RcThirds;
 
         /// <summary>
-        /// Control RntTonnageSheet.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadNumericTextBox RntTonnageSheet;
-
-        /// <summary>
         /// Control RmyTonnageSheetYear.
         /// </summary>
         /// <remarks>
@@ -312,13 +303,13 @@ namespace Dimatica.ContaPre.Presentation.Views.ExtraBudgetary
         protected global::Telerik.Web.UI.RadMonthYearPicker RmyTonnageSheetYear;
 
         /// <summary>
-        /// Control RntTonnageSheet50.
+        /// Control RntTonnageSheet.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadNumericTextBox RntTonnageSheet50;
+        protected global::Telerik.Web.UI.RadNumericTextBox RntTonnageSheet;
 
         /// <summary>
         /// Control RmyTonnageSheet50Year.
@@ -328,6 +319,15 @@ namespace Dimatica.ContaPre.Presentation.Views.ExtraBudgetary
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::Telerik.Web.UI.RadMonthYearPicker RmyTonnageSheet50Year;
+
+        /// <summary>
+        /// Control RntTonnageSheet50.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadNumericTextBox RntTonnageSheet50;
 
         /// <summary>
         /// Control btnNew.

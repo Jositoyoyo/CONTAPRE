@@ -167,6 +167,36 @@
             } 
         }
 
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "moveNewButtons", "moveNewButtons();", true);
+
+            // if (this.CreditModification.MOD_CODIGO != 0)
+            // {
+            // if (!(bool)this.CreditModification.MOD_EJECUTADA)
+            // {
+            // if (this.CreditModification.MOD_CREADO_EXPEDIENTE == false)
+            // {
+            // ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "moveNewButtons", "moveNewButtons();", true);
+            // }
+
+            // this.ValidateButtons();
+            // }
+            // else
+            // {
+            // this.btnGenerateFile.Enabled = false;
+            // this.btnExecute.Enabled = false;
+            // }
+            // }
+            // else
+            // {
+            // this.btnGenerateFile.Enabled = false;
+            // this.btnExecute.Enabled = false;
+            // }
+        }
+
+
+
         private void BindProviders()
         {
             var providers = this.providersService.GetProvidersToCombo();
@@ -908,34 +938,6 @@
             }
         }
 
-        protected void Page_PreRender(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "moveNewButtons", "moveNewButtons();", true);
-
-            // if (this.CreditModification.MOD_CODIGO != 0)
-            // {
-            // if (!(bool)this.CreditModification.MOD_EJECUTADA)
-            // {
-            // if (this.CreditModification.MOD_CREADO_EXPEDIENTE == false)
-            // {
-            // ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "moveNewButtons", "moveNewButtons();", true);
-            // }
-
-            // this.ValidateButtons();
-            // }
-            // else
-            // {
-            // this.btnGenerateFile.Enabled = false;
-            // this.btnExecute.Enabled = false;
-            // }
-            // }
-            // else
-            // {
-            // this.btnGenerateFile.Enabled = false;
-            // this.btnExecute.Enabled = false;
-            // }
-        }
-
         protected void TxtTonnageSheet_SelectedDateChanged(object sender, SelectedDateChangedEventArgs e)
         {
             try
@@ -987,7 +989,6 @@
             }
         }
 
-
         protected void TxtTonnageSheet50_SelectedDateChanged(object sender, SelectedDateChangedEventArgs e)
         {
             try
@@ -1037,6 +1038,12 @@
                 // Maneja errores y registra si es necesario
                 System.Diagnostics.Debug.WriteLine("Error en TxtTonnageSheet50_SelectedDateChanged: " + ex.Message);
             }
+        }
+
+        protected void btnNewProvider_OnClick(object sender, EventArgs e)
+        {
+            this.Session["_currentSource"] = this.Request.Url.AbsoluteUri;
+            this.Response.Redirect("~/Views/Maintenance/Providers.aspx");
         }
 
         #endregion

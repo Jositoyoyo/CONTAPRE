@@ -308,10 +308,11 @@
                             OnClick="btnShowTreasury_OnClick">
                         </telerik:RadButton>
                     </div>
-
+                    
                     <div class="form-group form-group-fake">
+                        <!--Datos Necesarios para P.M.P-->
                         <div style="width: calc(50% - 1.25rem); margin: .625rem .625rem 0;">
-                            <strong>Datos Necesarios para P.M.P Y DR:</strong>
+                            <strong>Datos Necesarios para P.M.P:</strong>
                             <%--Interesado--%>
                             <div class="field-container">
                                 <span>Interesado:</span>
@@ -369,6 +370,7 @@
                                 </telerik:RadTextBox>
                             </div>
                         </div>
+                        <!--Datos Necesarios para M.I, rectificaciones y DR-->
                         <div style="width: calc(50% - 1.25rem); margin: .625rem .625rem 0;">
                             <strong>Datos Necesarios para M.I, rectificaciones y DR:</strong>
                             <%--Tercero--%>
@@ -381,6 +383,29 @@
                                     DataTextField="PROV_NOMBRE"
                                     DataValueField="PROV_CODIGO">
                                 </telerik:RadComboBox>
+                            </div>
+
+                            <%--Año Hoja Arqueo--%>
+                            <div class="field-container">
+                                <span>Año Hoja Arqueo:</span>
+                                <telerik:RadMonthYearPicker ID="RmyTonnageSheetYear"
+                                    runat="server"
+                                    AutoPostBack="True"
+                                    EnableTyping="False"
+                                    Culture="es-ES"
+                                    DateInput-Culture-="es-ES"
+                                    MonthCellsStyle-CssClass="monthCellClass"
+                                    OnSelectedDateChanged="TxtTonnageSheet_SelectedDateChanged"
+                                    Width="150px">
+                                    <MonthYearNavigationSettings TodayButtonCaption="Actual"
+                                        OkButtonCaption="Aceptar"
+                                        CancelButtonCaption="Cancelar" />
+                                    <DateInput runat="server"
+                                        DateFormat="yyyy"
+                                        DisplayDateFormat="yyyy">
+                                    </DateInput>
+                                </telerik:RadMonthYearPicker>
+
                             </div>
 
                             <%--N⁰ Hoja Arqueo--%>
@@ -396,16 +421,17 @@
                                 </telerik:RadNumericTextBox>
                             </div>
 
-                            <%--Año Hoja Arqueo--%>
+                             <%--Año Hoja Arqueo 50--%>
                             <div class="field-container">
-                                <span>Año Hoja Arqueo:</span>
-                                <telerik:RadMonthYearPicker ID="RmyTonnageSheetYear"
+                                <span>Año Hoja Arqueo 50:</span>
+                                <telerik:RadMonthYearPicker ID="RmyTonnageSheet50Year"
                                     runat="server"
-                                    AutoPostBack="False"
+                                    AutoPostBack="True"
                                     EnableTyping="False"
                                     Culture="es-ES"
                                     DateInput-Culture-="es-ES"
                                     MonthCellsStyle-CssClass="monthCellClass"
+                                    OnSelectedDateChanged="TxtTonnageSheet50_SelectedDateChanged"
                                     Width="150px">
                                     <MonthYearNavigationSettings TodayButtonCaption="Actual"
                                         OkButtonCaption="Aceptar"
@@ -430,26 +456,7 @@
                                 </telerik:RadNumericTextBox>
                             </div>
 
-                            <%--Año Hoja Arqueo 50--%>
-                            <div class="field-container">
-                                <span>Año Hoja Arqueo 50:</span>
-                                <telerik:RadMonthYearPicker ID="RmyTonnageSheet50Year"
-                                    runat="server"
-                                    AutoPostBack="False"
-                                    EnableTyping="False"
-                                    Culture="es-ES"
-                                    DateInput-Culture-="es-ES"
-                                    MonthCellsStyle-CssClass="monthCellClass"
-                                    Width="150px">
-                                    <MonthYearNavigationSettings TodayButtonCaption="Actual"
-                                        OkButtonCaption="Aceptar"
-                                        CancelButtonCaption="Cancelar" />
-                                    <DateInput runat="server"
-                                        DateFormat="yyyy"
-                                        DisplayDateFormat="yyyy">
-                                    </DateInput>
-                                </telerik:RadMonthYearPicker>
-                            </div>
+                           
                         </div>
                     </div>
 

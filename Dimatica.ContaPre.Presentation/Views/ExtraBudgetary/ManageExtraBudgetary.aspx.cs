@@ -31,6 +31,7 @@
 
         private static ITreasuriesService treasuriesService = DependencyFactory.GetInstance<ITreasuriesService>();
 
+
         #endregion
 
         #region Fields
@@ -44,6 +45,9 @@
         private IPayTypesService payTypesService = DependencyFactory.GetInstance<IPayTypesService>();
 
         private IProvidersService providersService = DependencyFactory.GetInstance<IProvidersService>();
+
+        private IAccountingDocumentsService accountingDocumentsService = DependencyFactory.GetInstance<IAccountingDocumentsService>();
+
 
         #endregion
 
@@ -341,11 +345,11 @@
 
                             case "6": // DR
 
-                                restrictedAccount = this.accountRestrictedService.GetAccountsRestricted("G");
+                                restrictedAccount = this.accountRestrictedService.GetAccountsRestricted("I");
                                 this.RntRestrictedAccount.DataSource = restrictedAccount.ToList();
                                 this.RntRestrictedAccount.DataBind();
 
-                                this.RntRestrictedAccount.SelectedValue = "23";
+                                this.RntRestrictedAccount.SelectedValue = "10";
 
                                 break;
                         }
@@ -423,6 +427,188 @@
             }
         }
 
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            var typeCode = this.RcTypes.SelectedValue;
+
+            this.RcInterested.Enabled = false;
+            this.RcPayForms.Enabled = false;
+            this.RcPercertor.Enabled = false;
+            this.RcPayTypes.Enabled = false;
+            this.RtbCheckNumber.Enabled = false;
+            this.RcThirds.Enabled = false;
+            this.RntTonnageSheet.Enabled = false;
+            this.RmyTonnageSheetYear.Enabled = false;
+            this.RntTonnageSheet50.Enabled = false;
+            this.RmyTonnageSheet50Year.Enabled = false;
+
+            if (!string.IsNullOrWhiteSpace(typeCode))
+            {
+                switch (typeCode)
+                {
+                    case "2":
+                    case "4":
+                        this.RcThirds.Enabled = true;
+                        this.RntTonnageSheet.Enabled = true;
+                        this.RmyTonnageSheetYear.Enabled = true;
+                        this.RntTonnageSheet50.Enabled = true;
+                        this.RmyTonnageSheet50Year.Enabled = true;
+
+                        break;
+                    case "1":
+                    case "3":
+                    case "5":
+                        this.RcInterested.Enabled = true;
+                        this.RcPayForms.Enabled = true;
+                        this.RcPercertor.Enabled = true;
+                        this.RcPayTypes.Enabled = true;
+                        this.RtbCheckNumber.Enabled = true;
+
+                        break;
+
+                    case "6": // DR
+                        this.RcThirds.Enabled = true;
+                        this.RntTonnageSheet.Enabled = true;
+                        this.RmyTonnageSheetYear.Enabled = true;
+                        this.RntTonnageSheet50.Enabled = true;
+                        this.RmyTonnageSheet50Year.Enabled = true;
+                        break;
+                }
+            }
+
+
+            this.btnStatusApplication.Enabled = !this.RcExtraBudgetaryApplications.SelectedValue.Equals("-1");
+            this.btnShowTreasury.Enabled = this.ExtraBudgetary.TES_CODIGO != null;
+            this.btnDelete.Enabled = this.ExtraBudgetary.EXP_EXTRAP_CODIGO != 0;
+            this.btnExtraBudgetaryDiscounts.Enabled = !string.IsNullOrWhiteSpace(typeCode) && typeCode.Equals("3");
+
+            if (this.ExtraBudgetary.EXP_EXTRAP_CODIGO == 0)
+            {
+                this.btnReport.Enabled = false;
+            }
+            else
+            {
+                if (this.ExtraBudgetary.TIP_EXTRAP_CODIGO == null)
+                {
+                    this.btnReport.Enabled = false;
+                }
+                else
+                {
+                    if (this.ExtraBudgetary.TIP_EXTRAP_CODIGO.ToString().Equals("2") || this.ExtraBudgetary.TIP_EXTRAP_CODIGO.ToString().Equals("3"))
+                    {
+                        this.btnReport.Enabled = true;
+                    }
+                    else
+                    {
+                        this.btnReport.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        protected void TxtTonnageSheet_SelectedDateChanged(object sender, SelectedDateChangedEventArgs e)
+        {
+            try
+            {
+                // Obtén el año seleccionado del RadMonthYearPicker
+                RadMonthYearPicker picker = sender as RadMonthYearPicker;
+                if (picker == null || !picker.SelectedDate.HasValue)
+                {
+                    return; // Si no hay fecha seleccionada, salir
+                }
+
+                int selectedYear = picker.SelectedDate.Value.Year;
+
+                // Llama a un servicio o método para obtener el último número de arqueo del año
+                int? lastTonnageSheetNumber = this.accountingDocumentsService.GetNextTonnageSheetNumber(selectedYear);
+
+                // Función anónima para buscar el control recursivamente
+                Func<Control, string, Control> findControlRecursive = null;
+                findControlRecursive = (root, id) =>
+                {
+                    if (root.ID == id)
+                    {
+                        return root;
+                    }
+
+                    foreach (Control child in root.Controls)
+                    {
+                        Control found = findControlRecursive(child, id);
+                        if (found != null)
+                        {
+                            return found;
+                        }
+                    }
+
+                    return null;
+                };
+
+                // Busca el control txtTonnageSheet
+                RadNumericTextBox txtTonnageSheet = findControlRecursive(this, "RntTonnageSheet") as RadNumericTextBox;
+                if (txtTonnageSheet != null && lastTonnageSheetNumber.HasValue)
+                {
+                    txtTonnageSheet.Value = lastTonnageSheetNumber.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Maneja errores y registra si es necesario
+                System.Diagnostics.Debug.WriteLine("Error en RadMonthYearPicker1_SelectedDateChanged: " + ex.Message);
+            }
+        }
+
+        protected void TxtTonnageSheet50_SelectedDateChanged(object sender, SelectedDateChangedEventArgs e)
+        {
+            try
+            {
+                // Obtén el año seleccionado del RadMonthYearPicker
+                RadMonthYearPicker picker = sender as RadMonthYearPicker;
+                if (picker == null || !picker.SelectedDate.HasValue)
+                {
+                    return; // Si no hay fecha seleccionada, salir
+                }
+
+                int selectedYear = picker.SelectedDate.Value.Year;
+
+                // Llama a un servicio o método para obtener el último número de arqueo del año
+                int? lastTonnageSheetNumber = this.accountingDocumentsService.GetNextTonnageSheetNumber50(selectedYear);
+
+                // Función anónima para buscar el control recursivamente
+                Func<Control, string, Control> findControlRecursive = null;
+                findControlRecursive = (root, id) =>
+                {
+                    if (root.ID == id)
+                    {
+                        return root;
+                    }
+
+                    foreach (Control child in root.Controls)
+                    {
+                        Control found = findControlRecursive(child, id);
+                        if (found != null)
+                        {
+                            return found;
+                        }
+                    }
+
+                    return null;
+                };
+
+                // Busca el control txtTonnageSheet50
+                RadNumericTextBox txtTonnageSheet50 = findControlRecursive(this, "RntTonnageSheet50") as RadNumericTextBox;
+                if (txtTonnageSheet50 != null && lastTonnageSheetNumber.HasValue)
+                {
+                    txtTonnageSheet50.Value = lastTonnageSheetNumber.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Maneja errores y registra si es necesario
+                System.Diagnostics.Debug.WriteLine("Error en TxtTonnageSheet50_SelectedDateChanged: " + ex.Message);
+            }
+        }
+
         protected void RcTypes_OnSelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
         {
             var typeCode = string.IsNullOrWhiteSpace(e.Value) ? string.Empty : e.Value;
@@ -455,11 +641,11 @@
 
                     break;
                 case "6": // DR
-                    restrictedAccount = this.accountRestrictedService.GetAccountsRestricted("G");
+                    restrictedAccount = this.accountRestrictedService.GetAccountsRestricted("I");
                     this.RntRestrictedAccount.DataSource = restrictedAccount.ToList();
                     this.RntRestrictedAccount.DataBind();
 
-                    this.RntRestrictedAccount.SelectedValue = "23";
+                    this.RntRestrictedAccount.SelectedValue = "10";
                     break;
             }
         }
@@ -486,74 +672,6 @@
                     var number = this.extraBudgetaryApplicationsService.GetNextNumber((int)year);
 
                     this.RntFileNumber.Value = number;
-                }
-            }
-        }
-
-        protected void Page_PreRender(object sender, EventArgs e)
-        {
-            var typeCode = this.RcTypes.SelectedValue;
-
-            if (!string.IsNullOrWhiteSpace(typeCode))
-            {
-                switch (typeCode)
-                {
-                    case "2":
-                    case "4":
-                        this.RcThirds.Enabled = true;
-                        this.RntTonnageSheet.Enabled = true;
-                        this.RmyTonnageSheetYear.Enabled = true;
-                        this.RntTonnageSheet50.Enabled = true;
-                        this.RmyTonnageSheet50Year.Enabled = true;
-
-                        break;
-                    case "1":
-                    case "3":
-                    case "5":
-                        this.RcInterested.Enabled = true;
-                        this.RcPayForms.Enabled = true;
-                        this.RcPercertor.Enabled = true;
-                        this.RcPayTypes.Enabled = true;
-                        this.RtbCheckNumber.Enabled = true;
-
-                        break;
-
-                    case "6": // DR
-                        this.RcInterested.Enabled = true;
-                        this.RcPayForms.Enabled = true;
-                        this.RcPercertor.Enabled = true;
-                        this.RcPayTypes.Enabled = true;
-                        this.RtbCheckNumber.Enabled = true;
-                        break;
-                }
-            }
-  
-
-            this.btnStatusApplication.Enabled = !this.RcExtraBudgetaryApplications.SelectedValue.Equals("-1");
-            this.btnShowTreasury.Enabled = this.ExtraBudgetary.TES_CODIGO != null;
-            this.btnDelete.Enabled = this.ExtraBudgetary.EXP_EXTRAP_CODIGO != 0;
-            this.btnExtraBudgetaryDiscounts.Enabled = !string.IsNullOrWhiteSpace(typeCode) && typeCode.Equals("3");
-
-            if (this.ExtraBudgetary.EXP_EXTRAP_CODIGO == 0)
-            {
-                this.btnReport.Enabled = false;
-            }
-            else
-            {
-                if (this.ExtraBudgetary.TIP_EXTRAP_CODIGO == null)
-                {
-                    this.btnReport.Enabled = false;
-                }
-                else
-                {
-                    if (this.ExtraBudgetary.TIP_EXTRAP_CODIGO.ToString().Equals("2") || this.ExtraBudgetary.TIP_EXTRAP_CODIGO.ToString().Equals("3"))
-                    {
-                        this.btnReport.Enabled = true;
-                    }
-                    else
-                    {
-                        this.btnReport.Enabled = false;
-                    }
                 }
             }
         }
@@ -663,14 +781,9 @@
                     }
                 }
 
-                // es un DR
+                // DR
                 if (typeCode == 6)
                 {
-                    extraBudgetary.PROV_CODIGO_PROVEEDOR = this.RcInterested.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcInterested.SelectedValue);
-                    extraBudgetary.FOR_CODIGO = this.RcPayForms.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcPayForms.SelectedValue);
-                    extraBudgetary.CUE_CODIGO = this.RcPercertor.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcPercertor.SelectedValue);
-                    extraBudgetary.TIPP_CODIGO = this.RcPayTypes.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcPayTypes.SelectedValue);
-
                     extraBudgetary.PROV_CODIGO_TERCERO = this.RcThirds.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcThirds.SelectedValue);
                     extraBudgetary.HOJ_NUMERO = this.RntTonnageSheet.Value == null ? (int?)null : Convert.ToInt32(this.RntTonnageSheet.Value);
                     extraBudgetary.ANO_HOJA = this.RmyTonnageSheetYear.SelectedDate == null ? (short?)null : Convert.ToInt16(((DateTime)this.RmyTonnageSheetYear.SelectedDate).Year);
@@ -760,13 +873,9 @@
                     }
                 }
 
-                // es un DR
+                // DR
                 if (typeCode == 6)
                 {
-                    extraBudgetary.PROV_CODIGO_PROVEEDOR = this.RcInterested.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcInterested.SelectedValue);
-                    extraBudgetary.FOR_CODIGO = this.RcPayForms.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcPayForms.SelectedValue);
-                    extraBudgetary.CUE_CODIGO = this.RcPercertor.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcPercertor.SelectedValue);
-                    extraBudgetary.TIPP_CODIGO = this.RcPayTypes.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcPayTypes.SelectedValue);
 
                     extraBudgetary.PROV_CODIGO_TERCERO = this.RcThirds.SelectedValue.Equals("-1") ? (int?)null : Convert.ToInt32(this.RcThirds.SelectedValue);
                     extraBudgetary.HOJ_NUMERO = this.RntTonnageSheet.Value == null ? (int?)null : Convert.ToInt32(this.RntTonnageSheet.Value);
@@ -829,7 +938,6 @@
 
             this.rwmManageExtraBudgetary.RadConfirm(message, "confirmDeleteCallBackFn", 330, 140, null, "Confirmación");
         }
-
 
         protected void btnStatusApplication_OnClick(object sender, EventArgs e)
         {
