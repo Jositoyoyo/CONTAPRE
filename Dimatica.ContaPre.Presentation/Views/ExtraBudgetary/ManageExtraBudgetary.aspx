@@ -15,7 +15,7 @@
     runat="server">
 
     <%--Modales--%>
-    <telerik:RadWindowManager ID="rwmManageExtraBudgetary" runat="server">
+    <telerik:radwindowmanager id="rwmManageExtraBudgetary" runat="server">
         <Windows>
             <%--estado expediente--%>
             <telerik:RadWindow ID="rwSeeStatusApplication"
@@ -65,7 +65,7 @@
                 OnClientClose="OnClientUpdateDiscountsCloseHandler">
             </telerik:RadWindow>
         </Windows>
-    </telerik:RadWindowManager>
+    </telerik:radwindowmanager>
 
     <!-- Page Content -->
     <div id="section_extraBudgetary" class="container" style="height: calc(100vh - 56px) !important">
@@ -73,9 +73,9 @@
         <h3 id="titleHeader" runat="server">Nuevo Exped. Extrapresupuestario</h3>
 
         <div id="page_manageExtraBudgetary" class="box-block">
-            <telerik:RadAjaxPanel ID="rapManageExtraBudgetary"
+            <telerik:radajaxpanel id="rapManageExtraBudgetary"
                 runat="server"
-                LoadingPanelID="ralPrincipal">
+                loadingpanelid="ralPrincipal">
                 <telerik:RadNotification ID="RadNotification"
                     runat="server"
                     RenderMode="Lightweight"
@@ -502,10 +502,10 @@
                     </div>
                 </div>
 
-            </telerik:RadAjaxPanel>
+            </telerik:radajaxpanel>
         </div>
     </div>
-    <telerik:RadScriptBlock runat="server">
+    <telerik:radscriptblock runat="server">
         <script>
             var modalDiv = null;
 
@@ -653,5 +653,5 @@
                     currentUpdatedControl = null;
                 });
         </script>
-    </telerik:RadScriptBlock>
+    </telerik:radscriptblock>
 </asp:Content>

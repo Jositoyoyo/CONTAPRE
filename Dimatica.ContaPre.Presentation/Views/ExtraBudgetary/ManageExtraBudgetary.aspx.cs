@@ -194,10 +194,10 @@
                 types.Insert(
                              0,
                              new PRE_TIPO_EXTRAP
-                                     {
-                                             TIP_EXTRAP_CODIGO_AUX = -1,
-                                             TIP_EXTRAP_DESCRIPCION = "< Seleccione >"
-                                     });
+                             {
+                                 TIP_EXTRAP_CODIGO_AUX = -1,
+                                 TIP_EXTRAP_DESCRIPCION = "< Seleccione >"
+                             });
 
                 if (extraBudgetaryId == null)
                 {
@@ -217,10 +217,10 @@
                 extraBudgetaryApplications.Insert(
                                                   0,
                                                   new PRE_EXTRAPRESUPUESTARIA
-                                                          {
-                                                                  EXTRAPRE_CODIGO = -1,
-                                                                  EXTRAPRE_DESCRIPCION = "< Seleccione >"
-                                                          });
+                                                  {
+                                                      EXTRAPRE_CODIGO = -1,
+                                                      EXTRAPRE_DESCRIPCION = "< Seleccione >"
+                                                  });
 
                 this.RcExtraBudgetaryApplications.DataSource = extraBudgetaryApplications;
                 this.RcExtraBudgetaryApplications.DataBind();
@@ -230,10 +230,10 @@
                 providers.Insert(
                                  0,
                                  new PRE_PROVEEDOR
-                                         {
-                                                 PROV_CODIGO = -1,
-                                                 PROV_NOMBRE = "< Seleccione >"
-                                         });
+                                 {
+                                     PROV_CODIGO = -1,
+                                     PROV_NOMBRE = "< Seleccione >"
+                                 });
 
                 this.RcInterested.DataSource = providers;
                 this.RcInterested.DataBind();
@@ -243,9 +243,9 @@
                 payForms.Insert(
                                 0,
                                 new PRE_FORMA_PAGO
-                                        {
-                                                FOR_CODIGO_AUX = -1
-                                        });
+                                {
+                                    FOR_CODIGO_AUX = -1
+                                });
 
                 this.RcPayForms.DataSource = payForms;
                 this.RcPayForms.DataBind();
@@ -255,9 +255,9 @@
                 percertors.Insert(
                                   0,
                                   new PRE_CUENTA_RESTRINGIDA
-                                          {
-                                                  CUE_CODIGO = -1
-                                          });
+                                  {
+                                      CUE_CODIGO = -1
+                                  });
 
                 this.RcPercertor.DataSource = percertors.ToList();
                 this.RcPercertor.DataBind();
@@ -267,9 +267,9 @@
                 payTypes.Insert(
                                 0,
                                 new PRE_TIPO_PAGO
-                                        {
-                                                TIPP_CODIGO_AUX = -1
-                                        });
+                                {
+                                    TIPP_CODIGO_AUX = -1
+                                });
 
                 this.RcPayTypes.DataSource = payTypes.ToList();
                 this.RcPayTypes.DataBind();
@@ -478,9 +478,9 @@
             }
 
 
-            this.btnStatusApplication.Enabled = !this.RcExtraBudgetaryApplications.SelectedValue.Equals("-1");
-            this.btnShowTreasury.Enabled = this.ExtraBudgetary.TES_CODIGO != null;
-            this.btnDelete.Enabled = this.ExtraBudgetary.EXP_EXTRAP_CODIGO != 0;
+            this.btnStatusApplication.Enabled       = !this.RcExtraBudgetaryApplications.SelectedValue.Equals("-1");
+            this.btnShowTreasury.Enabled            = this.ExtraBudgetary.TES_CODIGO != null;
+            this.btnDelete.Enabled                  = this.ExtraBudgetary.EXP_EXTRAP_CODIGO != 0;
             this.btnExtraBudgetaryDiscounts.Enabled = !string.IsNullOrWhiteSpace(typeCode) && typeCode.Equals("3");
 
             if (this.ExtraBudgetary.EXP_EXTRAP_CODIGO == 0)
@@ -683,15 +683,14 @@
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            var strBuilder = new StringBuilder();
 
-            var typeCode = this.RcTypes.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcTypes.SelectedValue);
+            var strBuilder = new StringBuilder();
+            var typeCode   = this.RcTypes.SelectedValue.Equals("-1") ? (byte?)null : Convert.ToByte(this.RcTypes.SelectedValue);
 
             if (typeCode == null)
             {
                 strBuilder.Append("Antes de grabar seleccione un Tipo de Expediente Extrapresuepuestario.");
                 this.ShowMessage(this.RadNotification, "Imposible Grabar", strBuilder, MessageType.Warning);
-
                 return;
             }
 
@@ -707,7 +706,6 @@
                 {
                     strBuilder.Append("Antes de grabar introduzca un Número de Expediente.");
                     this.ShowMessage(this.RadNotification, "Imposible Grabar", strBuilder, MessageType.Warning);
-
                     return;
                 }
             }
@@ -718,32 +716,31 @@
             {
                 strBuilder.Append("Antes de grabar seleccione una Aplicación Extrapresupuestaria.");
                 this.ShowMessage(this.RadNotification, "Imposible Grabar", strBuilder, MessageType.Warning);
-
                 return;
             }
 
             if (this.ExtraBudgetary.EXP_EXTRAP_CODIGO == 0)
             {
                 var extraBudgetary = new PRE_EXP_EXTRAPRE
-                                             {
-                                                     TIP_EXTRAP_CODIGO = typeCode,
-                                                     EXP_EXTRAP_ANO_PRESUPUESTO = Convert.ToInt16(((DateTime)this.RmyYear.SelectedDate).Year),
-                                                     EXP_EXTRAP_NUMERO = fileNumber,
-                                                     EXP_EXTRAP_FECHA = this.RdDate.SelectedDate,
-                                                     EXTRAPRE_CODIGO = (int)extraBudgetaryApplication,
-                                                     EXP_EXTRAP_IMPORTE = this.RntAmount.Value == null ? 0 : Convert.ToDecimal(this.RntAmount.Value),
-                                                     CUE_CODIGO_PAGADOR = Convert.ToInt32(this.RntRestrictedAccount.SelectedValue),
-                                                     EXP_EXTRAP_TEXTO = this.RtbDescription.Text,
-                                                     CUEP_NUMERO = this.RtbPgcpAccount.Text,
-                                                     EXP_NUM_EXP_CONTABLE_ANUAL = null,
-                                                     EXP_NUM_EXP_EXTRAPRE = null,
-                                                     EXP_CODIGO = null,
-                                                     DOC_CODIGO = null,
-                                                     TES_CODIGO = null,
-                                                     EXP_ENLAZADO_TESORERIA = false,
-                                                     EXP_EXTRAP_PAGADO = false,
-                                                     USU_CODIGO = LoginUser.USU_CODIGO
-                                             };
+                {
+                    TIP_EXTRAP_CODIGO = typeCode,
+                    EXP_EXTRAP_ANO_PRESUPUESTO = Convert.ToInt16(((DateTime)this.RmyYear.SelectedDate).Year),
+                    EXP_EXTRAP_NUMERO = fileNumber,
+                    EXP_EXTRAP_FECHA = this.RdDate.SelectedDate,
+                    EXTRAPRE_CODIGO = (int)extraBudgetaryApplication,
+                    EXP_EXTRAP_IMPORTE = this.RntAmount.Value == null ? 0 : Convert.ToDecimal(this.RntAmount.Value),
+                    CUE_CODIGO_PAGADOR = Convert.ToInt32(this.RntRestrictedAccount.SelectedValue),
+                    EXP_EXTRAP_TEXTO = this.RtbDescription.Text,
+                    CUEP_NUMERO = this.RtbPgcpAccount.Text,
+                    EXP_NUM_EXP_CONTABLE_ANUAL = null,
+                    EXP_NUM_EXP_EXTRAPRE = null,
+                    EXP_CODIGO = null,
+                    DOC_CODIGO = null,
+                    TES_CODIGO = null,
+                    EXP_ENLAZADO_TESORERIA = false,
+                    EXP_EXTRAP_PAGADO = false,
+                    USU_CODIGO = LoginUser.USU_CODIGO
+                };
 
                 if (typeCode == 3 || typeCode == 4 || typeCode == 5)
                 {
@@ -791,7 +788,7 @@
                     extraBudgetary.ANO_HOJA50 = this.RmyTonnageSheet50Year.SelectedDate == null ? (short?)null : Convert.ToInt16(((DateTime)this.RmyTonnageSheet50Year.SelectedDate).Year);
                 }
 
-                    try
+                try
                 {
                     var insert = extraBudgetaryRecordsService.InsertExtraBudgetary(extraBudgetary);
 
@@ -816,26 +813,26 @@
             else
             {
                 var extraBudgetary = new PRE_EXP_EXTRAPRE
-                                             {
-                                                     EXP_EXTRAP_CODIGO = this.ExtraBudgetary.EXP_EXTRAP_CODIGO,
-                                                     TIP_EXTRAP_CODIGO = typeCode,
-                                                     EXP_EXTRAP_ANO_PRESUPUESTO = Convert.ToInt16(((DateTime)this.RmyYear.SelectedDate).Year),
-                                                     EXP_EXTRAP_NUMERO = fileNumber,
-                                                     EXP_EXTRAP_FECHA = this.RdDate.SelectedDate,
-                                                     EXTRAPRE_CODIGO = (int)extraBudgetaryApplication,
-                                                     EXP_EXTRAP_IMPORTE = this.RntAmount.Value == null ? 0 : Convert.ToDecimal(this.RntAmount.Value),
-                                                     CUE_CODIGO_PAGADOR = Convert.ToInt32(this.RntRestrictedAccount.SelectedValue),
-                                                     EXP_EXTRAP_TEXTO = this.RtbDescription.Text,
-                                                     CUEP_NUMERO = this.RtbPgcpAccount.Text,
-                                                     EXP_NUM_EXP_CONTABLE_ANUAL = this.RntProvenance.Value == null ? (int?)null : Convert.ToInt32(this.RntProvenance.Value),
-                                                     EXP_NUM_EXP_EXTRAPRE = null,
-                                                     EXP_CODIGO = null,
-                                                     DOC_CODIGO = null,
-                                                     TES_CODIGO = null,
-                                                     EXP_ENLAZADO_TESORERIA = this.RcbBinding.Checked,
-                                                     EXP_EXTRAP_PAGADO = false,
-                                                     USU_CODIGO = LoginUser.USU_CODIGO
-                                             };
+                {
+                    EXP_EXTRAP_CODIGO = this.ExtraBudgetary.EXP_EXTRAP_CODIGO,
+                    TIP_EXTRAP_CODIGO = typeCode,
+                    EXP_EXTRAP_ANO_PRESUPUESTO = Convert.ToInt16(((DateTime)this.RmyYear.SelectedDate).Year),
+                    EXP_EXTRAP_NUMERO = fileNumber,
+                    EXP_EXTRAP_FECHA = this.RdDate.SelectedDate,
+                    EXTRAPRE_CODIGO = (int)extraBudgetaryApplication,
+                    EXP_EXTRAP_IMPORTE = this.RntAmount.Value == null ? 0 : Convert.ToDecimal(this.RntAmount.Value),
+                    CUE_CODIGO_PAGADOR = Convert.ToInt32(this.RntRestrictedAccount.SelectedValue),
+                    EXP_EXTRAP_TEXTO = this.RtbDescription.Text,
+                    CUEP_NUMERO = this.RtbPgcpAccount.Text,
+                    EXP_NUM_EXP_CONTABLE_ANUAL = this.RntProvenance.Value == null ? (int?)null : Convert.ToInt32(this.RntProvenance.Value),
+                    EXP_NUM_EXP_EXTRAPRE = null,
+                    EXP_CODIGO = null,
+                    DOC_CODIGO = null,
+                    TES_CODIGO = null,
+                    EXP_ENLAZADO_TESORERIA = this.RcbBinding.Checked,
+                    EXP_EXTRAP_PAGADO = false,
+                    USU_CODIGO = LoginUser.USU_CODIGO
+                };
 
                 if (typeCode == 3 || typeCode == 4 || typeCode == 5)
                 {
