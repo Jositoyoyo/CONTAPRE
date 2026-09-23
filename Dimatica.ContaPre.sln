@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30503.244
+# Visual Studio Version 18
+VisualStudioVersion = 18.8.11912.234 insiders
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.Presentation", "Dimatica.ContaPre.Presentation\Dimatica.ContaPre.Presentation.csproj", "{544305A7-4C42-4FEE-9423-508B0A7A9C05}"
 EndProject
@@ -55,7 +55,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {75145412-FA7D-4F88-9260-A30A4BFA809A}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+		SolutionGuid = {75145412-FA7D-4F88-9260-A30A4BFA809A}
 	EndGlobalSection
 EndGlobal
