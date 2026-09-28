@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.8.11912.234 insiders
+VisualStudioVersion = 18.8.11912.234
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.Presentation", "Dimatica.ContaPre.Presentation\Dimatica.ContaPre.Presentation.csproj", "{544305A7-4C42-4FEE-9423-508B0A7A9C05}"
 EndProject
