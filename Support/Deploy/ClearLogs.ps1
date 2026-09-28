@@ -1,9 +1,9 @@
 # Version -1.0.0
 # Set-ExecutionPolicy RemoteSigned -Scope Process
-# .\clean-logs.ps1
+# .\ClearLogs.ps1
 
 # Configuración de la ruta de los logs
-$logPath = "C:\inetpub\wwwroot\CONTAPRE\Logs"
+$logPath = "\\suimpappmad021\C$\inetpub\wwwroot\CONTAPRE\Logs"
 
 # Confirmación para proceder con la limpieza de logs
 $confirmation = Read-Host -Prompt "Estás a punto de eliminar los archivos de log en el directorio $logPath. ¿Deseas continuar? (S para continuar / N para cancelar)"
