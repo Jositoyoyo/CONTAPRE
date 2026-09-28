@@ -40,6 +40,7 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 
 - `Support\Documentacion` contiene documentación funcional, descripción del entorno, operación, despliegue, desarrollo, pruebas, arquitectura y conexiones.
 - `Support\Deploy` contiene scripts operativos de desarrollo, producción, limpieza de logs y apertura de IIS.
+- `Support/Changelog/YYYY-MM-DD.md` contiene el diario de cambios realizados en cada fecha.
 - Tratar la documentación como referencia del comportamiento y del procedimiento; verificar siempre el código y la configuración actuales antes de aplicar una instrucción operativa.
 
 ## Desarrollo, pruebas y despliegue
@@ -74,9 +75,17 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 - Antes de modificar pruebas, reutilizar fixtures y utilidades existentes. Restaurar siempre el estado global de `HttpContext.Current` y limpiar temporales creados por las pruebas.
 - Si una prueba requiere Oracle, SQL Server, SMTP, IIS o una ruta remota, aislarla mediante mocks o seams; no ejecutar la operación externa como verificación rutinaria.
 
+### Ejecución local
+
+- `Support\Deploy\StartLocal.ps1` reconstruye la solución con `Development` y levanta `Dimatica.ContaPre.Presentation` mediante IIS Express.
+- La URL local es `http://localhost:54234/` y la configuración procede de `.vs\Dimatica.ContaPre\config\applicationhost.config`.
+- El script comprueba el puerto antes de iniciar y no detiene procesos existentes si está ocupado.
+- La ejecución local no publica en servidores remotos, no limpia logs, no crea backups y no copia `ClearLogs.ps1`.
+
 ### Despliegue de desarrollo
 
 - `Support\Deploy\DeployDesarrollo.ps1` compila con configuración `Development` y publica directamente en el destino IIS remoto configurado en el script.
+- El destino actual es `\\suimpappmad021\C$\inetpub\wwwroot\CONTAPRE`; no se utiliza una carpeta de staging o publicación intermedia.
 - Solicita confirmación antes de modificar el destino.
 - Tras confirmar, elimina los archivos de logs configurados y publica únicamente `ClearLogs.ps1` desde `Support\Deploy` fuera de la publicación de la aplicación.
 - El script verifica el resultado de la publicación y el hash del archivo auxiliar.
@@ -86,7 +95,9 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 - `Support\Deploy\DeployProduccion.ps1` utiliza `Release` y `PRODUCCION.pubxml`.
 - Publica directamente en el destino IIS de producción configurado en el script.
 - Pregunta si se desea realizar un backup antes de publicar.
-- Si se confirma, crea un ZIP del sitio IIS actual en la carpeta de backups configurada, con nombre basado en fecha y hora; no sobrescribe un ZIP existente y aborta si el backup no se puede crear o verificar.
+- El destino actual es `\\suimpappmad041\C$\inetpub\wwwroot\CONTAPRE` y la carpeta de backups es `\\suimpappmad041\CONTAPRE\backups`.
+- Si se confirma, crea un ZIP del sitio IIS actual con formato `backup_ddMMyyyyHHmm.zip`; no sobrescribe un ZIP existente y aborta si el backup no se puede crear o verificar.
+- Si se responde `N` o cualquier otra opción, omite el backup y continúa con la publicación.
 - Los scripts de despliegue tienen efectos externos y solo deben ejecutarse con autorización explícita, revisando antes la configuración, el destino, la cuenta utilizada y el alcance de los archivos afectados.
 - No ejecutar publicaciones, limpieza de logs, backups remotos ni borrados remotos durante una verificación rutinaria.
 
@@ -118,5 +129,6 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 4. Implementar el cambio mínimo compatible con .NET Framework 4.8.
 5. Ejecutar compilación, pruebas o verificaciones estáticas proporcionales al riesgo.
 6. Revisar el diff, retirar diagnósticos o secretos accidentales y comprobar que no se han modificado archivos fuera del alcance.
+7. Documentar los cambios realizados en `Support/Changelog/YYYY-MM-DD.md`, usando la fecha del cambio. Crear el archivo diario si no existe y no incluir secretos, credenciales, cadenas de conexión, datos personales ni logs sensibles.
 
 Al informar del resultado, indicar los ficheros modificados, las verificaciones ejecutadas, advertencias conocidas y cualquier prueba bloqueada por dependencias del entorno.
