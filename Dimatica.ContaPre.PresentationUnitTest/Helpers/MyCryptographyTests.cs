@@ -68,5 +68,24 @@ namespace Dimatica.ContaPre.PresentationUnitTest.Helpers
             Assert.AreNotEqual(clearText, cipherText);
         }
 
+        [TestMethod()]
+        public void Encrypt_EmptyText_ReturnsEmpty()
+        {
+            Assert.AreEqual(string.Empty, MyCryptography.Encrypt(string.Empty));
+        }
+
+        [TestMethod()]
+        public void Decrypt_EmptyText_ReturnsEmpty()
+        {
+            Assert.AreEqual(string.Empty, MyCryptography.Decrypt(string.Empty));
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(System.Security.Cryptography.CryptographicException))]
+        public void Decrypt_InvalidBase64_ThrowsCryptographicException()
+        {
+            MyCryptography.Decrypt("not-valid-base64");
+        }
+
     }
 }

@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\DataValidation\EmailValidatorTests.cs" />
@@ -55,6 +56,10 @@
     <Compile Include="Helpers\Email\EmailTemplateHelperTests.cs" />
     <Compile Include="Helpers\MyCryptographyTests.cs" />
     <Compile Include="Helpers\PlainPasswordGeneratorTests.cs" />
+    <Compile Include="Helpers\SessionHelperTests.cs" />
+    <Compile Include="Helpers\SiteDataHelperTests.cs" />
+    <Compile Include="Helpers\UrlHelperTests.cs" />
+    <Compile Include="Helpers\WebTestContext.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,6 +70,10 @@
     <ProjectReference Include="..\Dimatica.ContaPre.Presentation\Dimatica.ContaPre.Presentation.csproj">
       <Project>{544305a7-4c42-4fee-9423-508b0a7a9c05}</Project>
       <Name>Dimatica.ContaPre.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dimatica.ContaPre.OL\Dimatica.ContaPre.OL.csproj">
+      <Project>{ffc53514-9d68-407c-ab21-955aa7c47eb2}</Project>
+      <Name>Dimatica.ContaPre.OL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

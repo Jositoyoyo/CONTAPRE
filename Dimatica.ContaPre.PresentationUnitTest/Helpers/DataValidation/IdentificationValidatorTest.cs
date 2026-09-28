@@ -89,6 +89,24 @@ namespace Dimatica.ContaPre.PresentationUnitTest.Helpers.DataValidation
             var result = _validator.ValidNIE(invalidNie);
             Assert.IsFalse(result, $"El NIE '{invalidNie}' debería ser inválido.");
         }
+
+        [TestMethod]
+        public void ValidateDocument_ValidCif_ReturnsTrue()
+        {
+            Assert.IsTrue(_validator.ValidateDocument("S2693959E"));
+        }
+
+        [TestMethod]
+        public void ValidateDocument_ValidNie_ReturnsTrue()
+        {
+            Assert.IsTrue(_validator.ValidateDocument("Y7790858J"));
+        }
+
+        [TestMethod]
+        public void ValidateDocument_UnsupportedFormat_ReturnsFalse()
+        {
+            Assert.IsFalse(_validator.ValidateDocument("12345678"));
+        }
     
     }
 }

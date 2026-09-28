@@ -74,5 +74,33 @@ namespace Dimatica.ContaPre.PresentationUnitTest.Helpers.DataValidation
             Assert.IsFalse(result, "Se esperaba que el IBAN fuera inválido debido a un módulo 97 incorrecto.");
             Assert.AreEqual(string.Empty, realIban, "Se esperaba que el IBAN generado estuviera vacío.");
         }
+
+        [TestMethod]
+        public void ValidateIban_NonNumericField_ReturnsFalse()
+        {
+            bool result = IbanValidator.ValidateIban(
+                "20A0",
+                "6489",
+                "15",
+                "6470732359",
+                out string realIban);
+
+            Assert.IsFalse(result);
+            Assert.AreEqual(string.Empty, realIban);
+        }
+
+        [TestMethod]
+        public void ValidateIban_PartiallyFilledFields_ReturnsFalse()
+        {
+            bool result = IbanValidator.ValidateIban(
+                "2080",
+                "6489",
+                "15",
+                "",
+                out string realIban);
+
+            Assert.IsFalse(result);
+            Assert.AreEqual(string.Empty, realIban);
+        }
     }
 }

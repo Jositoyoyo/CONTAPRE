@@ -1,17 +1,42 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using Dimatica.ContaPre.Presentation.Helpers.Email;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dimatica.ContaPre.PresentationUnitTest.Helpers.Email
-{ 
-    [TestClass()]
+{
+    [TestClass]
     public class EmailTemplateHelperTests
     {
-        [TestMethod()]
-        public void GetEmailBody_Returns_Correct_Email_Body()
+        [TestMethod]
+        public void ReplaceTemplateParameters_ReplacesAllValues()
         {
-            string expectedpassword = "password123";
-            string password = "password123";
-            // Assert
-            Assert.AreEqual(expectedpassword, password);
+            var body = "{{UserName}}|{{UserLogin}}|{{Password}}|{{AppUrl}}";
+
+            var result = EmailTemplateHelper.ReplaceTemplateParameters(
+                body,
+                new Dictionary<string, string>
+                {
+                    { "UserName", "Ana" },
+                    { "UserLogin", "ana.login" },
+                    { "Password", "secret" },
+                    { "AppUrl", "https://example.test" }
+                });
+
+            Assert.AreEqual("Ana|ana.login|secret|https://example.test", result);
+        }
+
+        [TestMethod]
+        public void ReplaceTemplateParameters_ReplacesNullWithEmptyAndKeepsUnknownPlaceholders()
+        {
+            var result = EmailTemplateHelper.ReplaceTemplateParameters(
+                "{{Name}}|{{Empty}}|{{Unknown}}",
+                new Dictionary<string, string>
+                {
+                    { "Name", "Ana" },
+                    { "Empty", null }
+                });
+
+            Assert.AreEqual("Ana||{{Unknown}}", result);
         }
     }
 }
