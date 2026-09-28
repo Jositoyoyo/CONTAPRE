@@ -11,11 +11,13 @@
         {
             // Cargar la plantilla desde la ruta especificada
             string body = File.ReadAllText(HttpContext.Current.Server.MapPath(templatePath));
-            body = body.Replace("{{UserName}}", userName);
-            body = body.Replace("{{UserLogin}}", userLogin);
-            body = body.Replace("{{Password}}", password);
-            body = body.Replace("{{AppUrl}}", appUrl); // Agrega la URL de conexión
-            return body;
+            return ReplaceTemplateParameters(body, new Dictionary<string, string>
+            {
+                { "UserName", userName },
+                { "UserLogin", userLogin },
+                { "Password", password },
+                { "AppUrl", appUrl }
+            });
         }
 
         public static string GetEmailBodyDynamicParams(string templatePath, Dictionary<string, string> parameters)
@@ -23,6 +25,11 @@
             // Cargar la plantilla desde la ruta especificada
             string body = File.ReadAllText(HttpContext.Current.Server.MapPath(templatePath));
 
+            return ReplaceTemplateParameters(body, parameters);
+        }
+
+        internal static string ReplaceTemplateParameters(string body, IDictionary<string, string> parameters)
+        {
             // Reemplazar cada clave en el cuerpo de la plantilla
             foreach (var param in parameters)
             {
