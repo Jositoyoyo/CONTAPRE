@@ -271,7 +271,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Helpers\radwindow-helper.js" />
-    <Content Include="Utilities\CopytoProduction.ps1" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -358,9 +357,6 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Utilities\ClearLogs.ps1" />
-    <Content Include="Utilities\DeployApp.ps1" />
-    <Content Include="Utilities\OpenIISAndFolder.ps1" />
     <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
       <SubType>Designer</SubType>
     </None>
