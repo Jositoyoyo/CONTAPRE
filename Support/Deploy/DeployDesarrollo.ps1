@@ -12,6 +12,65 @@ function Stop-Deployment {
     throw $Message
 }
 
+function Show-RemoteDeploymentInfo {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$ComputerName,
+
+        [Parameter(Mandatory = $true)]
+        [string]$DestinationPath
+    )
+
+    $cimSession = $null
+    try {
+        $cimSession = New-CimSession -ComputerName $ComputerName -ErrorAction Stop
+        $systemDrive = Get-CimInstance -ClassName Win32_LogicalDisk `
+            -Filter "DeviceID='C:'" -CimSession $cimSession -ErrorAction Stop
+
+        if (-not $systemDrive -or -not $systemDrive.Size) {
+            throw "No se encontro informacion de almacenamiento para C: en $ComputerName."
+        }
+
+        $networkAdapters = @(
+            Get-CimInstance -ClassName Win32_NetworkAdapterConfiguration `
+                -Filter 'IPEnabled=True' -CimSession $cimSession -ErrorAction Stop
+        )
+
+        if ($networkAdapters.Count -eq 0) {
+            throw "No se encontro configuracion IP activa en $ComputerName."
+        }
+
+        $totalGigabytes = [math]::Round($systemDrive.Size / 1GB, 2)
+        $freeGigabytes = [math]::Round($systemDrive.FreeSpace / 1GB, 2)
+        $freePercentage = [math]::Round(($systemDrive.FreeSpace / $systemDrive.Size) * 100, 1)
+
+        Write-Host ''
+        Write-Host "Informacion previa del servidor $ComputerName"
+        Write-Host ("Almacenamiento C: {0:N2} GB libres de {1:N2} GB ({2:N1}% libre)" -f `
+            $freeGigabytes, $totalGigabytes, $freePercentage)
+        Write-Host 'Configuracion IP:'
+
+        foreach ($adapter in $networkAdapters) {
+            Write-Host "  Interfaz: $($adapter.Description)"
+            Write-Host "    Direcciones IP: $($adapter.IPAddress -join ', ')"
+            Write-Host "    Subredes: $($adapter.IPSubnet -join ', ')"
+            Write-Host "    Puertas de enlace: $($adapter.DefaultIPGateway -join ', ')"
+            Write-Host "    DNS: $($adapter.DNSServerSearchOrder -join ', ')"
+        }
+
+        Write-Host "Directorio de despliegue remoto: $DestinationPath"
+        Write-Host ''
+    }
+    catch {
+        Stop-Deployment "No se pudo consultar la informacion previa en $ComputerName mediante CIM/WinRM: $($_.Exception.Message)"
+    }
+    finally {
+        if ($cimSession) {
+            Remove-CimSession -CimSession $cimSession -ErrorAction SilentlyContinue
+        }
+    }
+}
+
 # Local project paths.
 $scriptDirectory = $PSScriptRoot
 $searchPath = (Get-Item -LiteralPath $scriptDirectory).FullName
@@ -79,6 +138,8 @@ if (-not $msbuildPath) {
 if (-not (Test-Path -LiteralPath $destinationPath -PathType Container)) {
     Stop-Deployment "El destino remoto no existe o no es accesible: $destinationPath"
 }
+
+Show-RemoteDeploymentInfo -ComputerName 'suimpappmad021' -DestinationPath $destinationPath
 
 Write-Host "Solucion: $solutionPath"
 Write-Host "Destino directo: $destinationPath"
