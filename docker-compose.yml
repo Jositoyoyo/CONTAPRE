@@ -1,0 +1,19 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?Define MSSQL_SA_PASSWORD in .env}
+      MSSQL_DB: ${MSSQL_DB:-CONTAPRE}
+      MSSQL_USER: ${MSSQL_USER:-contapre_app}
+      MSSQL_PASSWORD: ${MSSQL_PASSWORD:?Define MSSQL_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:14333:1433"
+    volumes:
+      - contapre-sqlserver-data:/var/opt/mssql
+      - ./Support/Database:/var/backups:ro
+    restart: unless-stopped
+
+volumes:
+  contapre-sqlserver-data:
