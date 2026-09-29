@@ -7,8 +7,6 @@ Crear pruebas :
 
 - Completar tareas :
 - Base de datos docker en localhost con su copia. Configurar cadena de conexion. Revisar el resto de configuraciones
-- Crear documentacion o guia para conocer el dominio del problema
-
 
 Terminar :
 - La documentacion del proyecto
