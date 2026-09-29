@@ -38,8 +38,18 @@
                 }
 
                 this.environment.InnerText = ConfigurationManager.AppSettings["environment"];
-                this.version.InnerText     = ConfigurationManager.AppSettings["version"];
                 this.ErrorLogin.InnerText  = string.Empty;
+                this.version.InnerText = string.Empty;
+                this.version.Attributes.Remove("title");
+
+                var applicationVersion = ApplicationVersionHelper.LoadApplicationVersion();
+                this.version.InnerText = applicationVersion.Version;
+
+                if (!string.IsNullOrWhiteSpace(applicationVersion.ReleaseDate))
+                {
+                    this.version.Attributes["title"] = $"Release Date : {applicationVersion.ReleaseDate}";
+                }
+
             }
         }
 
@@ -71,23 +81,27 @@
                 }
 
                 LoginUser = user;
-                var originPage = this.Session["_originPage"];
-
-                if (originPage == null)
-                {
-                    this.Response.Redirect("~/Views/Home/Home.aspx");
-                }
-                else
-                {
-                    var path = $"~{originPage}";
-                    this.Response.Redirect(path);
-                }
+                this.RedirectToOriginPage();
             }
             catch (Exception ex)
             {
                 LogError(ex, "Error en el Login");
                 this.ResetError("Error de conexión...");
             }
+        }
+
+        private void RedirectToOriginPage()
+        {
+            var originPage = this.Session["_originPage"];
+
+            if (originPage == null)
+            {
+                this.Response.Redirect("~/Views/Home/Home.aspx");
+                return;
+            }
+
+            var path = $"~{originPage}";
+            this.Response.Redirect(path);
         }
 
         private void ResetError(string message)
