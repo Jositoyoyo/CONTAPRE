@@ -106,16 +106,17 @@ Write-Host "MSBuild: $msbuildPath"
 Write-Host "IIS Express: $iisExpressPath"
 Write-Host "Configuracion IIS Express: $applicationHostConfig"
 Write-Host "URL local: $localUrl"
+Write-Host 'Configuracion de compilacion: Debug'
 
 $msbuildArguments = @(
     $solutionPath,
     '/t:Rebuild',
-    '/p:Configuration=Development',
+    '/p:Configuration=Debug',
     '/p:Platform=Any CPU',
     '/verbosity:minimal'
 )
 
-Write-Host 'Compilando la solucion en configuracion Development...'
+Write-Host 'Compilando la solucion en configuracion Debug...'
 try {
     & $msbuildPath @msbuildArguments
     $msbuildExitCode = $LASTEXITCODE
