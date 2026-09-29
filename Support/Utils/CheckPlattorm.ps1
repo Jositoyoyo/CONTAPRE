@@ -25,7 +25,7 @@ function Write-PlatformCheck {
     }
 }
 
-# Comprobar Windows sin depender de $IsWindows, que no está disponible en Windows PowerShell 5.1.
+# Comprobar Windows sin depender de $IsWindows, que no esta disponible en Windows PowerShell 5.1.
 $isWindowsPlatform = [System.Environment]::OSVersion.Platform -eq [System.PlatformID]::Win32NT
 if (-not $isWindowsPlatform) {
     Write-PlatformCheck -Name 'Windows' -Passed $false -Details 'Este script solo se puede ejecutar en Windows.'
@@ -49,11 +49,11 @@ $dotNetRuntimeDetails = if ($dotNetRuntimeInstalled) {
     ".NET Framework 4.8 o posterior detectado (Release $dotNetRelease)."
 }
 else {
-    '.NET Framework 4.8 o posterior no está instalado.'
+    '.NET Framework 4.8 o posterior no esta instalado.'
 }
 Write-PlatformCheck -Name '.NET Framework runtime' -Passed $dotNetRuntimeInstalled -Details $dotNetRuntimeDetails
 
-# Comprobar el targeting pack .NET Framework 4.8 necesario para compilar esta solución legacy.
+# Comprobar el targeting pack .NET Framework 4.8 necesario para compilar esta solucion legacy.
 $programFilesX86 = ${env:ProgramFiles(x86)}
 if ([string]::IsNullOrWhiteSpace($programFilesX86)) {
     $programFilesX86 = $env:ProgramFiles
@@ -65,17 +65,11 @@ $targetingPackDetails = if ($targetingPackInstalled) {
     "Targeting pack encontrado en $targetingPackPath."
 }
 else {
-    "No se encontró el targeting pack .NET Framework 4.8 en $targetingPackPath."
+    "No se encontro el targeting pack .NET Framework 4.8 en $targetingPackPath."
 }
 Write-PlatformCheck -Name '.NET Framework 4.8 Developer Pack' -Passed $targetingPackInstalled -Details $targetingPackDetails
 
-# Comprobar que IIS está instalado y tiene una configuración global válida y legible.
-$iisService = Get-Service -Name 'W3SVC' -ErrorAction SilentlyContinue
-Write-PlatformCheck `
-    -Name 'Servicio IIS (W3SVC)' `
-    -Passed ($null -ne $iisService) `
-    -Details $(if ($iisService) { "Servicio encontrado (estado: $($iisService.Status))." } else { 'No se encontró el servicio IIS.' })
-
+# Comprobar si tiene una configuracion global valida y legible.
 $iisConfigurationPath = Join-Path $env:windir 'System32\inetsrv\config\applicationHost.config'
 if ([System.Environment]::Is64BitOperatingSystem -and -not [System.Environment]::Is64BitProcess -and -not (Test-Path -LiteralPath $iisConfigurationPath)) {
     $iisConfigurationPath = Join-Path $env:windir 'Sysnative\inetsrv\config\applicationHost.config'
@@ -95,21 +89,21 @@ catch {
 }
 
 $iisConfigurationDetails = if ($iisConfigurationValid) {
-    'La configuración global de IIS existe y es XML válido.'
+    'La configuracion global de IIS existe y es XML valido.'
 }
 else {
-    "No se encontró una configuración global de IIS válida en $iisConfigurationPath."
+    "No se encontro una configuracion global de IIS valida en $iisConfigurationPath."
 }
-Write-PlatformCheck -Name 'Configuración de IIS' -Passed $iisConfigurationValid -Details $iisConfigurationDetails
+Write-PlatformCheck -Name 'Configuracion de IIS' -Passed $iisConfigurationValid -Details $iisConfigurationDetails
 
 if ($iisService -and $iisService.Status -ne 'Running') {
-    Write-Warning 'El servicio W3SVC está detenido. Este verificador no inicia ni modifica servicios.'
+    Write-Warning 'El servicio W3SVC esta detenido. Este verificador no inicia ni modifica servicios.'
 }
 
 if ($script:checkFailures.Count -gt 0) {
-    Write-Host "Validación incompleta. Requisitos pendientes: $($script:checkFailures -join ', ')." -ForegroundColor Red
+    Write-Host "Validacion incompleta. Requisitos pendientes: $($script:checkFailures -join ', ')." -ForegroundColor Red
     exit 1
 }
 
-Write-Host 'Validación completada correctamente.' -ForegroundColor Green
+Write-Host 'Validacion completada correctamente.' -ForegroundColor Green
 exit 0

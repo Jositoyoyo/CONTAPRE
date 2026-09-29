@@ -72,6 +72,122 @@ function New-ProductionBackup {
     }
 }
 
+function Show-RemoteDeploymentInfo {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$ComputerName,
+
+        [Parameter(Mandatory = $true)]
+        [string]$DestinationPath
+    )
+
+    $cimSession = $null
+    try {
+        $cimSession = New-CimSession -ComputerName $ComputerName -ErrorAction Stop
+        $systemDrive = Get-CimInstance -ClassName Win32_LogicalDisk `
+            -Filter "DeviceID='C:'" -CimSession $cimSession -ErrorAction Stop
+
+        if (-not $systemDrive -or -not $systemDrive.Size) {
+            throw "No se encontro informacion de almacenamiento para C: en $ComputerName."
+        }
+
+        $networkAdapters = @(
+            Get-CimInstance -ClassName Win32_NetworkAdapterConfiguration `
+                -Filter 'IPEnabled=True' -CimSession $cimSession -ErrorAction Stop
+        )
+
+        if ($networkAdapters.Count -eq 0) {
+            throw "No se encontro configuracion IP activa en $ComputerName."
+        }
+
+        $totalGigabytes = [math]::Round($systemDrive.Size / 1GB, 2)
+        $freeGigabytes = [math]::Round($systemDrive.FreeSpace / 1GB, 2)
+        $freePercentage = [math]::Round(($systemDrive.FreeSpace / $systemDrive.Size) * 100, 1)
+
+        Write-Host ''
+        Write-Host "Informacion previa del servidor $ComputerName"
+        Write-Host ("Almacenamiento C: {0:N2} GB libres de {1:N2} GB ({2:N1}% libre)" -f `
+            $freeGigabytes, $totalGigabytes, $freePercentage)
+        Write-Host 'Configuracion IP:'
+
+        foreach ($adapter in $networkAdapters) {
+            Write-Host "  Interfaz: $($adapter.Description)"
+            Write-Host "    Direcciones IP: $($adapter.IPAddress -join ', ')"
+            Write-Host "    Subredes: $($adapter.IPSubnet -join ', ')"
+            Write-Host "    Puertas de enlace: $($adapter.DefaultIPGateway -join ', ')"
+            Write-Host "    DNS: $($adapter.DNSServerSearchOrder -join ', ')"
+        }
+
+        Write-Host "Directorio de despliegue remoto: $DestinationPath"
+        Write-Host ''
+    }
+    catch {
+        Stop-Deployment "No se pudo consultar la informacion previa en $ComputerName mediante CIM/WinRM: $($_.Exception.Message)"
+    }
+    finally {
+        if ($cimSession) {
+            Remove-CimSession -CimSession $cimSession -ErrorAction SilentlyContinue
+        }
+    }
+}
+
+function Publish-VerifiedSupportFile {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$SourcePath,
+
+        [Parameter(Mandatory = $true)]
+        [string]$DestinationPath
+    )
+
+    $destinationDirectory = Split-Path -Parent $DestinationPath
+    if (-not (Test-Path -LiteralPath $destinationDirectory -PathType Container)) {
+        New-Item -ItemType Directory -Path $destinationDirectory -Force | Out-Null
+    }
+
+    Copy-Item -LiteralPath $SourcePath -Destination $DestinationPath -Force -ErrorAction Stop
+
+    $sourceHash = (Get-FileHash -LiteralPath $SourcePath -Algorithm SHA256 -ErrorAction Stop).Hash
+    $destinationHash = (Get-FileHash -LiteralPath $DestinationPath -Algorithm SHA256 -ErrorAction Stop).Hash
+    if ($sourceHash -ne $destinationHash) {
+        Stop-Deployment "La verificacion SHA-256 fallo para $DestinationPath"
+    }
+}
+
+function Publish-VerifiedSupportDirectory {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$SourcePath,
+
+        [Parameter(Mandatory = $true)]
+        [string]$DestinationPath
+    )
+
+    $sourceRoot = (Get-Item -LiteralPath $SourcePath -ErrorAction Stop).FullName.TrimEnd('\')
+    $sourceDirectories = @(Get-ChildItem -LiteralPath $sourceRoot -Directory -Recurse -Force -ErrorAction Stop)
+    $sourceFiles = @(Get-ChildItem -LiteralPath $sourceRoot -File -Recurse -Force -ErrorAction Stop)
+
+    if (-not (Test-Path -LiteralPath $DestinationPath -PathType Container)) {
+        New-Item -ItemType Directory -Path $DestinationPath -Force | Out-Null
+    }
+
+    foreach ($sourceDirectory in $sourceDirectories) {
+        $relativePath = $sourceDirectory.FullName.Substring($sourceRoot.Length).TrimStart('\')
+        $targetDirectory = Join-Path $DestinationPath $relativePath
+        if (-not (Test-Path -LiteralPath $targetDirectory -PathType Container)) {
+            New-Item -ItemType Directory -Path $targetDirectory -Force | Out-Null
+        }
+    }
+
+    foreach ($sourceFile in $sourceFiles) {
+        $relativePath = $sourceFile.FullName.Substring($sourceRoot.Length).TrimStart('\')
+        $targetPath = Join-Path $DestinationPath $relativePath
+        Publish-VerifiedSupportFile -SourcePath $sourceFile.FullName -DestinationPath $targetPath
+    }
+
+    return $sourceFiles.Count
+}
+
 # Local project paths.
 $scriptDirectory = $PSScriptRoot
 $searchPath = (Get-Item -LiteralPath $scriptDirectory).FullName
@@ -103,8 +219,13 @@ $versionJsonPath = Join-Path $presentationPath 'JSON.json'
 $unitTestProjectPath = Join-Path $projectRoot 'Dimatica.ContaPre.PresentationUnitTest\Dimatica.ContaPre.PresentationUnitTest.csproj'
 $unitTestAssemblyPath = Join-Path $projectRoot 'Dimatica.ContaPre.PresentationUnitTest\bin\Debug\Dimatica.ContaPre.PresentationUnitTest.dll'
 $publishProfilePath = Join-Path $presentationPath 'Properties\PublishProfiles\PRODUCCION.pubxml'
+$supportUtilsPath = Join-Path $projectRoot 'Support\Utils'
+$supportDeployPath = Join-Path $projectRoot 'Support\Deploy'
+$supportDeployFileNames = @('RollbackProduccion.ps1', 'OpenIIS.ps1', 'ClearLogs.ps1')
 
 $destinationPath = '\\suimpappmad041\C$\inetpub\wwwroot\CONTAPRE'
+$supportUtilsDestinationPath = Join-Path $destinationPath 'Support\Utils'
+$supportDeployDestinationPath = Join-Path $destinationPath 'Support\Deploy'
 $backupDirectory = '\\suimpappmad041\CONTAPRE\backups'
 $backupTimestamp = Get-Date -Format 'ddMMyyyyHHmm'
 $backupZipPath = Join-Path $backupDirectory "backup_$backupTimestamp.zip"
@@ -136,6 +257,17 @@ if (-not (Test-Path -LiteralPath $solutionPath -PathType Leaf)) {
 
 if (-not (Test-Path -LiteralPath $publishProfilePath -PathType Leaf)) {
     Stop-Deployment "El perfil de publicacion no existe: $publishProfilePath"
+}
+
+if (-not (Test-Path -LiteralPath $supportUtilsPath -PathType Container)) {
+    Stop-Deployment "La carpeta de utilidades no existe: $supportUtilsPath"
+}
+
+foreach ($supportDeployFileName in $supportDeployFileNames) {
+    $supportDeployFilePath = Join-Path $supportDeployPath $supportDeployFileName
+    if (-not (Test-Path -LiteralPath $supportDeployFilePath -PathType Leaf)) {
+        Stop-Deployment "No se encontro el archivo auxiliar requerido: $supportDeployFilePath"
+    }
 }
 
 if (-not (Test-Path -LiteralPath $versionJsonPath -PathType Leaf)) {
@@ -194,6 +326,8 @@ if (-not $msbuildPath) {
 if (-not (Test-Path -LiteralPath $destinationPath -PathType Container)) {
     Stop-Deployment "El destino remoto no existe o no es accesible: $destinationPath"
 }
+
+Show-RemoteDeploymentInfo -ComputerName 'suimpappmad041' -DestinationPath $destinationPath
 
 Write-Host "Solucion: $solutionPath"
 Write-Host "Perfil: $publishProfilePath"
@@ -328,6 +462,22 @@ try {
     if ($publishedVersionData.version -isnot [string] -or $publishedVersionData.version -cne $nextVersion -or
         $publishedVersionData.releaseDate -isnot [string] -or $publishedVersionData.releaseDate -cne $deploymentDate) {
         Stop-Deployment "La version o la fecha publicada no coinciden con los valores esperados ($nextVersion, $deploymentDate)."
+    }
+
+    Write-Host 'Publicando y verificando Support\Utils...'
+    $publishedUtilsFileCount = Publish-VerifiedSupportDirectory `
+        -SourcePath $supportUtilsPath `
+        -DestinationPath $supportUtilsDestinationPath
+    Write-Host "Support\Utils publicado y verificado ($publishedUtilsFileCount archivos)."
+
+    Write-Host 'Publicando y verificando scripts seleccionados de Support\Deploy...'
+    foreach ($supportDeployFileName in $supportDeployFileNames) {
+        $supportDeployFilePath = Join-Path $supportDeployPath $supportDeployFileName
+        $supportDeployDestinationFilePath = Join-Path $supportDeployDestinationPath $supportDeployFileName
+        Publish-VerifiedSupportFile `
+            -SourcePath $supportDeployFilePath `
+            -DestinationPath $supportDeployDestinationFilePath
+        Write-Host "Publicado y verificado: $supportDeployDestinationFilePath"
     }
 
     $deploymentVerified = $true
