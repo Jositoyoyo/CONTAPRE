@@ -32,6 +32,25 @@ function Assert-SafeArchiveEntry {
     }
 }
 
+function Assert-ProductionPathHost {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path,
+
+        [Parameter(Mandatory = $true)]
+        [string]$ExpectedHost
+    )
+
+    if (-not $Path.StartsWith('\\')) {
+        Stop-Rollback "La ruta de produccion no es UNC: $Path"
+    }
+
+    $uncParts = $Path.TrimStart('\\').Split('\\')
+    if ($uncParts.Count -lt 2 -or $uncParts[0] -ine $ExpectedHost) {
+        Stop-Rollback "El host de la ruta debe ser ${ExpectedHost}: $Path"
+    }
+}
+
 function Get-RelativePath {
     param(
         [Parameter(Mandatory = $true)]
@@ -90,10 +109,19 @@ function Assert-RestoredStructure {
 }
 
 try {
+    $productionHost = 'suimpappmad041'
+    if ($env:COMPUTERNAME -ine $productionHost) {
+        Stop-Rollback "Este rollback debe ejecutarse en $productionHost. Host actual: $env:COMPUTERNAME"
+    }
+
     Add-Type -AssemblyName System.IO.Compression.FileSystem
 
-    $backupDirectory = '\\suimpappmad041\CONTAPRE\backups'
-    $destinationPath = '\\suimpappmad041\C$\inetpub\wwwroot\CONTAPRE'
+    $backupDirectory = "\\$productionHost\CONTAPRE\backups"
+    $destinationPath = "\\$productionHost\C$\inetpub\wwwroot\CONTAPRE"
+
+    Assert-ProductionPathHost -Path $backupDirectory -ExpectedHost $productionHost
+    Assert-ProductionPathHost -Path $destinationPath -ExpectedHost $productionHost
+
     $backupName = (Read-Host -Prompt 'Introduce el nombre exacto del backup ZIP (ejemplo: backup_280920261118.zip)').Trim()
 
     if ([string]::IsNullOrWhiteSpace($backupName)) {
