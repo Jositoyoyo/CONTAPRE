@@ -363,8 +363,6 @@
     <None Include="Oracle.ManagedDataAccess.Client.Configuration.Section.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\PublishProfiles\DESARROLLO.pubxml" />
-    <None Include="Properties\PublishProfiles\PRODUCCION.pubxml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -447,7 +445,7 @@
     <Content Include="Views\Maintenance\PayTypes.aspx" />
     <Content Include="Views\Maintenance\Programs.aspx" />
     <Content Include="Views\Maintenance\Provenances.aspx" />
-    <Content Include="Views\Maintenance\Providers\Providers.aspx" />
+    <Content Include="Views\Maintenance\Providers.aspx" />
     <Content Include="Views\Maintenance\TreasuryLines.aspx" />
     <Content Include="Views\Rectification\Rectifications.aspx" />
     <Content Include="Views\Rectification\SelectDate.aspx" />
@@ -458,7 +456,7 @@
     <Content Include="Views\Pointing\Sings.aspx" />
     <Content Include="Views\Shared\Components\Alerts\CustomRadAlert\CustomRadAlert.ascx" />
     <Content Include="Views\Shared\Components\Modals\CustomRawWindow\CustomRawWindow.ascx" />
-    <Content Include="Views\Maintenance\Providers\NewProvider.aspx" />
+    <Content Include="Views\Maintenance\NewProvider.aspx" />
     <Content Include="Views\Shared\LoadingPanel.aspx" />
     <Content Include="Views\Spend\AdministrativeRecords.aspx" />
     <Content Include="Views\Spend\CertificateFilter.aspx" />
@@ -920,11 +918,11 @@
     <Compile Include="Views\Maintenance\Provenances.aspx.designer.cs">
       <DependentUpon>Provenances.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Maintenance\Providers\Providers.aspx.cs">
+    <Compile Include="Views\Maintenance\Providers.aspx.cs">
       <DependentUpon>Providers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Maintenance\Providers\Providers.aspx.designer.cs">
+    <Compile Include="Views\Maintenance\Providers.aspx.designer.cs">
       <DependentUpon>Providers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Maintenance\TreasuryLines.aspx.cs">
@@ -991,11 +989,11 @@
       <DependentUpon>CustomRawWindow.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Maintenance\Providers\NewProvider.aspx.cs">
+    <Compile Include="Views\Maintenance\NewProvider.aspx.cs">
       <DependentUpon>NewProvider.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Maintenance\Providers\NewProvider.aspx.designer.cs">
+    <Compile Include="Views\Maintenance\NewProvider.aspx.designer.cs">
       <DependentUpon>NewProvider.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\Components\Partials\Partials.master.cs">
@@ -1255,6 +1253,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Shared\AjaxHandlers\AsyncMethods\" />
     <Folder Include="Views\Shared\AjaxHandlers\DataEndpoints\" />
   </ItemGroup>
@@ -1274,7 +1273,7 @@
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.Develoment.config">
+    <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
