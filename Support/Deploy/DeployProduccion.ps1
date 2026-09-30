@@ -274,20 +274,32 @@ if (-not (Test-Path -LiteralPath $versionJsonPath -PathType Leaf)) {
     Stop-Deployment "El fichero de version no existe: $versionJsonPath"
 }
 
+if (-not $msbuildPath) {
+    Stop-Deployment 'No se encontro MSBuild.exe en las instalaciones conocidas de Visual Studio.'
+}
+
+if (-not (Test-Path -LiteralPath $destinationPath -PathType Container)) {
+    Stop-Deployment "El destino remoto no existe o no es accesible: $destinationPath"
+}
+
+$destinationVersionPath = Join-Path $destinationPath 'JSON.json'
+if (-not (Test-Path -LiteralPath $destinationVersionPath -PathType Leaf)) {
+    Stop-Deployment "El fichero de version de produccion no existe o no es accesible: $destinationVersionPath"
+}
+
 try {
-    $previousVersionJson = [System.IO.File]::ReadAllText($versionJsonPath)
-    $versionData = ConvertFrom-Json -InputObject $previousVersionJson -ErrorAction Stop
+    $versionData = ConvertFrom-Json -InputObject ([System.IO.File]::ReadAllText($destinationVersionPath)) -ErrorAction Stop
 }
 catch {
-    Stop-Deployment "El fichero de version no contiene un JSON valido: $($_.Exception.Message)"
+    Stop-Deployment "El fichero de version de produccion no contiene un JSON valido: $($_.Exception.Message)"
 }
 
 if ($versionData -isnot [PSCustomObject] -or $versionData.version -isnot [string] -or $versionData.version -notmatch '^\d+$') {
-    Stop-Deployment 'La propiedad version de JSON.json debe ser un contador numerico expresado como texto.'
+    Stop-Deployment 'La propiedad version del JSON.json de produccion debe ser un contador numerico expresado como texto.'
 }
 
 if ($versionData.releaseDate -isnot [string]) {
-    Stop-Deployment 'La propiedad releaseDate de JSON.json debe ser una fecha con formato yyyy-MM-dd.'
+    Stop-Deployment 'La propiedad releaseDate del JSON.json de produccion debe ser una fecha con formato yyyy-MM-dd.'
 }
 
 try {
@@ -297,12 +309,7 @@ try {
         [System.Globalization.CultureInfo]::InvariantCulture,
         [System.Globalization.DateTimeStyles]::None
     ) | Out-Null
-}
-catch {
-    Stop-Deployment 'La propiedad releaseDate de JSON.json no contiene una fecha valida con formato yyyy-MM-dd.'
-}
 
-try {
     $currentVersionNumber = [long]::Parse(
         $versionData.version,
         [System.Globalization.NumberStyles]::None,
@@ -316,15 +323,7 @@ try {
     $nextVersion = ($currentVersionNumber + 1).ToString([System.Globalization.CultureInfo]::InvariantCulture)
 }
 catch {
-    Stop-Deployment "No se pudo calcular la siguiente version: $($_.Exception.Message)"
-}
-
-if (-not $msbuildPath) {
-    Stop-Deployment 'No se encontro MSBuild.exe en las instalaciones conocidas de Visual Studio.'
-}
-
-if (-not (Test-Path -LiteralPath $destinationPath -PathType Container)) {
-    Stop-Deployment "El destino remoto no existe o no es accesible: $destinationPath"
+    Stop-Deployment "No se pudo validar o incrementar la version de produccion: $($_.Exception.Message)"
 }
 
 Show-RemoteDeploymentInfo -ComputerName 'suimpappmad041' -DestinationPath $destinationPath
@@ -419,79 +418,65 @@ $msbuildArguments = @(
     '/verbosity:minimal'
 )
 
-$versionWasPrepared = $false
-$deploymentVerified = $false
 $utf8WithoutBom = [System.Text.UTF8Encoding]::new($false)
 $deploymentDate = (Get-Date).ToString('yyyy-MM-dd', [System.Globalization.CultureInfo]::InvariantCulture)
 $nextVersionJson = ConvertTo-Json -InputObject ([ordered]@{ version = $nextVersion; releaseDate = $deploymentDate }) -Depth 2
 
+Write-Host "Publicando la version $nextVersion con fecha $deploymentDate en produccion..."
 try {
-    [System.IO.File]::WriteAllText($versionJsonPath, $nextVersionJson, $utf8WithoutBom)
-    $versionWasPrepared = $true
-
-    Write-Host "Publicando la version $nextVersion con fecha $deploymentDate en produccion..."
-    try {
-        & $msbuildPath @msbuildArguments
-        $msbuildExitCode = $LASTEXITCODE
-    }
-    catch {
-        Stop-Deployment "Error al ejecutar MSBuild: $($_.Exception.Message)"
-    }
-
-    if ($msbuildExitCode -ne 0) {
-        Stop-Deployment "La compilacion/publicacion fallo con el codigo $msbuildExitCode."
-    }
-
-    $destinationWebConfig = Join-Path $destinationPath 'Web.config'
-    if (-not (Test-Path -LiteralPath $destinationWebConfig -PathType Leaf)) {
-        Stop-Deployment "La publicacion termino, pero no se encontro Web.config en $destinationPath."
-    }
-
-    $destinationVersionPath = Join-Path $destinationPath 'JSON.json'
-    if (-not (Test-Path -LiteralPath $destinationVersionPath -PathType Leaf)) {
-        Stop-Deployment "La publicacion termino, pero no se encontro JSON.json en $destinationPath."
-    }
-
-    try {
-        $publishedVersionData = ConvertFrom-Json -InputObject ([System.IO.File]::ReadAllText($destinationVersionPath)) -ErrorAction Stop
-    }
-    catch {
-        Stop-Deployment "No se pudo verificar JSON.json en el destino: $($_.Exception.Message)"
-    }
-
-    if ($publishedVersionData.version -isnot [string] -or $publishedVersionData.version -cne $nextVersion -or
-        $publishedVersionData.releaseDate -isnot [string] -or $publishedVersionData.releaseDate -cne $deploymentDate) {
-        Stop-Deployment "La version o la fecha publicada no coinciden con los valores esperados ($nextVersion, $deploymentDate)."
-    }
-
-    Write-Host 'Publicando y verificando Support\Utils...'
-    $publishedUtilsFileCount = Publish-VerifiedSupportDirectory `
-        -SourcePath $supportUtilsPath `
-        -DestinationPath $supportUtilsDestinationPath
-    Write-Host "Support\Utils publicado y verificado ($publishedUtilsFileCount archivos)."
-
-    Write-Host 'Publicando y verificando scripts seleccionados de Support\Deploy...'
-    foreach ($supportDeployFileName in $supportDeployFileNames) {
-        $supportDeployFilePath = Join-Path $supportDeployPath $supportDeployFileName
-        $supportDeployDestinationFilePath = Join-Path $supportDeployDestinationPath $supportDeployFileName
-        Publish-VerifiedSupportFile `
-            -SourcePath $supportDeployFilePath `
-            -DestinationPath $supportDeployDestinationFilePath
-        Write-Host "Publicado y verificado: $supportDeployDestinationFilePath"
-    }
-
-    $deploymentVerified = $true
+    & $msbuildPath @msbuildArguments
+    $msbuildExitCode = $LASTEXITCODE
 }
-finally {
-    if ($versionWasPrepared -and -not $deploymentVerified) {
-        try {
-            [System.IO.File]::WriteAllText($versionJsonPath, $previousVersionJson, $utf8WithoutBom)
-            Write-Host 'Se restauro el fichero local a la version anterior tras el fallo del despliegue.'
-        }
-        catch {
-            Stop-Deployment "El despliegue fallo y no se pudo restaurar la version local: $($_.Exception.Message)"
-        }
-    }
+catch {
+    Stop-Deployment "Error al ejecutar MSBuild: $($_.Exception.Message)"
+}
+
+if ($msbuildExitCode -ne 0) {
+    Stop-Deployment "La compilacion/publicacion fallo con el codigo $msbuildExitCode."
+}
+
+$destinationWebConfig = Join-Path $destinationPath 'Web.config'
+if (-not (Test-Path -LiteralPath $destinationWebConfig -PathType Leaf)) {
+    Stop-Deployment "La publicacion termino, pero no se encontro Web.config en $destinationPath."
+}
+
+if (-not (Test-Path -LiteralPath $destinationVersionPath -PathType Leaf)) {
+    Stop-Deployment "La publicacion termino, pero no se encontro JSON.json en $destinationPath."
+}
+
+try {
+    [System.IO.File]::WriteAllText($destinationVersionPath, $nextVersionJson, $utf8WithoutBom)
+}
+catch {
+    Stop-Deployment "La publicacion termino, pero no se pudo actualizar JSON.json en el destino: $($_.Exception.Message)"
+}
+
+try {
+    $publishedVersionData = ConvertFrom-Json -InputObject ([System.IO.File]::ReadAllText($destinationVersionPath)) -ErrorAction Stop
+}
+catch {
+    Stop-Deployment "No se pudo verificar JSON.json en el destino: $($_.Exception.Message)"
+}
+
+if ($publishedVersionData.version -isnot [string] -or $publishedVersionData.version -cne $nextVersion -or
+    $publishedVersionData.releaseDate -isnot [string] -or $publishedVersionData.releaseDate -cne $deploymentDate) {
+    Stop-Deployment "La version o la fecha publicada no coinciden con los valores esperados ($nextVersion, $deploymentDate)."
+}
+
+Write-Host 'Publicando y verificando Support\Utils...'
+$publishedUtilsFileCount = Publish-VerifiedSupportDirectory `
+    -SourcePath $supportUtilsPath `
+    -DestinationPath $supportUtilsDestinationPath
+Write-Host "Support\Utils publicado y verificado ($publishedUtilsFileCount archivos)."
+
+Write-Host 'Publicando y verificando scripts seleccionados de Support\Deploy...'
+foreach ($supportDeployFileName in $supportDeployFileNames) {
+    $supportDeployFilePath = Join-Path $supportDeployPath $supportDeployFileName
+    $supportDeployDestinationFilePath = Join-Path $supportDeployDestinationPath $supportDeployFileName
+    Publish-VerifiedSupportFile `
+        -SourcePath $supportDeployFilePath `
+        -DestinationPath $supportDeployDestinationFilePath
+    Write-Host "Publicado y verificado: $supportDeployDestinationFilePath"
 }
 
 Write-Host 'Despliegue de produccion completado correctamente.'

@@ -1,8 +1,8 @@
-# Historial de despliegues: produccion (2026-09-18)
+# Historial de despliegues
 
 ## 2026-09-18 09:25:53
 
-- **Entorno:** produccion
+- **Entorno:** DESARROLLO
 - **Resultado:** ÉXITO
 - **Detalle:**
 
@@ -10,7 +10,7 @@
 
 ## 2026-09-18 10:57:47
 
-- **Entorno:** produccion
+- **Entorno:** PRODUCCION
 - **Resultado:** FALLO
 - **Detalle:**
 
