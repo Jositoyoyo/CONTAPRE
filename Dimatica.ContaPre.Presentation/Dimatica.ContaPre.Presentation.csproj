@@ -458,7 +458,7 @@
     <Content Include="Views\Pointing\Sings.aspx" />
     <Content Include="Views\Shared\Components\Alerts\CustomRadAlert\CustomRadAlert.ascx" />
     <Content Include="Views\Shared\Components\Modals\CustomRawWindow\CustomRawWindow.ascx" />
-    <Content Include="Views\Maintenance\Providers\NewProvider.aspx" />
+    <Content Include="Views\Maintenance\NewProvider.aspx" />
     <Content Include="Views\Shared\LoadingPanel.aspx" />
     <Content Include="Views\Spend\AdministrativeRecords.aspx" />
     <Content Include="Views\Spend\CertificateFilter.aspx" />
@@ -991,11 +991,11 @@
       <DependentUpon>CustomRawWindow.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Maintenance\Providers\NewProvider.aspx.cs">
+    <Compile Include="Views\Maintenance\NewProvider.aspx.cs">
       <DependentUpon>NewProvider.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Maintenance\Providers\NewProvider.aspx.designer.cs">
+    <Compile Include="Views\Maintenance\NewProvider.aspx.designer.cs">
       <DependentUpon>NewProvider.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Shared\Components\Partials\Partials.master.cs">

@@ -4,7 +4,7 @@
     MasterPageFile="~/Views/Shared/Components/Partials/Partials.master"
     AutoEventWireup="true"
     CodeBehind="NewProvider.aspx.cs"
-    Inherits="Dimatica.ContaPre.Presentation.Views.Shared.Components.Partials.Providers.NewProvider" %>
+    Inherits="Dimatica.ContaPre.Presentation.Views.Maintenance.NewProvider" %>
 
 <asp:Content ID="head1" ContentPlaceHolderID="head" runat="server">
     <link href="<%= ResolveUrl("~/Views/Shared/Components/Partials/RadPartials.css") %>" rel="stylesheet" type="text/css" />

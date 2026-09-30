@@ -3,7 +3,7 @@ using System;
 using Dimatica.ContaPre.BLL.Services;
 using Dimatica.ContaPre.OL.Models;
 
-namespace Dimatica.ContaPre.Presentation.Views.Shared.Components.Partials.Providers
+namespace Dimatica.ContaPre.Presentation.Views.Maintenance
 {
     public partial class NewProvider : System.Web.UI.Page
     {
