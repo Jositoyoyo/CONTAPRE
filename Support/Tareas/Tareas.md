@@ -10,3 +10,14 @@ Completar tareas :
 
 Terminar :
 - La documentacion del proyecto.
+
+
+Errores :
+
+- http://suimpappmad021.uimp.age/Views/Maintenance/Providers.aspx
+- http://suimpappmad021.uimp.age/Views/Maintenance/Providers.aspx
+
+
+Revisar :
+- Si se puede mover el proyecto a D:
+- Revisar si hay ficheros de compilacion de despliegue mezclados con ficheros del proyecto
