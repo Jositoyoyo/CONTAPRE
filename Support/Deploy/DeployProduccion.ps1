@@ -426,8 +426,8 @@ $deploymentDate = (Get-Date).ToString('yyyy-MM-dd', [System.Globalization.Cultur
 $nextVersionJson = ConvertTo-Json -InputObject ([ordered]@{ version = $nextVersion; releaseDate = $deploymentDate }) -Depth 2
 
 try {
-    $versionWasPrepared = $true
     [System.IO.File]::WriteAllText($versionJsonPath, $nextVersionJson, $utf8WithoutBom)
+    $versionWasPrepared = $true
 
     Write-Host "Publicando la version $nextVersion con fecha $deploymentDate en produccion..."
     try {
