@@ -447,7 +447,7 @@
     <Content Include="Views\Maintenance\PayTypes.aspx" />
     <Content Include="Views\Maintenance\Programs.aspx" />
     <Content Include="Views\Maintenance\Provenances.aspx" />
-    <Content Include="Views\Maintenance\Providers\Providers.aspx" />
+    <Content Include="Views\Maintenance\Providers.aspx" />
     <Content Include="Views\Maintenance\TreasuryLines.aspx" />
     <Content Include="Views\Rectification\Rectifications.aspx" />
     <Content Include="Views\Rectification\SelectDate.aspx" />
@@ -920,11 +920,11 @@
     <Compile Include="Views\Maintenance\Provenances.aspx.designer.cs">
       <DependentUpon>Provenances.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Maintenance\Providers\Providers.aspx.cs">
+    <Compile Include="Views\Maintenance\Providers.aspx.cs">
       <DependentUpon>Providers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Maintenance\Providers\Providers.aspx.designer.cs">
+    <Compile Include="Views\Maintenance\Providers.aspx.designer.cs">
       <DependentUpon>Providers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Maintenance\TreasuryLines.aspx.cs">
