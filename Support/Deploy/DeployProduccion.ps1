@@ -221,7 +221,15 @@ $unitTestAssemblyPath = Join-Path $projectRoot 'Dimatica.ContaPre.PresentationUn
 $publishProfilePath = Join-Path $presentationPath 'Properties\PublishProfiles\PRODUCCION.pubxml'
 $supportUtilsPath = Join-Path $projectRoot 'Support\Utils'
 $supportDeployPath = Join-Path $projectRoot 'Support\Deploy'
+$deploymentHistoryPath = Join-Path $supportDeployPath 'Deployments.md'
+$deploymentHistoryHelperPath = Join-Path $supportDeployPath 'DeploymentHistory.ps1'
 $supportDeployFileNames = @('RollbackProduccion.ps1', 'OpenIIS.ps1', 'ClearLogs.ps1')
+
+if (-not (Test-Path -LiteralPath $deploymentHistoryHelperPath -PathType Leaf)) {
+    Stop-Deployment "No se encontro el helper de historial: $deploymentHistoryHelperPath"
+}
+
+. $deploymentHistoryHelperPath
 
 $destinationPath = '\\suimpappmad041\C$\inetpub\wwwroot\CONTAPRE'
 $supportUtilsDestinationPath = Join-Path $destinationPath 'Support\Utils'
@@ -333,6 +341,17 @@ Write-Host "Perfil: $publishProfilePath"
 Write-Host "Destino directo: $destinationPath"
 Write-Host "MSBuild: $msbuildPath"
 
+try {
+    Initialize-DeploymentHistory -Path $deploymentHistoryPath
+}
+catch {
+    Stop-Deployment "No se pudo preparar Deployments.md; no se iniciara el despliegue: $($_.Exception.Message)"
+}
+
+Invoke-DeploymentWithHistory `
+    -Path $deploymentHistoryPath `
+    -Environment 'PRODUCCION' `
+    -Action {
 $testConfirmation = (Read-Host -Prompt 'Deseas ejecutar los tests unitarios antes del despliegue? (S/N)').Trim().ToUpperInvariant()
 if ($testConfirmation -eq 'S') {
     if (-not (Test-Path -LiteralPath $unitTestProjectPath -PathType Leaf)) {
@@ -478,5 +497,7 @@ foreach ($supportDeployFileName in $supportDeployFileNames) {
         -DestinationPath $supportDeployDestinationFilePath
     Write-Host "Publicado y verificado: $supportDeployDestinationFilePath"
 }
+
+    }
 
 Write-Host 'Despliegue de produccion completado correctamente.'
