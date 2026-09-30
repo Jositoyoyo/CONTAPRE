@@ -363,8 +363,6 @@
     <None Include="Oracle.ManagedDataAccess.Client.Configuration.Section.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\PublishProfiles\DESARROLLO.pubxml" />
-    <None Include="Properties\PublishProfiles\PRODUCCION.pubxml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -1255,6 +1253,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Shared\AjaxHandlers\AsyncMethods\" />
     <Folder Include="Views\Shared\AjaxHandlers\DataEndpoints\" />
   </ItemGroup>
