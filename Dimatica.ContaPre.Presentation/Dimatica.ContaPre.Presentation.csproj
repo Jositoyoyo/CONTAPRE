@@ -1270,9 +1270,6 @@
     <Content Include="Scripts\jquery-3.7.1.min.map" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Views\Shared\Components\Partials\Partials.master" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
     <None Include="Web.Development.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

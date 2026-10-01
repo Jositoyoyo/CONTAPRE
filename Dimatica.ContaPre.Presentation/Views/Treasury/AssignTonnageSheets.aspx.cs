@@ -92,12 +92,12 @@
         {
             var strBuilder = new StringBuilder();
 
-            //if (this.RgTonnageSheet.SelectedItems.Count == 0)
-            //{
-            //    strBuilder.Append("No se puede grabar la información porque no hay ninguna hoja de arqueo seleccionada.");
-            //    this.ShowMessage(this.RadNotification, "Imposible grabar información", strBuilder, MessageType.Warning);
-            //    return;
-            //}
+            if (this.RgTonnageSheet.SelectedItems.Count == 0)
+            {
+                strBuilder.Append("No se puede grabar la información porque no hay ninguna hoja de arqueo seleccionada.");
+                this.ShowMessage(this.RadNotification, "Imposible grabar información", strBuilder, MessageType.Warning);
+                return;
+            }
 
             if (this.TonnageSheetCode != 0)
             {

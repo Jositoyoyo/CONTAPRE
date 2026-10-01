@@ -100,6 +100,14 @@ $solutionPath = Join-Path $projectRoot 'Dimatica.ContaPre.sln'
 $presentationPath = Join-Path $projectRoot 'Dimatica.ContaPre.Presentation'
 $publishProfilePath = Join-Path $presentationPath 'Properties\PublishProfiles\DESARROLLO.pubxml'
 $clearLogsPath = Join-Path $scriptDirectory 'ClearLogs.ps1'
+$deploymentHistoryPath = Join-Path $scriptDirectory 'Deployments.md'
+$deploymentHistoryHelperPath = Join-Path $scriptDirectory 'DeploymentHistory.ps1'
+
+if (-not (Test-Path -LiteralPath $deploymentHistoryHelperPath -PathType Leaf)) {
+    Stop-Deployment "No se encontro el helper de historial: $deploymentHistoryHelperPath"
+}
+
+. $deploymentHistoryHelperPath
 
 # Direct destination. No staging directory or backup is used.
 $destinationPath = '\\suimpappmad021\C$\inetpub\wwwroot\CONTAPRE'
@@ -152,6 +160,17 @@ if ($confirmation -ne 'S') {
     exit 0
 }
 
+try {
+    Initialize-DeploymentHistory -Path $deploymentHistoryPath
+}
+catch {
+    Stop-Deployment "No se pudo preparar Deployments.md; no se iniciara el despliegue: $($_.Exception.Message)"
+}
+
+Invoke-DeploymentWithHistory `
+    -Path $deploymentHistoryPath `
+    -Environment 'DESARROLLO' `
+    -Action {
 if (Test-Path -LiteralPath $logsPath -PathType Container) {
     Write-Host "Eliminando archivos de log en $logsPath..."
     Get-ChildItem -LiteralPath $logsPath -File -Recurse -Force |
@@ -206,6 +225,8 @@ if ($sourceHash -ne $destinationHash) {
     Stop-Deployment "La verificacion de ClearLogs.ps1 fallo: $clearLogsDestinationPath"
 }
 
-Write-Host 'Proceso completado correctamente.'
 Write-Host "ClearLogs.ps1 publicado y verificado en $clearLogsDestinationPath"
 Write-Host "SHA256: $destinationHash"
+    }
+
+Write-Host 'Proceso completado correctamente.'
