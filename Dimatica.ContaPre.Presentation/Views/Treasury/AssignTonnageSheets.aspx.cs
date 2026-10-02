@@ -191,7 +191,7 @@
 
                     var tonnageSheet = new PRE_HOJA_ARQUEO
                     {
-                        HOJ_ANO = Convert.ToByte(((DateTime)this.RmyExerciseYear.SelectedDate).Year),
+                        HOJ_ANO = Convert.ToInt16(((DateTime)this.RmyExerciseYear.SelectedDate).Year),
                         HOJ_NUMERO = Convert.ToInt32(this.RntSheetNumber.Value),
                         HOJ_ARQUEO50 = this.RrbFifty.SelectedValue == "1",
                         HOJ_FECHA = this.RdDate.SelectedDate,
