@@ -42,7 +42,7 @@ namespace Dimatica.ContaPre.Presentation.Common
                     // Enviar el correo a cada destinatario
                     foreach (var recipient in recipients)
                     {
-                        EmailHelper.SendEmail(from, recipient.Trim(), subject, body, isBodyHtml);
+                        Email.SendEmail(from, recipient.Trim(), subject, body, isBodyHtml);
                     }
                 }
                 catch (Exception emailEx)

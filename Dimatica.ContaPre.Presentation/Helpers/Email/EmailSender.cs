@@ -1,11 +1,11 @@
-﻿namespace Dimatica.ContaPre.Presentation.Helpers
+﻿namespace Dimatica.ContaPre.Presentation.Helpers.Email
 {
 
     using System.Net;
     using System.Net.Mail;
     using System.Configuration;
 
-    public static class EmailHelper
+    public static class EmailSender
     {
 
         public static void SendEmail(string fromAddress, string to, string subject, string body, bool isBodyHtml)

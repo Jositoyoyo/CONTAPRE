@@ -15,7 +15,7 @@ namespace Dimatica.ContaPre.Presentation.Helpers
         public string ReleaseDate { get; set; }
     }
 
-    internal static class ApplicationVersionHelper
+    internal static class ApplicationVersionLoader
     {
         #region Internal Static Methods
 

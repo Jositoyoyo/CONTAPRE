@@ -42,7 +42,7 @@
                 this.version.InnerText = string.Empty;
                 this.version.Attributes.Remove("title");
 
-                var applicationVersion = ApplicationVersionHelper.LoadApplicationVersion();
+                var applicationVersion = ApplicationVersionLoader.LoadApplicationVersion();
                 this.version.InnerText = applicationVersion.Version;
 
                 if (!string.IsNullOrWhiteSpace(applicationVersion.ReleaseDate))

@@ -359,7 +359,7 @@
             string emailBody = EmailTemplateHelper.GetEmailBodyRecoveryCredentias("~/Views/EmailTemplates/CredentialsTemplate.html", userName, userLogin, password);
             bool isBodyHtml  = true;
 
-            EmailHelper.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
+            EmailSender.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
 
             this.btnSendEmailNewUser.Visible = false;
 
@@ -527,7 +527,7 @@
             string emailBody = EmailTemplateHelper.GetEmailBodyRecoveryCredentias("~/Views/EmailTemplates/CredentialsTemplate.html", userName, userLogin, password);
             bool isBodyHtml  = true;
 
-            EmailHelper.SendEmail(from,userEmail, subject, emailBody, isBodyHtml);
+            EmailSender.SendEmail(from,userEmail, subject, emailBody, isBodyHtml);
 
             return js.Serialize(new
             {

@@ -106,7 +106,7 @@
             string emailBody = EmailTemplateHelper.GetEmailBodyDynamicParams("~/Views/EmailTemplates/CredentialsTemplate.html", parameters);            
             bool isBodyHtml  = true;
 
-            EmailHelper.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
+            EmailSender.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
             
             strBuilder.Append("Se ha enviado un correo electrónico con las credenciales de acceso.");
             this.ShowMessage(this.RadNotification, "Correo electrónico enviado", strBuilder, MessageType.Ok);
