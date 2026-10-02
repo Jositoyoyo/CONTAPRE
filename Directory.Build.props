@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <ContaPreArtifactsRoot Condition="'$(ContaPreArtifactsRoot)' == ''">$(MSBuildThisFileDirectory)artifacts</ContaPreArtifactsRoot>
+    <BaseIntermediateOutputPath>$(ContaPreArtifactsRoot)\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+</Project>

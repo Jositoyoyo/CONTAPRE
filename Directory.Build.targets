@@ -1,0 +1,32 @@
+<Project>
+  <PropertyGroup>
+    <OutputPath>$(ContaPreArtifactsRoot)\bin\$(MSBuildProjectName)\$(Configuration)\</OutputPath>
+    <OutDir>$(OutputPath)</OutDir>
+    <TargetDir>$(OutputPath)</TargetDir>
+    <TargetPath>$(TargetDir)$(TargetFileName)</TargetPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'Dimatica.ContaPre.Presentation'">
+    <WebProjectOutputDir>$(ContaPreArtifactsRoot)\iis\$(Configuration)</WebProjectOutputDir>
+    <CleanWebProjectOutputDir>true</CleanWebProjectOutputDir>
+  </PropertyGroup>
+
+  <Target Name="StageContaPreWebProject" AfterTargets="Build" Condition="'$(MSBuildProjectName)' == 'Dimatica.ContaPre.Presentation' and '$(DesignTimeBuild)' != 'true'">
+    <Exec Command="robocopy &quot;$(MSBuildProjectDirectory)&quot; &quot;$(WebProjectOutputDir)&quot; /MIR /XD &quot;$(MSBuildProjectDirectory)\bin&quot; &quot;$(MSBuildProjectDirectory)\obj&quot; &quot;$(MSBuildProjectDirectory)\Properties&quot; &quot;$(MSBuildProjectDirectory)\packages&quot; &quot;$(MSBuildThisFileDirectory).git&quot; &quot;$(MSBuildThisFileDirectory).vs&quot; &quot;$(ContaPreArtifactsRoot)&quot; &quot;$(WebProjectOutputDir)\bin&quot; /XF *.cs *.csproj *.user *.scc /NFL /NDL /NJH /NJS /NP /NC /NS" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="_ContaPreWebStageExitCode" />
+    </Exec>
+    <Error Condition="'$(_ContaPreWebStageExitCode)' &gt; '7'" Text="No se pudo preparar la copia local del sitio bajo $(WebProjectOutputDir) (robocopy $(_ContaPreWebStageExitCode))." />
+
+    <ItemGroup>
+      <_ContaPreWebBinFiles Include="$(OutDir)**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_ContaPreWebBinFiles)"
+          DestinationFiles="@(_ContaPreWebBinFiles->'$(WebProjectOutputDir)\bin\%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+
+    <XmlPoke XmlInputPath="$(MSBuildThisFileDirectory).vs\Dimatica.ContaPre\config\applicationhost.config"
+             Query="/configuration/system.applicationHost/sites/site[@name='Dimatica.ContaPre.Presentation']/application/virtualDirectory[@path='/']/@physicalPath"
+             Value="$(WebProjectOutputDir)"
+             Condition="'$(BuildingInsideVisualStudio)' == 'true' and Exists('$(MSBuildThisFileDirectory).vs\Dimatica.ContaPre\config\applicationhost.config')" />
+  </Target>
+</Project>

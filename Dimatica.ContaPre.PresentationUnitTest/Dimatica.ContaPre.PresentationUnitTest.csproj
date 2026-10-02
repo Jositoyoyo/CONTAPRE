@@ -60,7 +60,6 @@
     <Compile Include="Helpers\SiteDataHelperTests.cs" />
     <Compile Include="Helpers\UrlHelperTests.cs" />
     <Compile Include="Helpers\WebTestContext.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

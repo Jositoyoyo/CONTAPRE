@@ -98,6 +98,7 @@ if (-not $projectRoot) {
 
 $solutionPath = Join-Path $projectRoot 'Dimatica.ContaPre.sln'
 $presentationPath = Join-Path $projectRoot 'Dimatica.ContaPre.Presentation'
+$artifactsPath = Join-Path $projectRoot 'artifacts'
 $publishProfilePath = Join-Path $presentationPath 'Properties\PublishProfiles\DESARROLLO.pubxml'
 $clearLogsPath = Join-Path $scriptDirectory 'ClearLogs.ps1'
 $deploymentHistoryPath = Join-Path $scriptDirectory 'Deployments.md'
@@ -186,6 +187,7 @@ $msbuildArguments = @(
     '/t:Rebuild',
     '/p:Configuration=Development',
     '/p:Platform=Any CPU',
+    "/p:ContaPreArtifactsRoot=$artifactsPath",
     '/p:DeployOnBuild=true',
     '/p:PublishProfile=DESARROLLO',
     "/p:PublishUrl=$destinationPath",
