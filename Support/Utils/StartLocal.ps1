@@ -147,7 +147,12 @@ try {
         Stop-LocalApplication "No se encontro el sitio '$siteName' en applicationhost.config."
     }
 
-    $siteVirtualDirectory.application.virtualDirectory.physicalPath = $siteOutputPath
+    $rootVirtualDirectory = $siteVirtualDirectory.SelectSingleNode("application/virtualDirectory[@path='/']")
+    if (-not $rootVirtualDirectory) {
+        Stop-LocalApplication "No se encontro el directorio virtual raiz del sitio '$siteName'."
+    }
+
+    $rootVirtualDirectory.SetAttribute('physicalPath', $siteOutputPath)
     $applicationHost.Save($applicationHostConfig)
 }
 catch {
