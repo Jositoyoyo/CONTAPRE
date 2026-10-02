@@ -40,6 +40,8 @@ if (-not $projectRoot) {
 
 $solutionPath = Join-Path $projectRoot 'Dimatica.ContaPre.sln'
 $presentationPath = Join-Path $projectRoot 'Dimatica.ContaPre.Presentation'
+$artifactsPath = Join-Path $projectRoot 'artifacts'
+$siteOutputPath = Join-Path $artifactsPath 'iis\Debug'
 $applicationHostConfig = Join-Path $projectRoot '.vs\Dimatica.ContaPre\config\applicationhost.config'
 $localUrl = 'http://localhost:54234/'
 $localPort = 54234
@@ -113,6 +115,7 @@ $msbuildArguments = @(
     '/t:Rebuild',
     '/p:Configuration=Debug',
     '/p:Platform=Any CPU',
+    "/p:ContaPreArtifactsRoot=$artifactsPath",
     '/verbosity:minimal'
 )
 
@@ -127,6 +130,33 @@ catch {
 
 if ($msbuildExitCode -ne 0) {
     Stop-LocalApplication "La compilacion fallo con el codigo $msbuildExitCode. No se iniciara IIS Express."
+}
+
+$siteAssemblyPath = Join-Path $siteOutputPath 'bin\Dimatica.ContaPre.Presentation.dll'
+if (-not (Test-Path -LiteralPath $siteAssemblyPath -PathType Leaf)) {
+    Stop-LocalApplication "La compilacion termino, pero no se encontro el ensamblado web preparado: $siteAssemblyPath"
+}
+
+try {
+    [xml]$applicationHost = Get-Content -LiteralPath $applicationHostConfig
+    $siteVirtualDirectory = $applicationHost.configuration.'system.applicationHost'.sites.site |
+        Where-Object { $_.name -eq $siteName } |
+        Select-Object -First 1
+
+    if (-not $siteVirtualDirectory) {
+        Stop-LocalApplication "No se encontro el sitio '$siteName' en applicationhost.config."
+    }
+
+    $rootVirtualDirectory = $siteVirtualDirectory.SelectSingleNode("application/virtualDirectory[@path='/']")
+    if (-not $rootVirtualDirectory) {
+        Stop-LocalApplication "No se encontro el directorio virtual raiz del sitio '$siteName'."
+    }
+
+    $rootVirtualDirectory.SetAttribute('physicalPath', $siteOutputPath)
+    $applicationHost.Save($applicationHostConfig)
+}
+catch {
+    Stop-LocalApplication "No se pudo configurar IIS Express para servir desde artifacts: $($_.Exception.Message)"
 }
 
 Write-Host "Iniciando IIS Express para $siteName en $localUrl..."

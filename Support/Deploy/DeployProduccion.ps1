@@ -215,9 +215,10 @@ if (-not $projectRoot) {
 
 $solutionPath = Join-Path $projectRoot 'Dimatica.ContaPre.sln'
 $presentationPath = Join-Path $projectRoot 'Dimatica.ContaPre.Presentation'
+$artifactsPath = Join-Path $projectRoot 'artifacts'
 $versionJsonPath = Join-Path $presentationPath 'JSON.json'
 $unitTestProjectPath = Join-Path $projectRoot 'Dimatica.ContaPre.PresentationUnitTest\Dimatica.ContaPre.PresentationUnitTest.csproj'
-$unitTestAssemblyPath = Join-Path $projectRoot 'Dimatica.ContaPre.PresentationUnitTest\bin\Debug\Dimatica.ContaPre.PresentationUnitTest.dll'
+$unitTestAssemblyPath = Join-Path $artifactsPath 'bin\Dimatica.ContaPre.PresentationUnitTest\Debug\Dimatica.ContaPre.PresentationUnitTest.dll'
 $publishProfilePath = Join-Path $presentationPath 'Properties\PublishProfiles\PRODUCCION.pubxml'
 $supportUtilsPath = Join-Path $projectRoot 'Support\Utils'
 $supportDeployPath = Join-Path $projectRoot 'Support\Deploy'
@@ -371,6 +372,7 @@ if ($testConfirmation -eq 'S') {
         '/t:Rebuild',
         '/p:Configuration=Debug',
         '/p:Platform=AnyCPU',
+        "/p:ContaPreArtifactsRoot=$artifactsPath",
         '/verbosity:minimal'
     )
 
@@ -427,6 +429,7 @@ $msbuildArguments = @(
     '/t:Rebuild',
     '/p:Configuration=Release',
     '/p:Platform=Any CPU',
+    "/p:ContaPreArtifactsRoot=$artifactsPath",
     '/p:DeployOnBuild=true',
     '/p:PublishProfile=PRODUCCION',
     "/p:PublishUrl=$destinationPath",

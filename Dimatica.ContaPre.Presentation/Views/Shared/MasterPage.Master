@@ -61,10 +61,9 @@
                         DataFieldParentID="ParentId"
                         DataValueField="Path"
                         DataTextField="Text"
-                        OnNodeClick="RadTreeView_OnNodeClick"
                         OnClientNodeClicking="onClientNodeClicked">
                         <DataBindings>
-                            <telerik:RadTreeNodeBinding Expanded="true"></telerik:RadTreeNodeBinding>
+                            <telerik:RadTreeNodeBinding Expanded="true" NavigateUrlField="Path"></telerik:RadTreeNodeBinding>
                         </DataBindings>
                     </telerik:RadTreeView>
                 </div>
@@ -203,12 +202,28 @@
            if (node.get_nodes().get_count() > 0 || !node.get_value()?.trim()) {
                node.toggle();
                node.set_postBack(false);
+               return;
+           }
+
+           try {
+               window.sessionStorage.setItem('contapre.menuSource', window.location.href);
+           } catch (error) {
+               // La navegación del enlace debe seguir funcionando aunque el almacenamiento esté bloqueado.
            }
        }
 
        // Función para manejar la acción de volver atrás
        function backAction() {
-           const source = '<%= this.Session["_currentSource"] %>';
+           let menuSource = null;
+           try {
+               menuSource = window.sessionStorage.getItem('contapre.menuSource');
+               window.sessionStorage.removeItem('contapre.menuSource');
+           } catch (error) {
+               // Se conserva el fallback de sesión si el almacenamiento está bloqueado.
+           }
+
+           const sessionSource = '<%= this.Session["_currentSource"] %>';
+           const source = menuSource || sessionSource;
            if (source) {
                window.location.href = source;
            } else {
