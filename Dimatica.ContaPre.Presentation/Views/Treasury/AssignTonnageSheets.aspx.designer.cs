@@ -87,6 +87,15 @@ namespace Dimatica.ContaPre.Presentation.Views.Treasury
         protected global::Telerik.Web.UI.RadNumericTextBox RntSheetNumber;
 
         /// <summary>
+        /// rfvSheetNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSheetNumber;
+
+        /// <summary>
         /// RgTonnageSheet control.
         /// </summary>
         /// <remarks>
@@ -112,5 +121,14 @@ namespace Dimatica.ContaPre.Presentation.Views.Treasury
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton btnReport;
+
+        /// <summary>
+        /// createReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl createReport;
     }
 }

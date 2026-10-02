@@ -1095,14 +1095,14 @@ td[align="right"] {
             }*/ }
       .container .header .RadTreeView > .rtUL {
         background-color: #1269b0;
+        height: calc(100vh - 61px);
         overflow-y: scroll; }
         .container .header .RadTreeView > .rtUL::-webkit-scrollbar {
           width: 0px;
           background: transparent;
           /* make scrollbar transparent */ }
       .container .header .RadTreeView .rtUL {
-        padding: 0;
-        height: calc(100vh - 61px); }
+        padding: 0; }
         .container .header .RadTreeView .rtUL .rtLI {
           padding: .125rem 1.625rem .625rem;
           width: 100%; }
