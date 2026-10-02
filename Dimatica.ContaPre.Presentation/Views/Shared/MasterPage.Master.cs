@@ -7,7 +7,6 @@
     using System.Threading;
     using System.Web;
     using Dimatica.ContaPre.Presentation.Helpers;
-    using Telerik.Web.UI;
 
     #endregion
 
@@ -44,25 +43,17 @@
             this.lblCurrentHost.Text = HttpContext.Current.Request.Url.Host ?? "Unkwon";
         }
 
-        protected void RadTreeView_OnNodeClick(object sender, RadTreeNodeEventArgs e)
-        {
-            if (e.Node.Nodes.Count > 0)
-            {
-                e.Node.Expanded = !e.Node.Expanded;
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(e.Node.Value))
-                {
-                    this.Session["_currentSource"] = this.Request.Url.AbsoluteUri;
-                    this.Response.Redirect(e.Node.Value);
-                }
-            }
-        }
-
         private void InitializeTreeView()
         {
             var dataSource = SiteDataHelper.GetSiteDataItems();
+
+            foreach (var item in dataSource)
+            {
+                if (!string.IsNullOrWhiteSpace(item.Path))
+                {
+                    item.Path = this.ResolveUrl(item.Path);
+                }
+            }
 
             this.RadTreeViewMenu.DataSource = dataSource;
             this.RadTreeViewMenu.DataBind();
