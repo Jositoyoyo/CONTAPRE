@@ -370,3 +370,5 @@ App_Data/DB/
 
 # otros ficheros
 .ChatGTP.txt
+playwright-report/
+test-results/
