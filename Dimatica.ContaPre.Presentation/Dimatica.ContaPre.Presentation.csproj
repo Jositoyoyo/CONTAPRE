@@ -16,6 +16,8 @@
     <AssemblyName>Dimatica.ContaPre.Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
+    <!-- Ensures the post-build staging target runs before IIS Express starts under Visual Studio. -->
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
