@@ -18,7 +18,6 @@
 
         <h3>Asignar Hoja Arqueo</h3>
 
-        <%--BUTTONS--%>
         <div class="top-buttons">
             <div class="a-buttons">
                 <div class="save">
@@ -45,6 +44,7 @@
             <telerik:RadAjaxPanel ID="rapAssignTonnageSheets"
                 runat="server"
                 LoadingPanelID="ralPrincipal">
+
                 <telerik:RadNotification ID="RadNotification"
                     runat="server"
                     RenderMode="Lightweight"
@@ -73,7 +73,7 @@
                     <Items>
                         <telerik:RadPanelItem runat="server"
                             Text="Filtros"
-                            Expanded="False">
+                            Expanded="True">
                             <ContentTemplate>
                                 <div class="manage">
                                     <div class="form-group form-group form-group-fake">
@@ -122,6 +122,14 @@
                                                 ShowSpinButtons="False"
                                                 NumberFormat-DecimalDigits="0">
                                             </telerik:RadNumericTextBox>
+                                            <asp:RequiredFieldValidator ID="rfvSheetNumber"
+                                                runat="server"
+                                                Display="Dynamic"
+                                                ControlToValidate="RntSheetNumber"
+                                                ErrorMessage=" * Introduzca el número de hoja de arqueo."
+                                                ToolTip="Introduzca el número de hoja de arqueo."
+                                                ForeColor="Red">
+                                            </asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -132,6 +140,7 @@
 
                 <telerik:RadGrid ClientSettings-EnableRowHoverStyle="True" ID="RgTonnageSheet"
                     runat="server"
+                    Visible="False"
                     AllowSorting="true"
                     Culture="es-ES"
                     GroupPanelPosition="Top"
@@ -271,9 +280,10 @@
                         <Scrolling AllowScroll="True" UseStaticHeaders="true" />
                         <Selecting AllowRowSelect="True" UseClientSelectColumnOnly="True" />
                     </ClientSettings>
+
                 </telerik:RadGrid>
 
-                <div class="manage">
+                <div class="manage" id="createReport" runat="server" visible="false">
                     <div class="form-group form-group-fake">
                         <div class="field-container">
                             <strong>Fase I:</strong>
@@ -306,6 +316,7 @@
                         </div>
                     </div>
                 </div>
+
             </telerik:RadAjaxPanel>
 
             <telerik:RadScriptBlock runat="server">
@@ -343,6 +354,7 @@
 
                 </script>
             </telerik:RadScriptBlock>
+
         </div>
     </div>
 </asp:Content>

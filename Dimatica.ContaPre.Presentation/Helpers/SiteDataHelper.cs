@@ -31,7 +31,7 @@
             siteDataItems.Add(new SiteDataItem(22, 20, "Exped. Gastos", "~/Views/Spend/SpendRecords.aspx"));
             siteDataItems.Add(new SiteDataItem(23, 20, "Consulta Aplic/Importe", "~/Views/Spend/CheckApplicationAmount.aspx"));
             siteDataItems.Add(new SiteDataItem(24, 20, "Comprobar Expedientes", "~/Views/Spend/CheckRecords.aspx"));
-            siteDataItems.Add(new SiteDataItem(24, 20, "Consultar Facturas Compras", "~/Views/Spend/CheckPurchases.aspx"));
+            siteDataItems.Add(new SiteDataItem(25, 20, "Consultar Facturas Compras", "~/Views/Spend/CheckPurchases.aspx"));
 
             siteDataItems.Add(new SiteDataItem(30, 0, "Listados"));
             siteDataItems.Add(new SiteDataItem(31, 30, "Listados Gastos", "~/Views/List/SpendsList.aspx"));

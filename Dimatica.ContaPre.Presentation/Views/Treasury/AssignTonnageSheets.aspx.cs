@@ -90,6 +90,11 @@
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
+            if (this.RntSheetNumber.Value == null)
+            {
+                return;
+            }
+
             var strBuilder = new StringBuilder();
 
             if (this.RgTonnageSheet.SelectedItems.Count == 0)
@@ -253,11 +258,23 @@
 
         protected void btnFind_OnClick(object sender, EventArgs e)
         {
+            if (this.RntSheetNumber.Value == null)
+            {
+                this.createReport.Visible = false;
+                return;
+            }
+
+            this.RgTonnageSheet.Visible = true;
             this.FillTonnageSheets(true);
         }
 
         protected void btnReport_OnClick(object sender, EventArgs e)
         {
+            if (this.RntSheetNumber.Value == null)
+            {
+                return;
+            }
+
             var strBuilder = new StringBuilder();
 
             if (this.RgTonnageSheet.SelectedItems.Count == 0)
@@ -372,7 +389,7 @@
                 this.RgTonnageSheet.DataBind();
             }
 
-            this.RpbFilter.CollapseAllItems();
+            this.createReport.Visible = sheets.Any();
 
             if (sheets.Any())
             {
