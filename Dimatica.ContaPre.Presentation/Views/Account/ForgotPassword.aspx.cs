@@ -8,6 +8,8 @@
     using Dimatica.ContaPre.BLL.Configs;
     using Dimatica.ContaPre.BLL.Interfaces;
     using Dimatica.ContaPre.Presentation.Helpers.Email;
+    using Dimatica.ContaPre.Presentation.Helpers.PlainPassword;
+    using Dimatica.ContaPre.Presentation.Helpers.Session;
     using Dimatica.ContaPre.Presentation.Helpers;
     using Dimatica.ContaPre.Presentation.Views.Shared;
     using System.Collections.Specialized;
@@ -103,7 +105,7 @@
                 { "AppUrl",   ConfigurationManager.AppSettings["AppUrl"] ?? "" } 
             };
 
-            string emailBody = EmailTemplateHelper.GetEmailBodyDynamicParams("~/Views/EmailTemplates/CredentialsTemplate.html", parameters);            
+            string emailBody = EmailTemplate.GetEmailBodyDynamicParams("~/Views/EmailTemplates/CredentialsTemplate.html", parameters);
             bool isBodyHtml  = true;
 
             EmailSender.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);

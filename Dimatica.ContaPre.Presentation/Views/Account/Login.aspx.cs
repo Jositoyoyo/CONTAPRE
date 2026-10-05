@@ -7,6 +7,7 @@
     using Dimatica.ContaPre.BLL.Configs;
     using Dimatica.ContaPre.BLL.Interfaces;
     using Dimatica.ContaPre.Presentation.Helpers;
+    using Dimatica.ContaPre.Presentation.Helpers.Session;
     using Dimatica.ContaPre.Presentation.Views.Shared;
 
     #endregion

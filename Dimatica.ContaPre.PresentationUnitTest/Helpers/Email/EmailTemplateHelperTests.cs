@@ -12,7 +12,7 @@ namespace Dimatica.ContaPre.PresentationUnitTest.Helpers.Email
         {
             var body = "{{UserName}}|{{UserLogin}}|{{Password}}|{{AppUrl}}";
 
-            var result = EmailTemplateHelper.ReplaceTemplateParameters(
+            var result = EmailTemplate.ReplaceTemplateParameters(
                 body,
                 new Dictionary<string, string>
                 {
@@ -28,7 +28,7 @@ namespace Dimatica.ContaPre.PresentationUnitTest.Helpers.Email
         [TestMethod]
         public void ReplaceTemplateParameters_ReplacesNullWithEmptyAndKeepsUnknownPlaceholders()
         {
-            var result = EmailTemplateHelper.ReplaceTemplateParameters(
+            var result = EmailTemplate.ReplaceTemplateParameters(
                 "{{Name}}|{{Empty}}|{{Unknown}}",
                 new Dictionary<string, string>
                 {
