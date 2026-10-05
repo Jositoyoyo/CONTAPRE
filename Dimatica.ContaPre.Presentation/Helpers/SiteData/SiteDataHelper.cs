@@ -79,10 +79,6 @@
                 siteDataItems.Add(new SiteDataItem(204, 200, "RadWindow", "~/Views/Development/RadWindow.aspx"));
                 siteDataItems.Add(new SiteDataItem(205, 200, "Send Email", "~/Views/Development/SendEmail.aspx"));
             }
-
-
-            siteDataItems.Add(new SiteDataItem(900, 0, "Cerrar Sesión", "~/Views/Account/Login.aspx?SignOut=1"));
-
             return siteDataItems;
         }
 
