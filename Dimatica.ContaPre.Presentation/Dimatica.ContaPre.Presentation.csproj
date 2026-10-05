@@ -518,8 +518,8 @@
     </Compile>
     <Compile Include="Helpers\DataValidation\IbanValidator.cs" />
     <Compile Include="Helpers\DataValidation\IdentificationValidator.cs" />
-    <Compile Include="Helpers\ApplicationVersionHelper.cs" />
-    <Compile Include="Helpers\Email\EmailHelper.cs" />
+    <Compile Include="Helpers\ApplicationVersion\ApplicationVersionLoader.cs" />
+    <Compile Include="Helpers\Email\EmailSender.cs" />
     <Compile Include="Helpers\DataValidation\EmailValidator.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -531,12 +531,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Email\EmailTemplateHelper.cs" />
-    <Compile Include="Helpers\MyCryptography.cs" />
-    <Compile Include="Helpers\PlainPasswordGenerator.cs" />
-    <Compile Include="Helpers\SessionHelper.cs" />
-    <Compile Include="Helpers\SiteDataHelper.cs" />
-    <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="Helpers\Email\EmailTemplate.cs" />
+    <Compile Include="Helpers\Cryptography\MyCryptography.cs" />
+    <Compile Include="Helpers\PlainPassword\PlainPasswordGenerator.cs" />
+    <Compile Include="Helpers\Session\SessionHelper.cs" />
+    <Compile Include="Helpers\SiteData\SiteDataHelper.cs" />
+    <Compile Include="Helpers\Url\UrlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>

@@ -4,7 +4,7 @@
     using System.IO;
     using System.Web;
 
-    public static class EmailTemplateHelper
+    public static class EmailTemplate
     {
         // TODO --> elminar este metodo y usar GetEmailBodyDynamicParams
         public static string GetEmailBodyRecoveryCredentias(string templatePath, string userName, string userLogin, string password, string appUrl = "")

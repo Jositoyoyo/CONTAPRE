@@ -1,5 +1,5 @@
 using System.Web;
-using Dimatica.ContaPre.Presentation.Helpers;
+using Dimatica.ContaPre.Presentation.Helpers.Url;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dimatica.ContaPre.PresentationUnitTest.Helpers

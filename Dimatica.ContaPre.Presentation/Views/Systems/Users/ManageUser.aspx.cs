@@ -16,6 +16,8 @@
     using Dimatica.ContaPre.Presentation.Views.Shared;
     using Dimatica.ContaPre.Presentation.DataValidation;
     using Dimatica.ContaPre.Presentation.Helpers.Email;
+    using Dimatica.ContaPre.Presentation.Helpers.PlainPassword;
+    using Dimatica.ContaPre.Presentation.Helpers.Session;
     using System.Collections.Specialized;
 
     #endregion
@@ -356,10 +358,10 @@
             string userEmail = user.USU_EMAIL;
             string password  = SessionHelper.Decrypt(user.USU_PASSWORD);
             string subject   = "Credenciales de acceso a la plataforma";
-            string emailBody = EmailTemplateHelper.GetEmailBodyRecoveryCredentias("~/Views/EmailTemplates/CredentialsTemplate.html", userName, userLogin, password);
+            string emailBody = EmailTemplate.GetEmailBodyRecoveryCredentias("~/Views/EmailTemplates/CredentialsTemplate.html", userName, userLogin, password);
             bool isBodyHtml  = true;
 
-            EmailHelper.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
+            EmailSender.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
 
             this.btnSendEmailNewUser.Visible = false;
 
@@ -524,10 +526,10 @@
             string userEmail = user.USU_EMAIL;
             string password  = SessionHelper.Decrypt(user.USU_PASSWORD);
             string subject   = "Credenciales de acceso a la plataforma CONTAPRE";
-            string emailBody = EmailTemplateHelper.GetEmailBodyRecoveryCredentias("~/Views/EmailTemplates/CredentialsTemplate.html", userName, userLogin, password);
+            string emailBody = EmailTemplate.GetEmailBodyRecoveryCredentias("~/Views/EmailTemplates/CredentialsTemplate.html", userName, userLogin, password);
             bool isBodyHtml  = true;
 
-            EmailHelper.SendEmail(from,userEmail, subject, emailBody, isBodyHtml);
+            EmailSender.SendEmail(from,userEmail, subject, emailBody, isBodyHtml);
 
             return js.Serialize(new
             {

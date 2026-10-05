@@ -1,6 +1,8 @@
-﻿namespace Dimatica.ContaPre.Presentation.Helpers
+﻿namespace Dimatica.ContaPre.Presentation.Helpers.Session
 {
   
+    using Dimatica.ContaPre.Presentation.Helpers.Cryptography;
+
     public static class SessionHelper
     {
         #region Public Static Methods
