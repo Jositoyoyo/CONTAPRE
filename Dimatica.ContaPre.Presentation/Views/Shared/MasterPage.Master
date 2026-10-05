@@ -75,6 +75,7 @@
                         DataFieldParentID="ParentId"
                         DataValueField="Path"
                         DataTextField="Text"
+                        OnNodeDataBound="RadTreeViewMenu_NodeDataBound"
                         OnClientNodeClicking="onClientNodeClicked">
                         <DataBindings>
                             <telerik:RadTreeNodeBinding Expanded="true" NavigateUrlField="Path"></telerik:RadTreeNodeBinding>

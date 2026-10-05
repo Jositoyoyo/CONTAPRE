@@ -1,4 +1,4 @@
-﻿
+
 
 @import 'variables.scss';
 
@@ -3344,7 +3344,7 @@ body.app-layout-page {
 
     .app-logo {
         justify-self: start;
-        width: 220px;
+        width: 180px;
         max-width: 100%;
         height: auto;
         margin: 0;
@@ -3399,6 +3399,8 @@ body.app-layout-page {
     top: 72px;
     bottom: 0;
     left: 0;
+    margin-top: 60px;
+    margin-left: 20px;
     z-index: 1020;
     width: 260px;
     overflow: hidden;
@@ -3411,32 +3413,47 @@ body.app-layout-page {
 
         > .rtUL {
             width: 100%;
-            height: calc(100vh - 72px);
+            height: calc(100vh - 132px);
+            padding: 0;
             overflow-x: hidden;
             overflow-y: auto;
             background-color: $sec-color;
         }
 
-        .rtUL {
-            padding: 0;
+        > .rtUL > .rtLI {
+            width: 100%;
+            padding: .35rem .75rem;
 
-            .rtLI {
+            &:hover,
+            &.rtHover {
+                background-color: $prim-color;
+            }
+
+            &:hover .rtText,
+            &.rtHover .rtText {
+                color: $white;
+            }
+
+            > .rtUL {
+                position: static;
                 width: 100%;
-                padding: .125rem 1rem .625rem;
+                height: auto;
+                margin: .2rem 0 0;
+                padding: 0 0 0 .65rem;
+                overflow: visible;
+                border: 0;
+                border-left: 1px solid rgba(255, 255, 255, .3);
+                background: transparent;
+            }
+
+            > .rtUL > .rtLI {
+                width: auto;
+                padding: .2rem 0 .2rem .65rem;
 
                 &:hover,
                 &.rtHover {
-                    background-color: $prim-color;
+                    background-color: rgba(255, 255, 255, .12);
                 }
-
-                &:hover .rtText,
-                &.rtHover .rtText {
-                    color: $white;
-                }
-            }
-
-            .rtUL {
-                border: 0;
             }
         }
 
@@ -3450,6 +3467,37 @@ body.app-layout-page {
             color: $white;
             vertical-align: baseline;
         }
+
+        .menu-icon-chart-pie .rtText::before,
+        .menu-icon-money-bill-wave .rtText::before,
+        .menu-icon-file-invoice-dollar .rtText::before,
+        .menu-icon-list-alt .rtText::before,
+        .menu-icon-folder-open .rtText::before,
+        .menu-icon-university .rtText::before,
+        .menu-icon-edit .rtText::before,
+        .menu-icon-calendar-check .rtText::before,
+        .menu-icon-cog .rtText::before,
+        .menu-icon-table .rtText::before,
+        .menu-icon-code .rtText::before {
+            display: inline-block;
+            width: 1.35rem;
+            margin-right: .35rem;
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .menu-icon-chart-pie .rtText::before { content: "\f200"; }
+        .menu-icon-money-bill-wave .rtText::before { content: "\f53a"; }
+        .menu-icon-file-invoice-dollar .rtText::before { content: "\f571"; }
+        .menu-icon-list-alt .rtText::before { content: "\f022"; }
+        .menu-icon-folder-open .rtText::before { content: "\f07c"; }
+        .menu-icon-university .rtText::before { content: "\f19c"; }
+        .menu-icon-edit .rtText::before { content: "\f044"; }
+        .menu-icon-calendar-check .rtText::before { content: "\f274"; }
+        .menu-icon-cog .rtText::before { content: "\f013"; }
+        .menu-icon-table .rtText::before { content: "\f0ce"; }
+        .menu-icon-code .rtText::before { content: "\f121"; }
 
         .rtSelected .rtIn {
             border-color: transparent;
@@ -3471,15 +3519,15 @@ body.app-layout-page {
 }
 
 .app-main {
-    width: calc(100% - 260px);
+    width: calc(100% - 280px);
     min-width: 0;
-    margin-left: 260px;
+    margin-left: 280px;
 }
 
 .app-footer {
     display: flex;
     justify-content: space-between;
-    margin-left: 260px;
+    margin-left: 280px;
     padding: .5rem 1rem;
 }
 
@@ -3532,6 +3580,7 @@ body.app-layout-page {
     }
 
     .app-sidebar {
+        margin: 0;
         top: 88px;
         width: 85vw;
         max-width: 260px;

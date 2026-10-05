@@ -2269,7 +2269,7 @@ body.app-layout-page {
   box-shadow: 0 2px 6px rgba(0, 0, 0, .12); }
   .app-header .app-logo {
     justify-self: start;
-    width: 220px;
+    width: 180px;
     max-width: 100%;
     height: auto;
     margin: 0; }
@@ -2315,6 +2315,8 @@ body.app-layout-page {
   top: 72px;
   bottom: 0;
   left: 0;
+  margin-top: 60px;
+  margin-left: 20px;
   z-index: 1020;
   width: 260px;
   overflow: hidden;
@@ -2325,23 +2327,36 @@ body.app-layout-page {
     transform: none; }
     .app-sidebar .RadTreeView > .rtUL {
       width: 100%;
-      height: calc(100vh - 72px);
+      height: calc(100vh - 132px);
+      padding: 0;
       overflow-x: hidden;
       overflow-y: auto;
       background-color: #1269b0; }
-    .app-sidebar .RadTreeView .rtUL {
-      padding: 0; }
-      .app-sidebar .RadTreeView .rtUL .rtLI {
+    .app-sidebar .RadTreeView > .rtUL > .rtLI {
+      width: 100%;
+      padding: .35rem .75rem; }
+      .app-sidebar .RadTreeView > .rtUL > .rtLI:hover,
+      .app-sidebar .RadTreeView > .rtUL > .rtLI.rtHover {
+        background-color: #1269b0; }
+      .app-sidebar .RadTreeView > .rtUL > .rtLI:hover .rtText,
+      .app-sidebar .RadTreeView > .rtUL > .rtLI.rtHover .rtText {
+        color: #fff; }
+      .app-sidebar .RadTreeView > .rtUL > .rtLI > .rtUL {
+        position: static;
         width: 100%;
-        padding: .125rem 1rem .625rem; }
-        .app-sidebar .RadTreeView .rtUL .rtLI:hover,
-        .app-sidebar .RadTreeView .rtUL .rtLI.rtHover {
-          background-color: #1269b0; }
-        .app-sidebar .RadTreeView .rtUL .rtLI:hover .rtText,
-        .app-sidebar .RadTreeView .rtUL .rtLI.rtHover .rtText {
-          color: #fff; }
-      .app-sidebar .RadTreeView .rtUL .rtUL {
-        border: 0; }
+        height: auto;
+        margin: .2rem 0 0;
+        padding: 0 0 0 .65rem;
+        overflow: visible;
+        border: 0;
+        border-left: 1px solid rgba(255, 255, 255, .3);
+        background: transparent; }
+      .app-sidebar .RadTreeView > .rtUL > .rtLI > .rtUL > .rtLI {
+        width: auto;
+        padding: .2rem 0 .2rem .65rem; }
+        .app-sidebar .RadTreeView > .rtUL > .rtLI > .rtUL > .rtLI:hover,
+        .app-sidebar .RadTreeView > .rtUL > .rtLI > .rtUL > .rtLI.rtHover {
+          background-color: rgba(255, 255, 255, .12); }
     .app-sidebar .RadTreeView .rtIn,
     .app-sidebar .RadTreeView .rtOut {
       padding: 0;
@@ -2349,6 +2364,34 @@ body.app-layout-page {
     .app-sidebar .RadTreeView .rtText {
       color: #fff;
       vertical-align: baseline; }
+    .app-sidebar .RadTreeView .menu-icon-chart-pie .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-money-bill-wave .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-file-invoice-dollar .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-list-alt .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-folder-open .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-university .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-edit .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-calendar-check .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-cog .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-table .rtText::before,
+    .app-sidebar .RadTreeView .menu-icon-code .rtText::before {
+      display: inline-block;
+      width: 1.35rem;
+      margin-right: .35rem;
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      text-align: center; }
+    .app-sidebar .RadTreeView .menu-icon-chart-pie .rtText::before { content: "\f200"; }
+    .app-sidebar .RadTreeView .menu-icon-money-bill-wave .rtText::before { content: "\f53a"; }
+    .app-sidebar .RadTreeView .menu-icon-file-invoice-dollar .rtText::before { content: "\f571"; }
+    .app-sidebar .RadTreeView .menu-icon-list-alt .rtText::before { content: "\f022"; }
+    .app-sidebar .RadTreeView .menu-icon-folder-open .rtText::before { content: "\f07c"; }
+    .app-sidebar .RadTreeView .menu-icon-university .rtText::before { content: "\f19c"; }
+    .app-sidebar .RadTreeView .menu-icon-edit .rtText::before { content: "\f044"; }
+    .app-sidebar .RadTreeView .menu-icon-calendar-check .rtText::before { content: "\f274"; }
+    .app-sidebar .RadTreeView .menu-icon-cog .rtText::before { content: "\f013"; }
+    .app-sidebar .RadTreeView .menu-icon-table .rtText::before { content: "\f0ce"; }
+    .app-sidebar .RadTreeView .menu-icon-code .rtText::before { content: "\f121"; }
     .app-sidebar .RadTreeView .rtSelected .rtIn {
       border-color: transparent;
       background-color: rgba(255, 255, 255, .15); }
@@ -2362,14 +2405,14 @@ body.app-layout-page {
       display: none !important; }
 
 .app-main {
-  width: calc(100% - 260px);
+  width: calc(100% - 280px);
   min-width: 0;
-  margin-left: 260px; }
+  margin-left: 280px; }
 
 .app-footer {
   display: flex;
   justify-content: space-between;
-  margin-left: 260px;
+  margin-left: 280px;
   padding: .5rem 1rem; }
 
 @media (max-width: 767px) {
@@ -2409,6 +2452,7 @@ body.app-layout-page {
   .app-shell {
     min-height: calc(100vh - 88px); }
   .app-sidebar {
+    margin: 0;
     top: 88px;
     width: 85vw;
     max-width: 260px;
