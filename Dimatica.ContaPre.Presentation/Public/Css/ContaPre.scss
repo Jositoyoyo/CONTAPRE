@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'Lato-Regular';
-    src: url('Fonts/Lato-Regular.ttf') format('truetype');
+    src: url('../Fonts/Lato-Regular.ttf') format('truetype');
 }
 
 %button {
@@ -99,87 +99,87 @@
 }
 
 %up-arrow {
-    background-image: url(/Content/images/sprite-arrow-up.png);
+    background-image: url(/Public/Images/sprite-arrow-up.png);
 }
 
 %down-arrow {
-    background-image: url(/Content/images/sprite-arrow-down.png);
+    background-image: url(/Public/Images/sprite-arrow-down.png);
 }
 
 %right-arrow {
-    background-image: url(/Content/Images/sprite-arrow-right.png);
+    background-image: url(/Public/Images/sprite-arrow-right.png);
 }
 
 %left-arrow {
-    background-image: url(/Content/Images/sprite-arrow-left.png);
+    background-image: url(/Public/Images/sprite-arrow-left.png);
 }
 
 %combobox {
-    background-image: url(/Content/Images/sprite-arrow-down.png);
+    background-image: url(/Public/Images/sprite-arrow-down.png);
 }
 
 %calendar {
-    background-image: url(/Content/images/sprite-calendario.png);
+    background-image: url(/Public/Images/sprite-calendario.png);
 }
 
 %time {
-    background-image: url(/Content/images/sprite-reloj.png);
+    background-image: url(/Public/Images/sprite-reloj.png);
 }
 
 %edit {
-    background-image: url(/Content/images/sprite-edit-file.png);
+    background-image: url(/Public/Images/sprite-edit-file.png);
 }
 
 %report {
-    background-image: url(/Content/images/sprite-restore.png);
+    background-image: url(/Public/Images/sprite-restore.png);
 }
 
 %delete {
-    background-image: url(/Content/images/sprite-delete.png);
+    background-image: url(/Public/Images/sprite-delete.png);
 }
 
 %print {
-    background-image: url(/Content/images/sprite-print.png);
+    background-image: url(/Public/Images/sprite-print.png);
 }
 
 %certificate {
-    background-image: url(/Content/images/sprite-calendario.png);
+    background-image: url(/Public/Images/sprite-calendario.png);
 }
 
 %application {
-    background-image: url(/Content/images/sprite-application.png);
+    background-image: url(/Public/Images/sprite-application.png);
 }
 
 %restore {
-    background-image: url(/Content/images/sprite-restore.png);
+    background-image: url(/Public/Images/sprite-restore.png);
 }
 
 %ver {
-    background-image: url(/Content/images/sprite-ver.png);
+    background-image: url(/Public/Images/sprite-ver.png);
 }
 
 %puntos {
-    background-image: url(/Content/images/sprite-puntos.png);
+    background-image: url(/Public/Images/sprite-puntos.png);
 }
 
 %ocultar {
-    background-image: url(/Content/images/sprite-ocultar.png);
+    background-image: url(/Public/Images/sprite-ocultar.png);
 }
 
 %user-icon {
-    background-image: url(/Content/images/sprite-user.png);
+    background-image: url(/Public/Images/sprite-user.png);
 }
 
 %pass-icon {
-    background-image: url(/Content/images/sprite-pass.png);
+    background-image: url(/Public/Images/sprite-pass.png);
 }
 
 %back-icon {
-    background-image: url(/Content/images/back-icon.png);
+    background-image: url(/Public/Images/back-icon.png);
 }
 
 %save-icon {
-    background-image: url(/Content/images/sprite-save.png);
+    background-image: url(/Public/Images/sprite-save.png);
 }
 
 %formGroup {
@@ -858,11 +858,11 @@ body {
             }
 
             .rgSortAsc {
-                background-image: url(/Content/images/sprite-arrow-down.png);
+                background-image: url(/Public/Images/sprite-arrow-down.png);
             }
 
             .rgSortDesc {
-                background-image: url(/Content/images/sprite-arrow-up.png);
+                background-image: url(/Public/Images/sprite-arrow-up.png);
             }
         }
     }
@@ -1177,7 +1177,7 @@ body {
             width: 20px !important;
             height: 20px !important;
             border: none !important;
-            background: url(/Content/images/sprite-close.png) !important;
+            background: url(/Public/Images/sprite-close.png) !important;
             background-size: 100% !important;
             background-position: 0 -20px !important;
             background-repeat: no-repeat !important;
@@ -1723,75 +1723,75 @@ td[align="right"] {
 
             .new {
                 .icon {
-                    background-image: url(/Content/images/sprite-add.png);
+                    background-image: url(/Public/Images/sprite-add.png);
                 }
             }
 
             .find {
                 .icon {
-                    background-image: url(/Content/images/sprite-find.png);
+                    background-image: url(/Public/Images/sprite-find.png);
                 }
             }
 
             .save {
                 .icon {
-                    background-image: url(/Content/images/sprite-save.png);
+                    background-image: url(/Public/Images/sprite-save.png);
                 }
             }
 
             .report {
                 .icon {
-                    background-image: url(/Content/images/sprite-print.png); // sprite-report
+                    background-image: url(/Public/Images/sprite-print.png); // sprite-report
                 }
             }
 
             .edit {
                 .icon {
-                    background-image: url(/Content/images/sprite-edit-file.png);
+                    background-image: url(/Public/Images/sprite-edit-file.png);
                 }
             }
 
             .delete {
                 .icon {
-                    background-image: url(/Content/images/sprite-delete.png);
+                    background-image: url(/Public/Images/sprite-delete.png);
                 }
             }
 
             .close {
                 .icon {
-                    background-image: url(/Content/images/sprite-close.png);
+                    background-image: url(/Public/Images/sprite-close.png);
                 }
             }
 
             .excel {
 
                 .icon {
-                    background-image: url(/Content/images/sprite-download.png);
+                    background-image: url(/Public/Images/sprite-download.png);
                 }
             } 
             
             .list {
 
                 .icon {
-                    background-image: url(/Content/images/sprite-application.png);
+                    background-image: url(/Public/Images/sprite-application.png);
                 }
             }
 
             .back {
                 .icon {
-                    background-image: url(/Content/images/sprite-back.png);
+                    background-image: url(/Public/Images/sprite-back.png);
                 }
             }
 
             .refresh {
                 .icon {
-                    background-image: url(/Content/images/sprite-refresh.png);
+                    background-image: url(/Public/Images/sprite-refresh.png);
                 }
             }
 
             .print {
                 .icon {
-                    background-image: url(/Content/images/sprite-print.png);
+                    background-image: url(/Public/Images/sprite-print.png);
                 }
             }
         }
@@ -1863,7 +1863,7 @@ td[align="right"] {
             border: none;
 
             a {
-                background-image: url(/Content/images/sprite-arrow-down.png);
+                background-image: url(/Public/Images/sprite-arrow-down.png);
                 background-repeat: no-repeat;
                 background-color: white;
                 background-position: 0 -40px;
@@ -2450,22 +2450,22 @@ td[align="right"] {
 
                     .rgPageFirst {
                         @extend %rgPageArrows;
-                        background-image: url("/Content/Images/rgPageFirst.png");
+                        background-image: url("/Public/Images/rgPageFirst.png");
                     }
 
                     .rgPageLast {
                         @extend %rgPageArrows;
-                        background-image: url("/Content/Images/rgPageLast.png");
+                        background-image: url("/Public/Images/rgPageLast.png");
                     }
 
                     .rgPageNext {
                         @extend %rgPageArrows;
-                        background-image: url("/Content/Images/rgPageNext.png");
+                        background-image: url("/Public/Images/rgPageNext.png");
                     }
 
                     .rgPagePrev {
                         @extend %rgPageArrows;
-                        background-image: url("/Content/Images/rgPagePrev.png");
+                        background-image: url("/Public/Images/rgPagePrev.png");
                     }
                 }
             }
@@ -3031,19 +3031,19 @@ td[align="right"] {
                 border: none;
             }
             /*&.table-page {
-                background-image: url(/Content/images/menu-terciario-table.png);
+                background-image: url(/Public/Images/menu-terciario-table.png);
             }
 
             &.folder-page {
-                background-image: url(/Content/images/menu-terciario-folder.png);
+                background-image: url(/Public/Images/menu-terciario-folder.png);
             }
 
             &.final-page {
-                background-image: url(/Content/images/menu-terciario-file.png);
+                background-image: url(/Public/Images/menu-terciario-file.png);
             }
 
             &.filter-page {
-                background-image: url(/Content/images/menu-terciario-filter.png);
+                background-image: url(/Public/Images/menu-terciario-filter.png);
             }
 
             &.pendiente-page {

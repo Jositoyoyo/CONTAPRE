@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     AutoEventWireup="true"
     CodeBehind="CertificateFilter.aspx.cs"
     Inherits="Dimatica.ContaPre.Presentation.Views.Spend.CertificateFilter" %>
@@ -9,7 +9,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link rel="stylesheet" href="~/Content/Contapre.css" />
+    <link rel="stylesheet" href="/Public/Css/Contapre.css" />
 </head>
 
 <body>

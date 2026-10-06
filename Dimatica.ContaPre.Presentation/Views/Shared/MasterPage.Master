@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#"
+<%@ Master Language="C#"
     AutoEventWireup="true"
     CodeBehind="MasterPage.master.cs"
     Inherits="Dimatica.ContaPre.Presentation.Views.Shared.MasterPage" %>
@@ -10,10 +10,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Contabilidad Presupuestaria</title>
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
-    <link rel="stylesheet" href="/Content/Contapre.css" />
-    <link rel="stylesheet" href="/Content/fontawesome-all.css" />
-    <link href="/Content/Images/UIMP_Conf_Horizontal_RGB.png" rel="shortcut icon" type="image/x-icon" />
-    <script src="/Scripts/jquery-3.7.1.js"></script>
+    <link rel="stylesheet" href="/Public/Css/Contapre.css" />
+    <link rel="stylesheet" href="/Public/Css/fontawesome-all.css" />
+    <link href="/Public/Images/UIMP_Conf_Horizontal_RGB.png" rel="shortcut icon" type="image/x-icon" />
+    <script src="/Public/javascript/jquery-3.7.1.js"></script>
 </head>
 
 <body class="app-layout-page" id="<%= this.Session["_currentPage"] %>">
@@ -44,7 +44,7 @@
             <header class="app-header">
 
                 <div class="app-logo">
-                    <img src="/Content/Images/UIMP_Conf_Horizontal_RGB.png" alt="Universidad Internacional Menéndez Pelayo" />
+                    <img src="/Public/Images/UIMP_Conf_Horizontal_RGB.png" alt="Universidad Internacional Menéndez Pelayo" />
                 </div>
 
                 <h1>Contabilidad Presupuestaria</h1>

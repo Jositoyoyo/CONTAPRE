@@ -1,4 +1,4 @@
-﻿<%@ Page Title=""
+<%@ Page Title=""
     Language="C#"
     MasterPageFile="~/Views/Shared/MasterPage.Master"
     AutoEventWireup="true"
@@ -210,7 +210,7 @@
                             </telerik:GridButtonColumn>
                             <telerik:GridImageColumn DataType="System.String"
                                 DataImageUrlFields="ActiveImage"
-                                DataImageUrlFormatString="/Content/Images/{0}.png"
+                                DataImageUrlFormatString="/Public/Images/{0}.png"
                                 ImageAlign="Baseline"
                                 ImageHeight="20px"
                                 ImageWidth="20px"

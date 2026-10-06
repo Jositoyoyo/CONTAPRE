@@ -1,7 +1,7 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 @font-face {
   font-family: 'Lato-Regular';
-  src: url("Fonts/Lato-Regular.ttf") format("truetype"); }
+  src: url("../Fonts/Lato-Regular.ttf") format("truetype"); }
 
 .container .buttons .RadButton, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .RadButton,
 .container .RadGrid .rgMasterTable .rgEditForm .buttons .RadButton, .container .buttons a, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons a,
@@ -118,63 +118,63 @@ body .RadCalendarFastNavPopup table.RadCalendarMonthView td a[id*='NavigationNex
   left: 0; }
 
 .container .header .RadTreeView .rtMinus {
-  background-image: url(/Content/images/sprite-arrow-down.png); }
+  background-image: url(/Public/Images/sprite-arrow-down.png); }
 
 body .RadMenu .rmGroup .rmItem .rmLink.rmExpand.rmExpandRight, body .RadCalendarFastNavPopup table.RadCalendarMonthView td a[id*='NavigationNextLink'], .container .header .RadTreeView .rtPlus {
-  background-image: url(/Content/Images/sprite-arrow-right.png); }
+  background-image: url(/Public/Images/sprite-arrow-right.png); }
 
 body .RadMenu .rmGroup .rmItem .rmLink.rmExpand.rmExpandLeft, body .RadCalendarFastNavPopup table.RadCalendarMonthView td a[id*='NavigationPrevLink'] {
-  background-image: url(/Content/Images/sprite-arrow-left.png); }
+  background-image: url(/Public/Images/sprite-arrow-left.png); }
 
 body .RadPicker .rcCalPopup,
 body .RadPicker.rcTimePopupOpen .rcCalPopup, body .RadPicker .rcSelect .rcCalPopup,
 body .RadPicker.rcTimePopupOpen .rcSelect .rcCalPopup {
-  background-image: url(/Content/images/sprite-calendario.png); }
+  background-image: url(/Public/Images/sprite-calendario.png); }
 
 body .RadPicker .rcTimePopup,
 body .RadPicker.rcTimePopupOpen .rcTimePopup, body .RadPicker .RadInput a:not(.rcCalPopup):hover,
 body .RadPicker.rcTimePopupOpen .RadInput a:not(.rcCalPopup):hover {
-  background-image: url(/Content/images/sprite-reloj.png); }
+  background-image: url(/Public/Images/sprite-reloj.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-pencil-alt a,
 .container .RadGrid .rgMasterTable tr .fa-pencil-alt a {
-  background-image: url(/Content/images/sprite-edit-file.png); }
+  background-image: url(/Public/Images/sprite-edit-file.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-trash-alt a,
 .container .RadGrid .rgMasterTable tr .fa-trash-alt a {
-  background-image: url(/Content/images/sprite-delete.png); }
+  background-image: url(/Public/Images/sprite-delete.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-print-alt a,
 .container .RadGrid .rgMasterTable tr .fa-print-alt a {
-  background-image: url(/Content/images/sprite-print.png); }
+  background-image: url(/Public/Images/sprite-print.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-certificate-alt a,
 .container .RadGrid .rgMasterTable tr .fa-certificate-alt a {
-  background-image: url(/Content/images/sprite-calendario.png); }
+  background-image: url(/Public/Images/sprite-calendario.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-application-alt a,
 .container .RadGrid .rgMasterTable tr .fa-application-alt a {
-  background-image: url(/Content/images/sprite-application.png); }
+  background-image: url(/Public/Images/sprite-application.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-trash-restore-alt a,
 .container .RadGrid .rgMasterTable tr .fa-trash-restore-alt a {
-  background-image: url(/Content/images/sprite-restore.png); }
+  background-image: url(/Public/Images/sprite-restore.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-eye a,
 .container .RadGrid .rgMasterTable tr .fa-eye a {
-  background-image: url(/Content/images/sprite-ver.png); }
+  background-image: url(/Public/Images/sprite-ver.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-points a,
 .container .RadGrid .rgMasterTable tr .fa-points a {
-  background-image: url(/Content/images/sprite-puntos.png); }
+  background-image: url(/Public/Images/sprite-puntos.png); }
 
 .container .RadAjaxPanel .rgMasterTable tr .fa-hidden-eye a,
 .container .RadGrid .rgMasterTable tr .fa-hidden-eye a {
-  background-image: url(/Content/images/sprite-ocultar.png); }
+  background-image: url(/Public/Images/sprite-ocultar.png); }
 
 .Login .login-form .form-group .RadInput input#RTbMail, #page_changePassword .Pass .form-group .RadInput input[id*="lblUserName"],
 #section_systems .Pass .form-group .RadInput input[id*="lblUserName"] {
-  background-image: url(/Content/images/sprite-user.png); }
+  background-image: url(/Public/Images/sprite-user.png); }
 
 .Login .login-form .form-group .RadInput input#RTbPassword, #page_changePassword .Pass .form-group .RadInput input[id*="txtCurrentPass"],
 #page_changePassword .Pass .form-group .RadInput input[id*="txtNewPass"],
@@ -182,7 +182,7 @@ body .RadPicker.rcTimePopupOpen .RadInput a:not(.rcCalPopup):hover {
 #section_systems .Pass .form-group .RadInput input[id*="txtCurrentPass"],
 #section_systems .Pass .form-group .RadInput input[id*="txtNewPass"],
 #section_systems .Pass .form-group .RadInput input[id*="txtConfirmNewPass"] {
-  background-image: url(/Content/images/sprite-pass.png); }
+  background-image: url(/Public/Images/sprite-pass.png); }
 
 .container .form-group, .container .RadAjaxPanel .rgMasterTable .rgEditForm .form-group,
 .container .RadGrid .rgMasterTable .rgEditForm .form-group {
@@ -646,11 +646,11 @@ body .RadAjaxPanel .rgHeader .rgSortDesc {
 
 body .RadGrid .rgHeader .rgSortAsc,
 body .RadAjaxPanel .rgHeader .rgSortAsc {
-  background-image: url(/Content/images/sprite-arrow-down.png); }
+  background-image: url(/Public/Images/sprite-arrow-down.png); }
 
 body .RadGrid .rgHeader .rgSortDesc,
 body .RadAjaxPanel .rgHeader .rgSortDesc {
-  background-image: url(/Content/images/sprite-arrow-up.png); }
+  background-image: url(/Public/Images/sprite-arrow-up.png); }
 
 body .RadCalendarFastNavPopup {
   padding: 0; }
@@ -853,7 +853,7 @@ body .RadWindow {
     width: 20px !important;
     height: 20px !important;
     border: none !important;
-    background: url(/Content/images/sprite-close.png) !important;
+    background: url(/Public/Images/sprite-close.png) !important;
     background-size: 100% !important;
     background-position: 0 -20px !important;
     background-repeat: no-repeat !important; }
@@ -1195,29 +1195,29 @@ td[align="right"] {
           .container .top-buttons .a-buttons > div:hover a, .container .top-buttons .a-buttons > div:hover input, .container .top-buttons .a-buttons > div:hover .icon {
             color: white; }
       .container .top-buttons .a-buttons .new .icon {
-        background-image: url(/Content/images/sprite-add.png); }
+        background-image: url(/Public/Images/sprite-add.png); }
       .container .top-buttons .a-buttons .find .icon {
-        background-image: url(/Content/images/sprite-find.png); }
+        background-image: url(/Public/Images/sprite-find.png); }
       .container .top-buttons .a-buttons .save .icon {
-        background-image: url(/Content/images/sprite-save.png); }
+        background-image: url(/Public/Images/sprite-save.png); }
       .container .top-buttons .a-buttons .report .icon {
-        background-image: url(/Content/images/sprite-print.png); }
+        background-image: url(/Public/Images/sprite-print.png); }
       .container .top-buttons .a-buttons .edit .icon {
-        background-image: url(/Content/images/sprite-edit-file.png); }
+        background-image: url(/Public/Images/sprite-edit-file.png); }
       .container .top-buttons .a-buttons .delete .icon {
-        background-image: url(/Content/images/sprite-delete.png); }
+        background-image: url(/Public/Images/sprite-delete.png); }
       .container .top-buttons .a-buttons .close .icon {
-        background-image: url(/Content/images/sprite-close.png); }
+        background-image: url(/Public/Images/sprite-close.png); }
       .container .top-buttons .a-buttons .excel .icon {
-        background-image: url(/Content/images/sprite-download.png); }
+        background-image: url(/Public/Images/sprite-download.png); }
       .container .top-buttons .a-buttons .list .icon {
-        background-image: url(/Content/images/sprite-application.png); }
+        background-image: url(/Public/Images/sprite-application.png); }
       .container .top-buttons .a-buttons .back .icon {
-        background-image: url(/Content/images/sprite-back.png); }
+        background-image: url(/Public/Images/sprite-back.png); }
       .container .top-buttons .a-buttons .refresh .icon {
-        background-image: url(/Content/images/sprite-refresh.png); }
+        background-image: url(/Public/Images/sprite-refresh.png); }
       .container .top-buttons .a-buttons .print .icon {
-        background-image: url(/Content/images/sprite-print.png); }
+        background-image: url(/Public/Images/sprite-print.png); }
     .container .top-buttons .a-comboboxes {
       display: flex;
       align-items: center; }
@@ -1250,7 +1250,7 @@ td[align="right"] {
     background: none;
     border: none; }
     .container .rcbReadOnly .rcbArrowCell a {
-      background-image: url(/Content/images/sprite-arrow-down.png);
+      background-image: url(/Public/Images/sprite-arrow-down.png);
       background-repeat: no-repeat;
       background-color: white;
       background-position: 0 -40px;
@@ -1637,16 +1637,16 @@ td[align="right"] {
               opacity: .8; }
           .container .RadAjaxPanel .rgMasterTable .rgPager .rgPagerCell .rgPageFirst,
           .container .RadGrid .rgMasterTable .rgPager .rgPagerCell .rgPageFirst {
-            background-image: url("/Content/Images/rgPageFirst.png"); }
+            background-image: url("/Public/Images/rgPageFirst.png"); }
           .container .RadAjaxPanel .rgMasterTable .rgPager .rgPagerCell .rgPageLast,
           .container .RadGrid .rgMasterTable .rgPager .rgPagerCell .rgPageLast {
-            background-image: url("/Content/Images/rgPageLast.png"); }
+            background-image: url("/Public/Images/rgPageLast.png"); }
           .container .RadAjaxPanel .rgMasterTable .rgPager .rgPagerCell .rgPageNext,
           .container .RadGrid .rgMasterTable .rgPager .rgPagerCell .rgPageNext {
-            background-image: url("/Content/Images/rgPageNext.png"); }
+            background-image: url("/Public/Images/rgPageNext.png"); }
           .container .RadAjaxPanel .rgMasterTable .rgPager .rgPagerCell .rgPagePrev,
           .container .RadGrid .rgMasterTable .rgPager .rgPagerCell .rgPagePrev {
-            background-image: url("/Content/Images/rgPagePrev.png"); }
+            background-image: url("/Public/Images/rgPagePrev.png"); }
       .container .RadAjaxPanel .rgMasterTable.popup-table.popup-table-large .rgEditPopup,
       .container .RadGrid .rgMasterTable.popup-table.popup-table-large .rgEditPopup {
         width: 700px !important;
@@ -2044,19 +2044,19 @@ td[align="right"] {
       background-position: right .625rem top .625rem;
       background-size: 10%;
       /*&.table-page {
-                background-image: url(/Content/images/menu-terciario-table.png);
+                background-image: url(/Public/Images/menu-terciario-table.png);
             }
 
             &.folder-page {
-                background-image: url(/Content/images/menu-terciario-folder.png);
+                background-image: url(/Public/Images/menu-terciario-folder.png);
             }
 
             &.final-page {
-                background-image: url(/Content/images/menu-terciario-file.png);
+                background-image: url(/Public/Images/menu-terciario-file.png);
             }
 
             &.filter-page {
-                background-image: url(/Content/images/menu-terciario-filter.png);
+                background-image: url(/Public/Images/menu-terciario-filter.png);
             }
 
             &.pendiente-page {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     AutoEventWireup="true"
     CodeBehind="NewIncomes.aspx.cs"
     Inherits="Dimatica.ContaPre.Presentation.Views.Budget.NewIncomes" %>
@@ -151,11 +151,11 @@
                 }
 
                 table.RadCalendarMonthView td a[id*='NavigationPrevLink'] {
-                    background-image: url(/Content/Images/sprite-arrow-left.png);
+                    background-image: url(/Public/Images/sprite-arrow-left.png);
                 }
 
                 table.RadCalendarMonthView td a[id*='NavigationNextLink'] {
-                    background-image: url(/Content/Images/sprite-arrow-right.png);
+                    background-image: url(/Public/Images/sprite-arrow-right.png);
                 }
 
                 table.RadCalendarMonthView td.rcSelected {
@@ -225,7 +225,7 @@
         }
 
         .RadPicker .rcCalPopup {
-            background-image: url(/Content/images/sprite-calendario.png)!important;
+            background-image: url(/Public/Images/sprite-calendario.png)!important;
             background-color: transparent!important;
             border: none !important;            
         }
@@ -247,7 +247,7 @@
                 }
 
         .RadPicker .rcTimePopup {
-            background-image: url(/Content/images/iconos-aena/sprite-reloj.png);
+            background-image: url(/Public/Images/iconos-aena/sprite-reloj.png);
             border: none;            
         }
             .RadPicker .rcTimePopup::before {
@@ -394,7 +394,7 @@
 	         width: 20px !important;
 	         height: 20px !important;
 	         border: none !important;
-	         background: url(/Content/images/sprite-close.png) !important;
+	         background: url(/Public/Images/sprite-close.png) !important;
 	         background-size: 100% !important;
 	         background-position: 0 -20px !important;
 	         background-repeat: no-repeat !important;

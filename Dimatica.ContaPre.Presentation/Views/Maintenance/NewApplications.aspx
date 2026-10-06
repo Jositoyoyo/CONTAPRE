@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     AutoEventWireup="true"
     CodeBehind="NewApplications.aspx.cs"
     Inherits="Dimatica.ContaPre.Presentation.Views.Maintenance.NewApplications" %>
@@ -7,10 +7,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link rel="stylesheet" href="~/Content/Contapre.css" />
+    <link rel="stylesheet" href="/Public/Css/Contapre.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="../../Scripts/jquery-3.4.1.js"></script>
+    <script src="/Public/javascript/jquery-3.7.1.js"></script>
     <title></title>
     <style>
 
