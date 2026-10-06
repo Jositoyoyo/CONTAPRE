@@ -1,4 +1,4 @@
-﻿<%@ Page Title=""
+<%@ Page Title=""
     Language="C#"
     MasterPageFile="~/Views/Shared/MasterPage.Master"
     AutoEventWireup="true"
@@ -9,6 +9,7 @@
     ContentPlaceHolderID="head"
     runat="server">
 </asp:Content>
+
 <asp:Content ID="Content2"
     ContentPlaceHolderID="ContentPlaceHolder1"
     runat="server">
@@ -291,7 +292,7 @@
                             </telerik:GridTemplateColumn>--%>
                             <telerik:GridImageColumn DataType="System.String"
                                 DataImageUrlFields="Sheet50Image"
-                                DataImageUrlFormatString="/Content/Images/{0}.png"
+                                DataImageUrlFormatString="/Public/Images/{0}.png"
                                 HeaderText="H.A.50"
                                 ImageAlign="Middle"
                                 ImageHeight="18px"

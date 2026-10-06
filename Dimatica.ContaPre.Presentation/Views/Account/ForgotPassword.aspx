@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     AutoEventWireup="true"
     CodeBehind="ForgotPassword.aspx.cs"
     Inherits="Dimatica.ContaPre.Presentation.Views.Account.ForgotPassword" %>
@@ -8,22 +8,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Contabilidad Presupuestaria - recuperar password</title>
-    <link rel="stylesheet" href="~/Content/Contapre.css" />
-    <link rel="stylesheet" href="~/Content/fontawesome-all.css" />
+    <link rel="stylesheet" href="/Public/Css/Contapre.css" />
+    <link rel="stylesheet" href="/Public/Css/fontawesome-all.css" />
 
-    <link href="~/content/Images/UIMP_Conf_Pricipal_RGB.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="/Public/Images/UIMP_Conf_Pricipal_RGB.png" rel="shortcut icon" type="image/x-icon" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    <script src="../../Scripts/jquery-3.4.1.js"></script>
+    <script src="/Public/Javascript/jquery-3.7.1.js"></script>
 </head>
 <body>
 
     <div class="Login">
 
         <div class="header-login">
-             <img src="../../Content/Images/UIMP_Conf_Pricipal_RGB.png" alt="Contabilidad Presupuestaria" />
+             <img src="/Public/Images/UIMP_Conf_Pricipal_RGB.png" alt="Contabilidad Presupuestaria" />
         </div>
 
         <form role="form" id="formForgotPassword" class="login-form" runat="server">

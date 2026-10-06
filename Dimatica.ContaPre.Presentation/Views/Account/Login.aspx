@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     AutoEventWireup="true"
     CodeBehind="Login.aspx.cs"
     Inherits="Dimatica.ContaPre.Presentation.Views.Account.Login" %>
@@ -8,21 +8,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Contabilidad Presupuestaria</title>
-    <link rel="stylesheet" href="~/Content/Contapre.css" />
-    <link rel="stylesheet" href="~/Content/fontawesome-all.css" />
+    <link rel="stylesheet" href="/Public/Css/Contapre.css" />
+    <link rel="stylesheet" href="/Public/Css/fontawesome-all.css" />
 
-    <link href="~/content/Images/UIMP_Conf_Pricipal_RGB.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="/Public/Images/UIMP_Conf_Pricipal_RGB.png" rel="shortcut icon" type="image/x-icon" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    <script src="../../Scripts/jquery-3.4.1.js"></script>
+    <script src="/Public/Javascript/jquery-3.7.1.js"></script>
 </head>
 <body>
     <div class="Login">
 
         <div class="header-login">
-            <img src="../../Content/Images/UIMP_Conf_Pricipal_RGB.png" alt="Contabilidad Presupuestaria" />
+            <img src="/Public/Images/UIMP_Conf_Pricipal_RGB.png" alt="Contabilidad Presupuestaria" />
         </div>
 
         <form id="form1" runat="server" class="login-form" defaultbutton="BtnLogin">
@@ -52,16 +52,16 @@
             <telerik:RadScriptManager ID="RadScriptManager"
                 runat="server">
                 <%--      <Scripts>
-                    <asp:ScriptReference Path="~/Scripts/jquery-3.4.1.min.js" />
-                    <asp:ScriptReference Path="~/Scripts/bootstrap.js" />
-                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                    <asp:ScriptReference Path="~/Public/Javascript/jquery-3.7.1.min.js" />
+                    <asp:ScriptReference Path="~/Public/Javascript/bootstrap.js" />
+                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/WebForms.js" />
+                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/WebUIValidation.js" />
+                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/MenuStandards.js" />
+                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/GridView.js" />
+                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/DetailsView.js" />
+                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/TreeView.js" />
+                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/WebParts.js" />
+                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/Focus.js" />
                 </Scripts>--%>
             </telerik:RadScriptManager>
 

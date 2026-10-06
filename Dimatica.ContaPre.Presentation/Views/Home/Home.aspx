@@ -1,4 +1,4 @@
-﻿<%@ Page Title=""
+<%@ Page Title=""
     Language="C#"
     MasterPageFile="~/Views/Shared/MasterPage.Master"
     AutoEventWireup="true"
@@ -19,7 +19,7 @@
         <div id="page_home" class="home">
             <h4>Bienvenido a la aplicación de contabilidad presupuestaria</h4>
             <div class="home__img">
-                <img src="../../Content/Images/UIMP_Conf_Pricipal_RGB.png" alt="Logo UIMP">
+                <img src="/Public/Images/UIMP_Conf_Pricipal_RGB.png" alt="Logo UIMP">
             </div>
         </div>
     </div>

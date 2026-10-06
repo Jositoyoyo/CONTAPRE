@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Configuration;
 using System.IO;
 using System.Web;
@@ -53,7 +53,7 @@ namespace Dimatica.ContaPre.Presentation.Common
                         }
                         catch (IOException)
                         {
-                            // Esperar antes de reintentar si el archivo est� en uso
+                            // Esperar antes de reintentar si el archivo está en uso
                             System.Threading.Thread.Sleep(retryDelay);
                         }
                         catch (Exception generalEx)

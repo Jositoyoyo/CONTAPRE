@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     AutoEventWireup="true"
     CodeBehind="RightsRecognitionByConventionFilter.aspx.cs"
     Inherits="Dimatica.ContaPre.Presentation.Views.List.RightsRecognitionByConventionFilter" %>
@@ -9,7 +9,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link rel="stylesheet" href="~/Content/Contapre.css" />
+    <link rel="stylesheet" href="/Public/Css/Contapre.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 

@@ -90,7 +90,7 @@
 
                         <PagerStyle Mode="NextPrevAndNumeric"
                             PageSizeLabelText="Elementos por pagina: "
-                            PagerTextFormat="Navigate pages {4} Página {0} de {1}, elementos {2} a {3} de {5}" />
+                            PagerTextFormat="Navigate pages {4} Pï¿½gina {0} de {1}, elementos {2} a {3} de {5}" />
 
                         <%-- fila de resultados usuarios --%>
                         <Columns>
@@ -120,7 +120,7 @@
                             </telerik:GridBoundColumn>
                             <telerik:GridImageColumn DataType="System.String"
                                 DataImageUrlFields="ObsoleteImage"
-                                DataImageUrlFormatString="/Content/Images/{0}.png"
+                                DataImageUrlFormatString="/Public/Images/{0}.png"
                                 ImageAlign="Middle"
                                 ImageHeight="18px"
                                 ImageWidth="18px"
@@ -148,8 +148,8 @@
                                 ItemStyle-Width="40px"
                                 Text=" "
                                 ConfirmDialogType="RadWindow"
-                                ConfirmTitle="ATENCIÓN"
-                                ConfirmText="¿ Está seguro que desea cambiar el estado de este Usuario ?"
+                                ConfirmTitle="ATENCIï¿½N"
+                                ConfirmText="ï¿½ Estï¿½ seguro que desea cambiar el estado de este Usuario ?"
                                 ConfirmDialogHeight="100px"
                                 HeaderStyle-HorizontalAlign="Center">
                             </telerik:GridButtonColumn>

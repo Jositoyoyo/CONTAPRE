@@ -1,16 +1,17 @@
-﻿
+
 
 @import 'variables.scss';
 
 @font-face {
     font-family: 'Lato-Regular';
-    src: url('Fonts/Lato-Regular.ttf') format('truetype');
+    src: url('../Fonts/Lato-Regular.ttf') format('truetype');
 }
 
 %button {
     background-color: $prim-color;
     color: white;
-    display: block;
+    display: flex;
+    align-items: center;
     width: auto;
     min-width: 120px;
     text-align: center;
@@ -99,87 +100,87 @@
 }
 
 %up-arrow {
-    background-image: url(/Content/images/sprite-arrow-up.png);
+    background-image: url(/Public/Images/sprite-arrow-up.png);
 }
 
 %down-arrow {
-    background-image: url(/Content/images/sprite-arrow-down.png);
+    background-image: url(/Public/Images/sprite-arrow-down.png);
 }
 
 %right-arrow {
-    background-image: url(/Content/Images/sprite-arrow-right.png);
+    background-image: url(/Public/Images/sprite-arrow-right.png);
 }
 
 %left-arrow {
-    background-image: url(/Content/Images/sprite-arrow-left.png);
+    background-image: url(/Public/Images/sprite-arrow-left.png);
 }
 
 %combobox {
-    background-image: url(/Content/Images/sprite-arrow-down.png);
+    background-image: url(/Public/Images/sprite-arrow-down.png);
 }
 
 %calendar {
-    background-image: url(/Content/images/sprite-calendario.png);
+    background-image: url(/Public/Images/sprite-calendario.png);
 }
 
 %time {
-    background-image: url(/Content/images/sprite-reloj.png);
+    background-image: url(/Public/Images/sprite-reloj.png);
 }
 
 %edit {
-    background-image: url(/Content/images/sprite-edit-file.png);
+    background-image: url(/Public/Images/sprite-edit-file.png);
 }
 
 %report {
-    background-image: url(/Content/images/sprite-restore.png);
+    background-image: url(/Public/Images/sprite-restore.png);
 }
 
 %delete {
-    background-image: url(/Content/images/sprite-delete.png);
+    background-image: url(/Public/Images/sprite-delete.png);
 }
 
 %print {
-    background-image: url(/Content/images/sprite-print.png);
+    background-image: url(/Public/Images/sprite-print.png);
 }
 
 %certificate {
-    background-image: url(/Content/images/sprite-calendario.png);
+    background-image: url(/Public/Images/sprite-calendario.png);
 }
 
 %application {
-    background-image: url(/Content/images/sprite-application.png);
+    background-image: url(/Public/Images/sprite-application.png);
 }
 
 %restore {
-    background-image: url(/Content/images/sprite-restore.png);
+    background-image: url(/Public/Images/sprite-restore.png);
 }
 
 %ver {
-    background-image: url(/Content/images/sprite-ver.png);
+    background-image: url(/Public/Images/sprite-ver.png);
 }
 
 %puntos {
-    background-image: url(/Content/images/sprite-puntos.png);
+    background-image: url(/Public/Images/sprite-puntos.png);
 }
 
 %ocultar {
-    background-image: url(/Content/images/sprite-ocultar.png);
+    background-image: url(/Public/Images/sprite-ocultar.png);
 }
 
 %user-icon {
-    background-image: url(/Content/images/sprite-user.png);
+    background-image: url(/Public/Images/sprite-user.png);
 }
 
 %pass-icon {
-    background-image: url(/Content/images/sprite-pass.png);
+    background-image: url(/Public/Images/sprite-pass.png);
 }
 
 %back-icon {
-    background-image: url(/Content/images/back-icon.png);
+    background-image: url(/Public/Images/back-icon.png);
 }
 
 %save-icon {
-    background-image: url(/Content/images/sprite-save.png);
+    background-image: url(/Public/Images/sprite-save.png);
 }
 
 %formGroup {
@@ -297,9 +298,9 @@
     }
     // .field-20...
     @for $i from 1 through 100 {
-        @if $i%5 == 0 {
+        @if $i % 5 == 0 {
             &.field-#{$i} {
-                width: calc(#{$i}% - 1.625rem);
+                width: calc(#{$i * 1%} - 1.625rem);
             }
         }
     }
@@ -858,11 +859,11 @@ body {
             }
 
             .rgSortAsc {
-                background-image: url(/Content/images/sprite-arrow-down.png);
+                background-image: url(/Public/Images/sprite-arrow-down.png);
             }
 
             .rgSortDesc {
-                background-image: url(/Content/images/sprite-arrow-up.png);
+                background-image: url(/Public/Images/sprite-arrow-up.png);
             }
         }
     }
@@ -1177,7 +1178,7 @@ body {
             width: 20px !important;
             height: 20px !important;
             border: none !important;
-            background: url(/Content/images/sprite-close.png) !important;
+            background: url(/Public/Images/sprite-close.png) !important;
             background-size: 100% !important;
             background-position: 0 -20px !important;
             background-repeat: no-repeat !important;
@@ -1687,7 +1688,10 @@ td[align="right"] {
 
                 a, input {
                     @extend %occupy-all-space;
-                    padding-top: .625rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-top: 0;
                     color: white;
                     background-color: transparent;
                     border: 0;
@@ -1723,75 +1727,75 @@ td[align="right"] {
 
             .new {
                 .icon {
-                    background-image: url(/Content/images/sprite-add.png);
+                    background-image: url(/Public/Images/sprite-add.png);
                 }
             }
 
             .find {
                 .icon {
-                    background-image: url(/Content/images/sprite-find.png);
+                    background-image: url(/Public/Images/sprite-find.png);
                 }
             }
 
             .save {
                 .icon {
-                    background-image: url(/Content/images/sprite-save.png);
+                    background-image: url(/Public/Images/sprite-save.png);
                 }
             }
 
             .report {
                 .icon {
-                    background-image: url(/Content/images/sprite-print.png); // sprite-report
+                    background-image: url(/Public/Images/sprite-print.png); // sprite-report
                 }
             }
 
             .edit {
                 .icon {
-                    background-image: url(/Content/images/sprite-edit-file.png);
+                    background-image: url(/Public/Images/sprite-edit-file.png);
                 }
             }
 
             .delete {
                 .icon {
-                    background-image: url(/Content/images/sprite-delete.png);
+                    background-image: url(/Public/Images/sprite-delete.png);
                 }
             }
 
             .close {
                 .icon {
-                    background-image: url(/Content/images/sprite-close.png);
+                    background-image: url(/Public/Images/sprite-close.png);
                 }
             }
 
             .excel {
 
                 .icon {
-                    background-image: url(/Content/images/sprite-download.png);
+                    background-image: url(/Public/Images/sprite-download.png);
                 }
             } 
             
             .list {
 
                 .icon {
-                    background-image: url(/Content/images/sprite-application.png);
+                    background-image: url(/Public/Images/sprite-application.png);
                 }
             }
 
             .back {
                 .icon {
-                    background-image: url(/Content/images/sprite-back.png);
+                    background-image: url(/Public/Images/sprite-back.png);
                 }
             }
 
             .refresh {
                 .icon {
-                    background-image: url(/Content/images/sprite-refresh.png);
+                    background-image: url(/Public/Images/sprite-refresh.png);
                 }
             }
 
             .print {
                 .icon {
-                    background-image: url(/Content/images/sprite-print.png);
+                    background-image: url(/Public/Images/sprite-print.png);
                 }
             }
         }
@@ -1863,7 +1867,7 @@ td[align="right"] {
             border: none;
 
             a {
-                background-image: url(/Content/images/sprite-arrow-down.png);
+                background-image: url(/Public/Images/sprite-arrow-down.png);
                 background-repeat: no-repeat;
                 background-color: white;
                 background-position: 0 -40px;
@@ -2450,22 +2454,22 @@ td[align="right"] {
 
                     .rgPageFirst {
                         @extend %rgPageArrows;
-                        background-image: url("/Content/Images/rgPageFirst.png");
+                        background-image: url("/Public/Images/rgPageFirst.png");
                     }
 
                     .rgPageLast {
                         @extend %rgPageArrows;
-                        background-image: url("/Content/Images/rgPageLast.png");
+                        background-image: url("/Public/Images/rgPageLast.png");
                     }
 
                     .rgPageNext {
                         @extend %rgPageArrows;
-                        background-image: url("/Content/Images/rgPageNext.png");
+                        background-image: url("/Public/Images/rgPageNext.png");
                     }
 
                     .rgPagePrev {
                         @extend %rgPageArrows;
-                        background-image: url("/Content/Images/rgPagePrev.png");
+                        background-image: url("/Public/Images/rgPagePrev.png");
                     }
                 }
             }
@@ -3031,19 +3035,19 @@ td[align="right"] {
                 border: none;
             }
             /*&.table-page {
-                background-image: url(/Content/images/menu-terciario-table.png);
+                background-image: url(/Public/Images/menu-terciario-table.png);
             }
 
             &.folder-page {
-                background-image: url(/Content/images/menu-terciario-folder.png);
+                background-image: url(/Public/Images/menu-terciario-folder.png);
             }
 
             &.final-page {
-                background-image: url(/Content/images/menu-terciario-file.png);
+                background-image: url(/Public/Images/menu-terciario-file.png);
             }
 
             &.filter-page {
-                background-image: url(/Content/images/menu-terciario-filter.png);
+                background-image: url(/Public/Images/menu-terciario-filter.png);
             }
 
             &.pendiente-page {
@@ -3239,7 +3243,7 @@ td[align="right"] {
 // ***** HOME *****
 #section_home {
     .home {
-        width: 100vw;
+        width: 100%;
         height: calc(100vh - 90px);
         display: flex;
         flex-direction: column;
@@ -3300,4 +3304,389 @@ td[align="right"] {
 
 .text-help {
     margin-bottom: 5px;
+}
+
+// Layout de navegación persistente de la aplicación.
+html.app-layout-page,
+body.app-layout-page {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+body.app-layout-page {
+    margin: 0;
+}
+
+.app-container {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container form.app-form {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    overflow: visible;
+}
+
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+    width: 100%;
+    height: 68px;
+    padding: 2px 30px 0;
+    background: white;
+    box-shadow: none;
+
+    h1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        max-width: calc(100% - 320px);
+        margin: 0;
+        overflow: hidden;
+        color: $prim-color;
+        font-size: $l;
+        line-height: 1.2;
+        text-align: center;
+        text-overflow: ellipsis;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        display:none;
+    }
+
+    .app-logo {
+        justify-self: start;
+        width: 200px;
+        max-width: 100%;
+        height: auto;
+        margin: 0;
+    }
+
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+}
+
+.logout-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    height: 30px;
+    padding: 18px;
+    border-radius: 4px;
+    background: #000000;
+    color: $white !important;
+    font-size: 1.1em;
+    line-height: 1;
+    white-space: nowrap;
+    font-weight: bold;
+
+    &:hover,
+    &:focus {
+        background: darken($prim-color, 5%);
+        color: $white !important;
+    }
+}
+
+.mobile-menu-toggle,
+.app-menu-backdrop {
+    display: none;
+}
+
+.app-shell {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 68px);
+    align-items: stretch;
+}
+
+.app-sidebar {
+    width: 190px;
+    max-height: 100%;
+    overflow: hidden;
+    border-radius: 0;
+    background: $sec-color;
+    font-size: 12px;
+
+    .RadTreeView {
+        width: 100%;
+        color: $prim-color !important;
+        transform: none;
+
+        > .rtUL {
+            width: 100%;
+            height: auto;
+            max-height: calc(100vh - 88px);
+            padding: .5rem 0 .75rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+            border-radius: 10px;
+            background-color: $sec-color;
+            margin-top: 22px;
+            margin-left: 11px;
+        }
+
+        > .rtUL > .rtLI {
+            width: 100%;
+            padding: 6px;
+
+            &:hover,
+            &.rtHover {
+                background-color: $prim-color;
+            }
+
+            &:hover .rtText,
+            &.rtHover .rtText {
+                color: $white;
+            }
+
+            > .rtUL {
+                position: static;
+                width: 100%;
+                height: auto;
+                margin: .1rem 0 0;
+                padding: 0;
+                overflow: visible;
+                border: 0;
+                border-left: 1px solid rgba(255, 255, 255, .3);
+                background: transparent;
+            }
+
+            > .rtUL > .rtLI {
+                width: auto;
+                padding: .2rem 0 .2rem 1rem;
+
+                &:hover,
+                &.rtHover {
+                    background-color: rgba(255, 255, 255, .12);
+                }
+            }
+        }
+
+        .rtIn,
+        .rtOut {
+            padding: 0;
+            border: 0;
+        }
+
+        .rtText {
+            color: $white;
+            font-size: $m;
+            line-height: 1.25;
+            vertical-align: baseline;
+        }
+
+        .menu-icon-chart-pie .rtText::before,
+        .menu-icon-money-bill-wave .rtText::before,
+        .menu-icon-file-invoice-dollar .rtText::before,
+        .menu-icon-list-alt .rtText::before,
+        .menu-icon-folder-open .rtText::before,
+        .menu-icon-university .rtText::before,
+        .menu-icon-edit .rtText::before,
+        .menu-icon-calendar-check .rtText::before,
+        .menu-icon-cog .rtText::before,
+        .menu-icon-table .rtText::before,
+        .menu-icon-code .rtText::before {
+            display: inline-block;
+            width: 1rem;
+            margin-right: .3rem;
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .menu-icon-chart-pie .rtText::before { content: "\f200"; }
+        .menu-icon-money-bill-wave .rtText::before { content: "\f53a"; }
+        .menu-icon-file-invoice-dollar .rtText::before { content: "\f571"; }
+        .menu-icon-list-alt .rtText::before { content: "\f022"; }
+        .menu-icon-folder-open .rtText::before { content: "\f07c"; }
+        .menu-icon-university .rtText::before { content: "\f19c"; }
+        .menu-icon-edit .rtText::before { content: "\f044"; }
+        .menu-icon-calendar-check .rtText::before { content: "\f274"; }
+        .menu-icon-cog .rtText::before { content: "\f013"; }
+        .menu-icon-table .rtText::before { content: "\f0ce"; }
+        .menu-icon-code .rtText::before { content: "\f121"; }
+
+        .rtSelected .rtIn {
+            border-color: transparent;
+            background-color: rgba(255, 255, 255, .15);
+        }
+
+        .rtSelected .rtText {
+            color: $white;
+        }
+
+        .rtLines .rtTop::before,
+        .rtLines .rtMid::before,
+        .rtLines .rtBot::before,
+        .rtLines .rtLI::before,
+        .rtLines .rtOut::before {
+            display: none !important;
+        }
+    }
+}
+
+.app-main {
+    width: calc(100% - 190px);
+    min-width: 0;
+    margin-left: 0;
+}
+
+.app-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    background: $azul-claro;
+    color: white;
+    font-size: 8px;
+}
+
+.app-main .container > h3 {
+    height: 32px;
+    padding: .375rem .5rem;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.app-main #section_income {
+    font-size: 12px;
+
+    .top-buttons {
+        min-height: 52px;
+        padding: .5rem;
+
+        .a-buttons > div {
+            margin-left: .9rem;
+            min-width: 120px;
+            padding: .45rem .75rem;
+            line-height: 1.4rem;
+        }
+    }
+
+    .RadPanelBar .rpRootLink {
+        min-height: 26px;
+        padding: .25rem .625rem;
+    }
+
+    .incomeRecords-table .rgDataDiv {
+        height: calc(100vh - 246px) !important;
+    }
+
+    .incomeRecords-table .rgMasterTable {
+        font-size: 12px;
+
+        .rgHeader {
+            padding: .5rem;
+        }
+
+        .rgFilterRow > td {
+            padding: .5rem .25rem;
+        }
+
+        .rgRow > td,
+        .rgAltRow > td {
+            padding-top: .6rem;
+            padding-bottom: .6rem;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .app-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 44px 28px;
+        height: 84px;
+        min-height: 84px;
+        padding: 4px;
+        row-gap: 2px;
+
+        .app-logo {
+            grid-column: 1;
+            grid-row: 1;
+            width: 150px;
+            align-self: center;
+        }
+
+        h1 {
+            position: static;
+            top: auto;
+            grid-column: 1 / -1;
+            grid-row: 2;
+            max-width: 100%;
+            font-size: $m;
+            transform: none;
+        }
+    }
+
+    .logout-link {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
+    }
+
+    .app-shell {
+        flex-direction: column;
+        min-height: calc(100vh - 84px);
+    }
+
+    .app-sidebar {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        align-self: flex-start;
+        width: 190px;
+        max-width: calc(100vw - 2px);
+        max-height: calc(100vh - 104px);
+        margin: 5px 0 0 1px;
+        transform: none;
+        transition: none;
+
+        .RadTreeView > .rtUL {
+            height: auto;
+            max-height: calc(100vh - 104px);
+        }
+    }
+
+    .app-menu-backdrop {
+        display: none !important;
+    }
+
+    .app-main {
+        width: 100%;
+        margin: 0;
+    }
+
+    .app-footer {
+        margin-left: 0;
+    }
+
+    #section_home .home {
+        height: calc(100vh - 84px);
+    }
+}
+
+@media (max-width: 360px) {
+    .app-header .app-logo {
+        width: 120px;
+    }
+
+    .logout-link {
+        gap: .25rem;
+        padding-right: .45rem;
+        padding-left: .45rem;
+    }
 }
