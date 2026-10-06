@@ -33,6 +33,12 @@
             siteDataItems.Add(new SiteDataItem(24, 20, "Comprobar Expedientes", "~/Views/Spend/CheckRecords.aspx"));
             siteDataItems.Add(new SiteDataItem(25, 20, "Consultar Facturas Compras", "~/Views/Spend/CheckPurchases.aspx"));
 
+            siteDataItems.Add(new SiteDataItem(50, 0, "Tesorería"));
+            siteDataItems.Add(new SiteDataItem(51, 50, "Asignar Hoja Arqueo", "~/Views/Treasury/AssignTonnageSheets.aspx"));
+            siteDataItems.Add(new SiteDataItem(52, 50, "Ver Hoja Arqueo", "~/Views/Treasury/SeeTonnageSheets.aspx"));
+            siteDataItems.Add(new SiteDataItem(53, 50, "Apuntes Tesorería", "~/Views/Treasury/NotesTreasuries.aspx"));
+            siteDataItems.Add(new SiteDataItem(54, 50, "Alta Registro Pagos", "~/Views/Treasury/PaymentRegister.aspx"));
+
             siteDataItems.Add(new SiteDataItem(30, 0, "Listados"));
             siteDataItems.Add(new SiteDataItem(31, 30, "Listados Gastos", "~/Views/List/SpendsList.aspx"));
             siteDataItems.Add(new SiteDataItem(32, 30, "Listados Ingresos", "~/Views/List/IncomesList.aspx"));
@@ -40,12 +46,6 @@
             siteDataItems.Add(new SiteDataItem(34, 30, "Listados Tesorería", "~/Views/List/TreasuriesList.aspx"));
 
             siteDataItems.Add(new SiteDataItem(40, 0, "Extrapresupuestarias", "~/Views/ExtraBudgetary/ExtraBudgetaries.aspx"));
-
-            siteDataItems.Add(new SiteDataItem(50, 0, "Tesorería"));
-            siteDataItems.Add(new SiteDataItem(51, 50, "Asignar Hoja Arqueo", "~/Views/Treasury/AssignTonnageSheets.aspx"));
-            siteDataItems.Add(new SiteDataItem(52, 50, "Ver Hoja Arqueo", "~/Views/Treasury/SeeTonnageSheets.aspx"));
-            siteDataItems.Add(new SiteDataItem(53, 50, "Apuntes Tesorería", "~/Views/Treasury/NotesTreasuries.aspx"));
-            siteDataItems.Add(new SiteDataItem(54, 50, "Alta Registro Pagos", "~/Views/Treasury/PaymentRegister.aspx"));
 
             siteDataItems.Add(new SiteDataItem(60, 0, "Rectificaciones", "~/Views/Rectification/Rectifications.aspx"));
 

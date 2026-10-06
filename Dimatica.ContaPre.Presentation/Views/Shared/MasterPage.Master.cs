@@ -60,6 +60,14 @@
             this.RadTreeViewMenu.DataSource = dataSource;
             this.RadTreeViewMenu.DataBind();
             this.RadTreeViewMenu.CollapseAllNodes();
+
+            foreach (RadTreeNode node in this.RadTreeViewMenu.Nodes)
+            {
+                if (node.Text == "Presupuestos" || node.Text == "Ingresos" || node.Text == "Gastos" || node.Text == "Tesorería")
+                {
+                    node.Expanded = true;
+                }
+            }
         }
 
         protected void RadTreeViewMenu_NodeDataBound(object sender, RadTreeNodeEventArgs e)
