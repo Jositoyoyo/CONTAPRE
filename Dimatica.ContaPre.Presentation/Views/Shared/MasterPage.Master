@@ -24,7 +24,6 @@
 
         <form id="form1" class="app-form" runat="server">
 
-
             <telerik:RadScriptManager ID="RadScriptManager"
                 runat="server"
                 EnablePageMethods="True" />
@@ -43,6 +42,7 @@
             </telerik:RadAjaxLoadingPanel>
 
             <header class="app-header">
+
                 <div class="app-logo">
                     <img src="/Content/Images/UIMP_Conf_Horizontal_RGB.png" alt="Universidad Internacional Menéndez Pelayo" />
                 </div>
@@ -62,11 +62,15 @@
                     <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                     <span>Cerrar sesión</span>
                 </a>
+
             </header>
 
-            <div class="app-nav-strip" aria-hidden="true"></div>
+            <div class="app-nav-strip" aria-hidden="true">
+
+            </div>
 
             <div class="app-shell">
+
                 <button class="app-menu-backdrop" type="button" aria-label="Cerrar menú"></button>
 
                 <nav id="appSidebar" class="app-sidebar" aria-label="Navegación principal">
@@ -88,6 +92,7 @@
                 <main class="app-main">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
                 </main>
+                
             </div>
 
         </form>
