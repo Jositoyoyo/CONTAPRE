@@ -3392,12 +3392,8 @@ body.app-layout-page {
 }
 
 .app-sidebar {
-    position: fixed;
-    top: 88px;
-    left: 0;
-    z-index: 1020;
     width: 255px;
-    max-height: calc(100vh - 88px);
+    max-height: 100%;
     overflow: hidden;
     border-radius: 0;
     background: $sec-color;
@@ -3522,14 +3518,14 @@ body.app-layout-page {
 .app-main {
     width: calc(100% - 255px);
     min-width: 0;
-    margin-left: 255px;
+    margin-left: 0;
 }
 
 .app-footer {
     display: flex;
     justify-content: space-between;
-    margin-left: 255px;
     padding: .5rem 1rem;
+    background: #e9edf0;
 }
 
 .app-main .container > h3 {

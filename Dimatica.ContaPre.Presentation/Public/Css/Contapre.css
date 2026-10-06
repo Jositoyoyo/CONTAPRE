@@ -2793,38 +2793,41 @@ body.app-layout-page {
   position: sticky;
   top: 0;
   z-index: 1030;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
   width: 100%;
-  height: 72px;
-  padding: 0.5rem 0.75rem;
+  height: 68px;
+  padding: 2px 4px 0;
   background: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
 }
 .app-header .app-logo {
   justify-self: start;
-  width: 180px;
+  width: 165px;
   max-width: 100%;
   height: auto;
   margin: 0;
 }
 .app-header h1,
-.app-header .mobile-menu-toggle,
-.app-header .logout-link {
+.app-header .mobile-menu-toggle {
   display: none !important;
 }
 
 .logout-link {
   display: inline-flex;
-  justify-self: end;
+  align-self: flex-end;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   min-width: 0;
-  padding: 0.55rem 0.8rem;
-  border-radius: 4px;
+  height: 25px;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px 4px 0 0;
   background: #1269b0;
   color: #fff !important;
+  font-size: 12px;
+  line-height: 1;
   white-space: nowrap;
 }
 .logout-link:hover, .logout-link:focus {
@@ -2840,28 +2843,17 @@ body.app-layout-page {
 .app-shell {
   display: flex;
   width: 100%;
-  min-height: calc(100vh - 104px);
+  min-height: calc(100vh - 68px);
   align-items: stretch;
 }
 
-.app-nav-strip {
-  position: sticky;
-  top: 72px;
-  z-index: 1025;
-  width: 100%;
-  height: 32px;
-  background: #1269b0;
-}
-
 .app-sidebar {
-  position: fixed;
-  z-index: 1020;
-  width: 260px;
-  max-height: calc(100vh - 114px);
+  width: 255px;
+  max-height: 100%;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 0;
   background: #1269b0;
-  font-size: 14px;
+  font-size: 12px;
 }
 .app-sidebar .RadTreeView {
   width: 100%;
@@ -2871,8 +2863,8 @@ body.app-layout-page {
 .app-sidebar .RadTreeView > .rtUL {
   width: 100%;
   height: auto;
-  max-height: calc(100vh - 114px);
-  padding: 1.25rem 0 0.75rem;
+  max-height: calc(100vh - 88px);
+  padding: 0.5rem 0 0.75rem;
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: 10px;
@@ -2880,7 +2872,7 @@ body.app-layout-page {
 }
 .app-sidebar .RadTreeView > .rtUL > .rtLI {
   width: 100%;
-  padding: 0.25rem 0 0.25rem 1.5rem;
+  padding: 0.375rem 0 0.375rem 0.75rem;
 }
 .app-sidebar .RadTreeView > .rtUL > .rtLI:hover, .app-sidebar .RadTreeView > .rtUL > .rtLI.rtHover {
   background-color: #1269b0;
@@ -2913,7 +2905,7 @@ body.app-layout-page {
 }
 .app-sidebar .RadTreeView .rtText {
   color: #fff;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   line-height: 1.25;
   vertical-align: baseline;
 }
@@ -2984,30 +2976,71 @@ body.app-layout-page {
 }
 
 .app-main {
-  width: calc(100% - 276px);
+  width: calc(100% - 255px);
   min-width: 0;
-  margin-left: 276px;
+  margin-left: 0;
 }
 
 .app-footer {
   display: flex;
   justify-content: space-between;
-  margin-left: 276px;
   padding: 0.5rem 1rem;
+  background: #e9edf0;
+}
+
+.app-main .container > h3 {
+  height: 32px;
+  padding: 0.375rem 0.5rem;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.app-main #section_income {
+  font-size: 12px;
+}
+.app-main #section_income .top-buttons {
+  min-height: 52px;
+  padding: 0.5rem;
+}
+.app-main #section_income .top-buttons .a-buttons > div {
+  margin-left: 0.9rem;
+  min-width: 120px;
+  padding: 0.45rem 0.75rem 0.3rem;
+  line-height: 1.4rem;
+}
+.app-main #section_income .RadPanelBar .rpRootLink {
+  min-height: 26px;
+  padding: 0.25rem 0.625rem;
+}
+.app-main #section_income .incomeRecords-table .rgDataDiv {
+  height: calc(100vh - 246px) !important;
+}
+.app-main #section_income .incomeRecords-table .rgMasterTable {
+  font-size: 12px;
+}
+.app-main #section_income .incomeRecords-table .rgMasterTable .rgHeader {
+  padding: 0.5rem;
+}
+.app-main #section_income .incomeRecords-table .rgMasterTable .rgFilterRow > td {
+  padding: 0.5rem 0.25rem;
+}
+.app-main #section_income .incomeRecords-table .rgMasterTable .rgRow > td,
+.app-main #section_income .incomeRecords-table .rgMasterTable .rgAltRow > td {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
 }
 
 @media (max-width: 767px) {
   .app-header {
-    grid-template-columns: 1fr;
-    height: 72px;
-    padding: 0.5rem 0.75rem;
+    height: 68px;
+    padding: 2px 4px 0;
   }
   .app-header .app-logo {
-    width: 180px;
+    width: 150px;
   }
   .app-shell {
     flex-direction: column;
-    min-height: calc(100vh - 104px);
+    min-height: calc(100vh - 68px);
   }
   .app-sidebar {
     position: relative;
@@ -3017,57 +3050,36 @@ body.app-layout-page {
     align-self: flex-start;
     width: 260px;
     max-width: calc(100vw - 2px);
-    max-height: calc(100vh - 114px);
+    max-height: calc(100vh - 88px);
     margin: 5px 0 0 1px;
     transform: none;
     transition: none;
   }
   .app-sidebar .RadTreeView > .rtUL {
     height: auto;
-    max-height: calc(100vh - 114px);
+    max-height: calc(100vh - 88px);
   }
   .app-menu-backdrop {
     display: none !important;
   }
   .app-main {
     width: 100%;
-    margin: 16px 0 0;
+    margin: 0;
   }
   .app-footer {
     margin-left: 0;
   }
   #section_home .home {
-    height: calc(100vh - 104px);
+    height: calc(100vh - 68px);
   }
 }
 @media (max-width: 360px) {
   .app-header .app-logo {
-    width: 180px;
+    width: 135px;
+  }
+  .logout-link {
+    gap: 0.25rem;
+    padding-right: 0.45rem;
+    padding-left: 0.45rem;
   }
 }
-
-/* Ajustes del marco compartido y del listado de ingresos. */
-.app-header{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;height:68px;padding:2px 4px 0;box-shadow:none;}
-.app-header .app-logo{width:165px;}
-.app-header h1,.app-header .mobile-menu-toggle{display:none!important;}
-.app-header .logout-link{display:inline-flex!important;align-self:flex-end;align-items:center;gap:.4rem;min-width:0;height:25px;padding:.25rem .65rem;border-radius:4px 4px 0 0;background:#1269b0;color:#fff!important;font-size:12px;line-height:1;white-space:nowrap;}
-.app-header .logout-link:hover,.app-header .logout-link:focus{background:#105b99;color:#fff!important;}
-.app-shell{min-height:calc(100vh - 68px);}
-.app-sidebar{top:88px;left:0;width:255px;max-height:calc(100vh - 88px);border-radius:0;font-size:12px;}
-.app-sidebar .RadTreeView>.rtUL{max-height:calc(100vh - 88px);padding:.5rem 0 .75rem;border-radius:0;}
-.app-sidebar .RadTreeView>.rtUL>.rtLI{padding:.375rem 0 .375rem .75rem;}
-.app-sidebar .RadTreeView .rtText{font-size:.75rem;}
-.app-main{width:calc(100% - 255px);margin-left:255px;}
-.app-footer{margin-left:255px;}
-.app-main .container>h3{height:32px;padding:.375rem .5rem;font-size:14px;line-height:20px;}
-.app-main #section_income{font-size:12px;}
-.app-main #section_income .top-buttons{min-height:52px;padding:.5rem;}
-.app-main #section_income .top-buttons .a-buttons>div{margin-left:.9rem;min-width:120px;padding:.45rem .75rem .3rem;line-height:1.4rem;}
-.app-main #section_income .RadPanelBar .rpRootLink{min-height:26px;padding:.25rem .625rem;}
-.app-main #section_income .incomeRecords-table .rgDataDiv{height:calc(100vh - 246px)!important;}
-.app-main #section_income .incomeRecords-table .rgMasterTable{font-size:12px;}
-.app-main #section_income .incomeRecords-table .rgMasterTable .rgHeader{padding:.5rem;}
-.app-main #section_income .incomeRecords-table .rgMasterTable .rgFilterRow>td{padding:.5rem .25rem;}
-.app-main #section_income .incomeRecords-table .rgMasterTable .rgRow>td,.app-main #section_income .incomeRecords-table .rgMasterTable .rgAltRow>td{padding-top:.6rem;padding-bottom:.6rem;}
-@media(max-width:767px){.app-header{height:68px;padding:2px 4px 0;}.app-header .app-logo{width:150px;}.app-shell{min-height:calc(100vh - 68px);}.app-sidebar{max-height:calc(100vh - 88px);}.app-sidebar .RadTreeView>.rtUL{max-height:calc(100vh - 88px);}.app-main{width:100%;margin:0;}.app-footer{margin-left:0;}#section_home .home{height:calc(100vh - 68px);}}
-@media(max-width:360px){.app-header .app-logo{width:135px;}.app-header .logout-link{gap:.25rem;padding-right:.45rem;padding-left:.45rem;}}
