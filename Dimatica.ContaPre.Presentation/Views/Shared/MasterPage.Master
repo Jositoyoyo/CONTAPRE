@@ -80,7 +80,7 @@
                         OnNodeDataBound="RadTreeViewMenu_NodeDataBound"
                         OnClientNodeClicking="onClientNodeClicked">
                         <DataBindings>
-                            <telerik:RadTreeNodeBinding Expanded="true" NavigateUrlField="Path"></telerik:RadTreeNodeBinding>
+                            <telerik:RadTreeNodeBinding NavigateUrlField="Path"></telerik:RadTreeNodeBinding>
                         </DataBindings>
                     </telerik:RadTreeView>
                 </nav>

@@ -10,7 +10,8 @@
 %button {
     background-color: $prim-color;
     color: white;
-    display: block;
+    display: flex;
+    align-items: center;
     width: auto;
     min-width: 120px;
     text-align: center;
@@ -1687,7 +1688,10 @@ td[align="right"] {
 
                 a, input {
                     @extend %occupy-all-space;
-                    padding-top: .625rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding-top: 0;
                     color: white;
                     background-color: transparent;
                     border: 0;
@@ -3335,13 +3339,29 @@ body.app-layout-page {
     z-index: 1030;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: .5rem;
     width: 100%;
     height: 68px;
     padding: 2px 4px 0;
     background: white;
     box-shadow: none;
+
+    h1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        max-width: calc(100% - 320px);
+        margin: 0;
+        overflow: hidden;
+        color: $prim-color;
+        font-size: $l;
+        line-height: 1.2;
+        text-align: center;
+        text-overflow: ellipsis;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
 
     .app-logo {
         justify-self: start;
@@ -3351,7 +3371,6 @@ body.app-layout-page {
         margin: 0;
     }
 
-    h1,
     .mobile-menu-toggle {
         display: none !important;
     }
@@ -3359,7 +3378,6 @@ body.app-layout-page {
 
 .logout-link {
     display: inline-flex;
-    align-self: flex-end;
     align-items: center;
     gap: .4rem;
     min-width: 0;
@@ -3417,7 +3435,7 @@ body.app-layout-page {
 
         > .rtUL > .rtLI {
             width: 100%;
-            padding: .375rem 0 .375rem .75rem;
+            padding: .375rem 0 .375rem 1rem;
 
             &:hover,
             &.rtHover {
@@ -3460,7 +3478,7 @@ body.app-layout-page {
 
         .rtText {
             color: $white;
-            font-size: .75rem;
+            font-size: $m;
             line-height: 1.25;
             vertical-align: baseline;
         }
@@ -3545,7 +3563,7 @@ body.app-layout-page {
         .a-buttons > div {
             margin-left: .9rem;
             min-width: 120px;
-            padding: .45rem .75rem .3rem;
+            padding: .45rem .75rem;
             line-height: 1.4rem;
         }
     }
@@ -3580,17 +3598,42 @@ body.app-layout-page {
 
 @media (max-width: 767px) {
     .app-header {
-        height: 68px;
-        padding: 2px 4px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 44px 28px;
+        height: 84px;
+        min-height: 84px;
+        padding: 4px;
+        row-gap: 2px;
 
         .app-logo {
+            grid-column: 1;
+            grid-row: 1;
             width: 150px;
+            align-self: center;
         }
+
+        h1 {
+            position: static;
+            top: auto;
+            grid-column: 1 / -1;
+            grid-row: 2;
+            max-width: 100%;
+            font-size: $m;
+            transform: none;
+        }
+    }
+
+    .logout-link {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        align-self: center;
     }
 
     .app-shell {
         flex-direction: column;
-        min-height: calc(100vh - 68px);
+        min-height: calc(100vh - 84px);
     }
 
     .app-sidebar {
@@ -3601,14 +3644,14 @@ body.app-layout-page {
         align-self: flex-start;
         width: 260px;
         max-width: calc(100vw - 2px);
-        max-height: calc(100vh - 88px);
+        max-height: calc(100vh - 104px);
         margin: 5px 0 0 1px;
         transform: none;
         transition: none;
 
         .RadTreeView > .rtUL {
             height: auto;
-            max-height: calc(100vh - 88px);
+            max-height: calc(100vh - 104px);
         }
     }
 
@@ -3626,13 +3669,13 @@ body.app-layout-page {
     }
 
     #section_home .home {
-        height: calc(100vh - 68px);
+        height: calc(100vh - 84px);
     }
 }
 
 @media (max-width: 360px) {
     .app-header .app-logo {
-        width: 135px;
+        width: 120px;
     }
 
     .logout-link {
