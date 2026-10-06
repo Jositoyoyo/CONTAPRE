@@ -1,4 +1,4 @@
-using Dimatica.ContaPre.Presentation.Helpers;
+Ôªøusing Dimatica.ContaPre.Presentation.Helpers;
 using Dimatica.ContaPre.Presentation.Helpers.Email;
 using System;
 using System.Collections.Specialized;
@@ -19,12 +19,12 @@ namespace Dimatica.ContaPre.Presentation.Common
             string sendErrorEmailsUsers = ConfigurationManager.AppSettings["SendErrorEmailsUsers"];
             var appSettingsEmail = (NameValueCollection)ConfigurationManager.GetSection("appSettingsEmail");
 
-            // Verificar que el flag est· activado
+            // Verificar que el flag est√° activado
             if (!string.IsNullOrEmpty(sendEmailFlag) && sendEmailFlag.ToLower() == "true")
             {
                 try
                 {
-                    // Obtener la direcciÛn de correo de "from"
+                    // Obtener la direcci√≥n de correo de "from"
                     string from = appSettingsEmail["smtp.from.noreply"];
 
                     // Validar que tenemos destinatarios
@@ -36,7 +36,7 @@ namespace Dimatica.ContaPre.Presentation.Common
                     // Dividir los correos separados por comas y agregar a la lista de destinatarios
                     string[] recipients = sendErrorEmailsUsers.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    string subject = "Error en la aplicaciÛn CONTAPRE";
+                    string subject = "Error en la aplicaci√≥n CONTAPRE";
                     string body = $"Detalles del error:\n{ex.Message}\n\nStackTrace:\n{ex.StackTrace}";
                     bool isBodyHtml = false;
 

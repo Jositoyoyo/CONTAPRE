@@ -1,4 +1,4 @@
-<%@ Control
+ï»¿<%@ Control
     Language="C#"
     AutoEventWireup="true"
     CodeBehind="CustomRawWindow.ascx.cs"
@@ -10,12 +10,12 @@
 
 <div id="customModalWrapper" class="RadWindow" style="display: none;">
     <div class="modal-header">
-        <span id="customModalTitle">ATENCIÓN</span>
-        <span id="customRadModalcloseButton" class="close-button" onclick="closeCustomModal(false);" title="Close">×</span>
+        <span id="customModalTitle">ATENCIÃ“N</span>
+        <span id="customRadModalcloseButton" class="close-button" onclick="closeCustomModal(false);" title="Close">Ã—</span>
     </div>
     <div class="modal-content">
         <div id="customModalMessage" class="modal-message">
-            ¿Está seguro que desea cambiar el estado de este Usuario?
+            Â¿EstÃ¡ seguro que desea cambiar el estado de este Usuario?
         </div>
         <div class="modal-actions">
             <a class="modal-button ok-button" onclick="closeCustomModal(true);" href="javascript:void(0);">
@@ -33,7 +33,7 @@
     let customModalCallback = null;
 
 
-    function openCustomModal(message = "¿Está seguro?", width = 400, height = 150, title = 'ATENCIÓN', callback = null, okText = "OK", cancelText = "Cancel")
+    function openCustomModal(message = "Â¿EstÃ¡ seguro?", width = 400, height = 150, title = 'ATENCIÃ“N', callback = null, okText = "OK", cancelText = "Cancel")
     {
         document.getElementById("customModalMessage").innerText = message;
         document.getElementById("customRadModalOverlay").style.display = "block";
@@ -54,10 +54,10 @@
 
     function openCustomModal2(options)
     {
-        // Configuración por defecto
+        // ConfiguraciÃ³n por defecto
         const defaultOptions = {
-            title: "ATENCIÓN",
-            message: "¿Está seguro?",
+            title: "ATENCIÃ“N",
+            message: "Â¿EstÃ¡ seguro?",
             width: 400,
             height: 150,
             okText: "OK",
@@ -80,7 +80,7 @@
             ? document.getElementById("customRadModalcloseButton").style.display = "initial"
             : document.getElementById("customRadModalcloseButton").style.display = "none";
 
-        // Cambiar tamaño de la ventana
+        // Cambiar tamaÃ±o de la ventana
         const wrapper = document.getElementById("customModalWrapper");
         wrapper.style.width = config.width + "px";
         wrapper.style.height = config.height + "px";

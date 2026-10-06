@@ -65,10 +65,6 @@
 
             </header>
 
-            <div class="app-nav-strip" aria-hidden="true">
-
-            </div>
-
             <div class="app-shell">
 
                 <button class="app-menu-backdrop" type="button" aria-label="Cerrar menú"></button>

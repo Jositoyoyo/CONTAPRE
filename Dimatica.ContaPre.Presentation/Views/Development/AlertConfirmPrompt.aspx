@@ -1,4 +1,4 @@
-<%@ Page
+ï»¿<%@ Page
     Title=""
     Language="C#"
     AutoEventWireup="true"
@@ -36,10 +36,10 @@
         </div>
         <br />
         <br />
-        <button type="button" onclick="showCustomConfirmation(); return false;">Mostrar Confirmación</button>
+        <button type="button" onclick="showCustomConfirmation(); return false;">Mostrar ConfirmaciÃ³n</button>
         <br /><br />
-        <button type="button" onclick="confirmExecute(); return false;">Mostrar Confirmación2</button>
-        <button type="button" onclick="confirmExecute2(); return false;">Mostrar Confirmación3</button>
+        <button type="button" onclick="confirmExecute(); return false;">Mostrar ConfirmaciÃ³n2</button>
+        <button type="button" onclick="confirmExecute2(); return false;">Mostrar ConfirmaciÃ³n3</button>
 
 
          <br /><br />
@@ -57,18 +57,18 @@
 
 
             function myalerta() {
-                openCustomRadAlert("Ha ocurrido un error ejecutando la Modificación de Crédito en cuestion", 350, 300, "Error");
+                openCustomRadAlert("Ha ocurrido un error ejecutando la ModificaciÃ³n de CrÃ©dito en cuestion", 350, 300, "Error");
             }
 
             function myalerta2() {
                 openCustomRadAlert2({
-                    title: 'Error de Ejecución',
-                    message: '<strong>Error:</strong> No se pudo completar la acción solicitada.',
+                    title: 'Error de EjecuciÃ³n',
+                    message: '<strong>Error:</strong> No se pudo completar la acciÃ³n solicitada.',
                     width: 350,
                     height: 300,
                     buttonText: 'Entendido',
                     callback: function () {
-                        console.log("La alerta se cerró");
+                        console.log("La alerta se cerrÃ³");
                     }
                 });
             }
@@ -81,11 +81,11 @@
             // Function to open the modal and handle the result
             function confirmExecute()
             {
-                openCustomModal("¿Estás seguro de que deseas realizar esta acción?", 350, 250, "Confirmación", function (isConfirmed) {
+                openCustomModal("Â¿EstÃ¡s seguro de que deseas realizar esta acciÃ³n?", 350, 250, "ConfirmaciÃ³n", function (isConfirmed) {
                     if (isConfirmed) {
-                        console.log("Acción confirmada");
+                        console.log("AcciÃ³n confirmada");
                     } else {
-                        console.log("Acción cancelada");
+                        console.log("AcciÃ³n cancelada");
                     }
                 });
             }
@@ -93,17 +93,17 @@
             function confirmExecute2()
             {
                 openCustomModal2({
-                    title: 'Confirmación',
-                    message: '<strong>¿Desea continuar?</strong> <p>Esta acción es irreversible.</p>',
+                    title: 'ConfirmaciÃ³n',
+                    message: '<strong>Â¿Desea continuar?</strong> <p>Esta acciÃ³n es irreversible.</p>',
                     width: 450,
                     height: 200,
-                    okText: 'Sí',
+                    okText: 'SÃ­',
                     cancelText: 'No',
                     callback: function (isConfirmed) {
                         if (isConfirmed) {
-                            console.log("Acción confirmada");
+                            console.log("AcciÃ³n confirmada");
                         } else {
-                            console.log("Acción cancelada");
+                            console.log("AcciÃ³n cancelada");
                         }
                     }
                 });

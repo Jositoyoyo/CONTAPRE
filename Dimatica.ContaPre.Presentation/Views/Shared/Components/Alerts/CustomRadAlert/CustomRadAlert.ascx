@@ -1,4 +1,4 @@
-<%@ Control 
+ï»¿<%@ Control 
     Language="C#"
     AutoEventWireup="true"
     CodeBehind="CustomRadAlert.ascx.cs"
@@ -13,7 +13,7 @@
 
     <div class="rwTitleRow" id="customRadAlertTitleBar">
         <span id="customRadAlertTitle">Client RadAlert</span>
-        <span id="customRadAlertCloseButton" style="float: right; cursor: pointer;" onclick="closeCustomRadAlert()">×</span>
+        <span id="customRadAlertCloseButton" style="float: right; cursor: pointer;" onclick="closeCustomRadAlert()">Ã—</span>
     </div>
 
     <div class="rwContentRow">
@@ -61,7 +61,7 @@
     function openCustomRadAlert2(options)
     {
 
-        // Configuración por defecto
+        // ConfiguraciÃ³n por defecto
         const defaultOptions = {
             title: "Alert",
             message: "",

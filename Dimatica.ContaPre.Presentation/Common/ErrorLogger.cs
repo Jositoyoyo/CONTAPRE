@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.IO;
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -64,14 +64,14 @@ namespace Dimatica.ContaPre.Presentation.Common
                     using (StreamWriter writer = new StreamWriter(fs))
                     {
                         writer.WriteLine("Fecha: " + DateTime.Now.ToString());
-                        writer.WriteLine("ExcepciÛn: " + ex.ToString());
+                        writer.WriteLine("Excepci√≥n: " + ex.ToString());
                         writer.WriteLine();
                     }
                     break; // Salir del ciclo si el proceso de escritura es exitoso
                 }
                 catch (IOException)
                 {
-                    // Esperar antes de reintentar si el archivo est· en uso
+                    // Esperar antes de reintentar si el archivo est√° en uso
                     System.Threading.Thread.Sleep(retryDelay);
                 }
                 catch (Exception generalEx)
