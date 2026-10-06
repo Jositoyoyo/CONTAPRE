@@ -2821,6 +2821,7 @@ body.app-layout-page {
   text-overflow: ellipsis;
   transform: translate(-50%, -50%);
   white-space: nowrap;
+  display: none;
 }
 .app-header .app-logo {
   justify-self: start;
@@ -2838,14 +2839,15 @@ body.app-layout-page {
   align-items: center;
   gap: 0.4rem;
   min-width: 0;
-  height: 25px;
-  padding: 0.25rem 0.65rem;
-  border-radius: 4px 4px 0 0;
-  background: #1269b0;
+  height: 30px;
+  padding: 18px;
+  border-radius: 4px;
+  background: #000000;
   color: #fff !important;
-  font-size: 12px;
+  font-size: 1.1em;
   line-height: 1;
   white-space: nowrap;
+  font-weight: bold;
 }
 .logout-link:hover, .logout-link:focus {
   background: rgb(15.6340206186, 91.1984536082, 152.8659793814);
