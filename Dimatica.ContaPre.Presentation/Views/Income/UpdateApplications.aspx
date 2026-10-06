@@ -13,7 +13,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    <script src="/Public/javascript/jquery-3.7.1.js"></script>
+    <script src="/Public/Javascript/jquery-3.7.1.js"></script>
     <title></title>
     <style>
         .buttons {

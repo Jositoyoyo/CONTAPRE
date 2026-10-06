@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/Public/Css/Contapre.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="/Public/javascript/jquery-3.7.1.js"></script>
+    <script src="/Public/Javascript/jquery-3.7.1.js"></script>
     <title></title>
     <style>
 

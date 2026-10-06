@@ -16,7 +16,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-    <script src="/Public/javascript/jquery-3.7.1.js"></script>
+    <script src="/Public/Javascript/jquery-3.7.1.js"></script>
 </head>
 <body>
     <div class="Login">
@@ -52,16 +52,16 @@
             <telerik:RadScriptManager ID="RadScriptManager"
                 runat="server">
                 <%--      <Scripts>
-                    <asp:ScriptReference Path="~/Public/javascript/jquery-3.7.1.min.js" />
-                    <asp:ScriptReference Path="~/Public/javascript/bootstrap.js" />
-                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Public/javascript/WebForms/WebForms.js" />
-                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Public/javascript/WebForms/WebUIValidation.js" />
-                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Public/javascript/WebForms/MenuStandards.js" />
-                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Public/javascript/WebForms/GridView.js" />
-                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Public/javascript/WebForms/DetailsView.js" />
-                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Public/javascript/WebForms/TreeView.js" />
-                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Public/javascript/WebForms/WebParts.js" />
-                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Public/javascript/WebForms/Focus.js" />
+                    <asp:ScriptReference Path="~/Public/Javascript/jquery-3.7.1.min.js" />
+                    <asp:ScriptReference Path="~/Public/Javascript/bootstrap.js" />
+                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/WebForms.js" />
+                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/WebUIValidation.js" />
+                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/MenuStandards.js" />
+                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/GridView.js" />
+                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/DetailsView.js" />
+                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/TreeView.js" />
+                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/WebParts.js" />
+                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Public/Javascript/WebForms/Focus.js" />
                 </Scripts>--%>
             </telerik:RadScriptManager>
 

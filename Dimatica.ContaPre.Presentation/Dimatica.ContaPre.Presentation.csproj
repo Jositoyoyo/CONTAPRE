@@ -282,7 +282,7 @@
     <Content Include="ErrorPages\GeneralError.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Public\javascript\Helpers\radwindow-helper.js" />
+    <Content Include="Public\Javascript\Helpers\radwindow-helper.js" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -357,12 +357,12 @@
     </Content>
     <Content Include="Reports\List\IncomePendingRightsRecognized.rdlc" />
     <Content Include="libman.json" />
-    <Content Include="Public\javascript\bootstrap.bundle.js" />
-    <Content Include="Public\javascript\bootstrap.bundle.min.js" />
-    <Content Include="Public\javascript\bootstrap.esm.js" />
-    <Content Include="Public\javascript\bootstrap.esm.min.js" />
-    <Content Include="Public\javascript\bootstrap.js" />
-    <Content Include="Public\javascript\bootstrap.min.js" />
+    <Content Include="Public\Javascript\bootstrap.bundle.js" />
+    <Content Include="Public\Javascript\bootstrap.bundle.min.js" />
+    <Content Include="Public\Javascript\bootstrap.esm.js" />
+    <Content Include="Public\Javascript\bootstrap.esm.min.js" />
+    <Content Include="Public\Javascript\bootstrap.js" />
+    <Content Include="Public\Javascript\bootstrap.min.js" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -375,32 +375,32 @@
     <None Include="Oracle.ManagedDataAccess.Client.Configuration.Section.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Public\javascript\jquery-3.7.1.intellisense.js" />
-    <Content Include="Public\javascript\jquery-3.7.1.js" />
-    <Content Include="Public\javascript\jquery-3.7.1.min.js" />
-    <Content Include="Public\javascript\jquery-3.7.1.slim.js" />
-    <Content Include="Public\javascript\jquery-3.7.1.slim.min.js" />
-    <Content Include="Public\javascript\WebForms\DetailsView.js" />
-    <Content Include="Public\javascript\WebForms\Focus.js" />
-    <Content Include="Public\javascript\WebForms\GridView.js" />
-    <Content Include="Public\javascript\WebForms\Menu.js" />
-    <Content Include="Public\javascript\WebForms\MenuStandards.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjax.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxCore.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
-    <Content Include="Public\javascript\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
-    <Content Include="Public\javascript\WebForms\SmartNav.js" />
-    <Content Include="Public\javascript\WebForms\TreeView.js" />
-    <Content Include="Public\javascript\WebForms\WebForms.js" />
-    <Content Include="Public\javascript\WebForms\WebParts.js" />
-    <Content Include="Public\javascript\WebForms\WebUIValidation.js" />
+    <None Include="Public\Javascript\jquery-3.7.1.intellisense.js" />
+    <Content Include="Public\Javascript\jquery-3.7.1.js" />
+    <Content Include="Public\Javascript\jquery-3.7.1.min.js" />
+    <Content Include="Public\Javascript\jquery-3.7.1.slim.js" />
+    <Content Include="Public\Javascript\jquery-3.7.1.slim.min.js" />
+    <Content Include="Public\Javascript\WebForms\DetailsView.js" />
+    <Content Include="Public\Javascript\WebForms\Focus.js" />
+    <Content Include="Public\Javascript\WebForms\GridView.js" />
+    <Content Include="Public\Javascript\WebForms\Menu.js" />
+    <Content Include="Public\Javascript\WebForms\MenuStandards.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Public\Javascript\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Public\Javascript\WebForms\SmartNav.js" />
+    <Content Include="Public\Javascript\WebForms\TreeView.js" />
+    <Content Include="Public\Javascript\WebForms\WebForms.js" />
+    <Content Include="Public\Javascript\WebForms\WebParts.js" />
+    <Content Include="Public\Javascript\WebForms\WebUIValidation.js" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Account\ForgotPassword.aspx" />
     <Content Include="Views\Account\Login.aspx" />
@@ -1272,14 +1272,14 @@
   <ItemGroup>
     <Content Include="Views\Shared\MasterPage.Master" />
     <None Include="packages.config" />
-    <Content Include="Public\javascript\bootstrap.min.js.map" />
-    <Content Include="Public\javascript\bootstrap.js.map" />
-    <Content Include="Public\javascript\bootstrap.esm.min.js.map" />
-    <Content Include="Public\javascript\bootstrap.esm.js.map" />
-    <Content Include="Public\javascript\bootstrap.bundle.min.js.map" />
-    <Content Include="Public\javascript\bootstrap.bundle.js.map" />
-    <Content Include="Public\javascript\jquery-3.7.1.slim.min.map" />
-    <Content Include="Public\javascript\jquery-3.7.1.min.map" />
+    <Content Include="Public\Javascript\bootstrap.min.js.map" />
+    <Content Include="Public\Javascript\bootstrap.js.map" />
+    <Content Include="Public\Javascript\bootstrap.esm.min.js.map" />
+    <Content Include="Public\Javascript\bootstrap.esm.js.map" />
+    <Content Include="Public\Javascript\bootstrap.bundle.min.js.map" />
+    <Content Include="Public\Javascript\bootstrap.bundle.js.map" />
+    <Content Include="Public\Javascript\jquery-3.7.1.slim.min.map" />
+    <Content Include="Public\Javascript\jquery-3.7.1.min.map" />
     <Content Include="Site.Mobile.Master" />
     <Content Include="Views\Shared\Components\Partials\Partials.master" />
     <None Include="Web.Development.config">
