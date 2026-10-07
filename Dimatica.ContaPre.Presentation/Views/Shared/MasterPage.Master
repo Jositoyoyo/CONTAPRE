@@ -1,4 +1,4 @@
-<%@ Master Language="C#"
+﻿<%@ Master Language="C#"
     AutoEventWireup="true"
     CodeBehind="MasterPage.master.cs"
     Inherits="Dimatica.ContaPre.Presentation.Views.Shared.MasterPage" %>
@@ -48,8 +48,9 @@
                     type="button"
                     aria-controls="appSidebar"
                     aria-expanded="true"
-                    aria-label="Abrir menú">
+                    aria-label="Cerrar menú">
                     <i class="fas fa-bars" aria-hidden="true"></i>
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
 
                 <h1>Contabilidad Presupuestaria</h1>
@@ -62,17 +63,7 @@
 
             <div class="app-shell menu-open">
 
-                <button class="app-menu-backdrop" type="button" aria-label="Cerrar menú"></button>
-
                 <nav id="appSidebar" class="app-sidebar" aria-label="Navegación principal">
-                    <button id="sidebarMenuClose"
-                        class="sidebar-menu-close"
-                        type="button"
-                        aria-controls="appSidebar"
-                        aria-expanded="true"
-                        aria-label="Cerrar menú">
-                        <i class="fas fa-times" aria-hidden="true"></i>
-                    </button>
                     <telerik:RadTreeView ID="RadTreeViewMenu"
                         runat="server"
                         RenderMode="Lightweight"
@@ -80,16 +71,12 @@
                         DataFieldParentID="ParentId"
                         DataValueField="Path"
                         DataTextField="Text"
-                        OnNodeDataBound="RadTreeViewMenu_NodeDataBound"
                         OnClientNodeClicking="onClientNodeClicked">
                         <DataBindings>
                             <telerik:RadTreeNodeBinding NavigateUrlField="Path"></telerik:RadTreeNodeBinding>
                         </DataBindings>
                     </telerik:RadTreeView>
-                    <a class="logout-link" href="<%= this.ResolveUrl("~/Views/Account/Login.aspx?SignOut=1") %>">
-                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
-                        <span>Cerrar sesión</span>
-                    </a>
+
                 </nav>
 
                 <main class="app-main">
@@ -205,27 +192,18 @@
        // Alterna el menú lateral en cualquier tamaño de pantalla.
        function configureResponsiveMenu() {
            const menuToggle = document.getElementById('mobileMenuToggle');
-           const menuClose = document.getElementById('sidebarMenuClose');
-           const menuBackdrop = document.querySelector('.app-menu-backdrop');
+           const appShell = document.querySelector('.app-shell');
 
-           if (!menuToggle || !menuClose || !menuBackdrop) {
+           if (!menuToggle || !appShell) {
                return;
            }
 
            menuToggle.addEventListener('click', function () {
-               setResponsiveMenuOpen(true);
-           });
-
-           menuClose.addEventListener('click', function () {
-               setResponsiveMenuOpen(false, true);
-           });
-
-           menuBackdrop.addEventListener('click', function () {
-               setResponsiveMenuOpen(false, true);
+               setResponsiveMenuOpen(!appShell.classList.contains('menu-open'));
            });
 
            document.addEventListener('keydown', function (event) {
-               if (event.key === 'Escape' && document.querySelector('.app-shell').classList.contains('menu-open')) {
+               if (event.key === 'Escape' && appShell.classList.contains('menu-open')) {
                    setResponsiveMenuOpen(false, true);
                }
            });
@@ -233,21 +211,18 @@
 
        function setResponsiveMenuOpen(isOpen, restoreFocus) {
            const menuToggle = document.getElementById('mobileMenuToggle');
-           const menuClose = document.getElementById('sidebarMenuClose');
            const appShell = document.querySelector('.app-shell');
            const appHeader = document.querySelector('.app-header');
-           if (!menuToggle || !menuClose || !appShell || !appHeader) {
+           if (!menuToggle || !appShell || !appHeader) {
                return;
            }
 
            appShell.classList.toggle('menu-open', isOpen);
            appHeader.classList.toggle('menu-open', isOpen);
            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-           menuClose.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+           menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
 
-           if (isOpen) {
-               menuClose.focus();
-           } else if (restoreFocus) {
+           if (restoreFocus) {
                menuToggle.focus();
            }
        }

@@ -1330,6 +1330,7 @@ td[align=right] {
 .container .header .RadTreeView .rtUL .rtLI:hover .rtPlus,
 .container .header .RadTreeView .rtUL .rtLI:hover .rtMinus {
   background-position: 0 -18px;
+  color: #fff;
 }
 .container .header .RadTreeView .rtUL .rtLI:hover .rtText {
   color: white;
@@ -2836,7 +2837,7 @@ body.app-layout-page {
   margin: 0;
   transform: translateY(-50%);
 }
-.app-header
+
 .mobile-menu-toggle,
 .sidebar-menu-close {
   display: inline-flex;
@@ -2852,30 +2853,32 @@ body.app-layout-page {
   font-size: 22px;
   cursor: pointer;
 }
-.mobile-menu-toggle:hover,
-.mobile-menu-toggle:focus-visible,
+.mobile-menu-toggle:hover, .mobile-menu-toggle:focus-visible,
 .sidebar-menu-close:hover,
 .sidebar-menu-close:focus-visible {
   background: rgba(18, 105, 176, 0.12);
 }
+
 .app-header .mobile-menu-toggle {
   position: absolute;
   left: 12px;
   display: none;
 }
+
 .app-header:not(.menu-open) .mobile-menu-toggle {
   display: inline-flex;
 }
+
 .sidebar-menu-close {
   flex: 0 0 auto;
   align-self: flex-end;
   margin: 8px 10px 4px;
   color: #fff;
 }
-.sidebar-menu-close:hover,
-.sidebar-menu-close:focus-visible {
+.sidebar-menu-close:hover, .sidebar-menu-close:focus-visible {
   background: rgba(255, 255, 255, 0.15);
 }
+
 .logout-link {
   display: inline-flex;
   align-items: center;
@@ -2897,21 +2900,24 @@ body.app-layout-page {
   background: rgb(15.6340206186, 91.1984536082, 152.8659793814);
   color: #fff !important;
 }
+
 .app-menu-backdrop {
   display: none;
 }
+
 .app-shell {
   display: flex;
   width: 100%;
   min-height: calc(100vh - 68px);
   align-items: stretch;
 }
+
 .app-sidebar {
   order: 0;
   display: flex;
-  flex: 0 0 214px;
+  flex: 0 0 280px;
   flex-direction: column;
-  width: 214px;
+  width: 280px;
   min-height: calc(100vh - 68px);
   overflow: hidden;
   border-radius: 0;
@@ -2932,18 +2938,15 @@ body.app-layout-page {
 .app-sidebar .RadTreeView > .rtUL {
   width: 100%;
   height: auto;
-  max-height: calc(100vh - 200px);
-  padding: 0.5rem 0 0.75rem;
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: 10px;
   background-color: #1269b0;
-  margin-top: 22px;
-  margin-left: 11px;
+  margin-top: 35px;
 }
 .app-sidebar .RadTreeView > .rtUL > .rtLI {
   width: 100%;
-  padding: 6px;
+  padding: 0;
 }
 .app-sidebar .RadTreeView > .rtUL > .rtLI:hover, .app-sidebar .RadTreeView > .rtUL > .rtLI.rtHover {
   background-color: #1269b0;
@@ -3048,10 +3051,11 @@ body.app-layout-page {
 
 .app-main {
   order: 1;
-  width: calc(100% - 214px);
+  width: calc(100% - 280px);
   min-width: 0;
   margin-left: 0;
 }
+
 .app-shell:not(.menu-open) .app-sidebar {
   flex-basis: 0;
   width: 0;
@@ -3127,8 +3131,7 @@ body.app-layout-page {
     min-height: 84px;
     padding: 4px;
   }
-  .app-header h1,
-  .app-header.menu-open h1 {
+  .app-header h1, .app-header.menu-open h1 {
     top: auto;
     bottom: 8px;
     left: 0;
@@ -3137,8 +3140,7 @@ body.app-layout-page {
     font-size: 14px;
     transform: none;
   }
-  .app-header .app-logo,
-  .app-header.menu-open .app-logo {
+  .app-header .app-logo, .app-header.menu-open .app-logo {
     top: 4px;
     right: 8px;
     width: 150px;

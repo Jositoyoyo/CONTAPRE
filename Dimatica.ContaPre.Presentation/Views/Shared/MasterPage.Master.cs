@@ -70,51 +70,6 @@
             }
         }
 
-        protected void RadTreeViewMenu_NodeDataBound(object sender, RadTreeNodeEventArgs e)
-        {
-            if (e.Node.Level != 0)
-            {
-                return;
-            }
-
-            switch (e.Node.Text)
-            {
-                case "Presupuestos":
-                    e.Node.CssClass = "menu-icon-chart-pie";
-                    break;
-                case "Ingresos":
-                    e.Node.CssClass = "menu-icon-money-bill-wave";
-                    break;
-                case "Gastos":
-                    e.Node.CssClass = "menu-icon-file-invoice-dollar";
-                    break;
-                case "Listados":
-                    e.Node.CssClass = "menu-icon-list-alt";
-                    break;
-                case "Extrapresupuestarias":
-                    e.Node.CssClass = "menu-icon-folder-open";
-                    break;
-                case "Tesorería":
-                    e.Node.CssClass = "menu-icon-university";
-                    break;
-                case "Rectificaciones":
-                    e.Node.CssClass = "menu-icon-edit";
-                    break;
-                case "Señalamientos":
-                    e.Node.CssClass = "menu-icon-calendar-check";
-                    break;
-                case "Sistema":
-                    e.Node.CssClass = "menu-icon-cog";
-                    break;
-                case "Tablas":
-                    e.Node.CssClass = "menu-icon-table";
-                    break;
-                case "Development":
-                    e.Node.CssClass = "menu-icon-code";
-                    break;
-            }
-        }
-
         #endregion
     }
 }
