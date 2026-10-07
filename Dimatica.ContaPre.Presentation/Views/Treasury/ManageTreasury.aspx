@@ -417,7 +417,6 @@
 
             function confirmDeleteCallBackFn(arg)
             {
-                console.log(arg);
                 if (arg == null || arg == false) {
                     return;
                 }
@@ -425,7 +424,7 @@
                 $.ajax({
                     type: "POST",
                     url: "ManageTreasury.aspx/DeleteTreasury",
-                    data: JSON.stringify({ user_id: nombre }),
+                    data: JSON.stringify({}),
                     contentType: "application/json; charset=utf-8",
                     async: true,
                     success: function (result) {
@@ -434,7 +433,7 @@
                             radalert("Ha ocurrido un error eliminando el Apunte de Tesorería en cuestión.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
                             break;
                         case 1:
-                                var url = window.location.origin + '\\Views\\Treasury\\NotesTreasuries.aspx';
+                                var url = window.location.origin + '/Views/Treasury/NotesTreasuries.aspx';
                             window.location.href = url;
                             break;
                         case 2:

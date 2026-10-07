@@ -3334,24 +3334,23 @@ body.app-layout-page {
 }
 
 .app-header {
+    --sidebar-width: 214px;
     position: sticky;
     top: 0;
     z-index: 1030;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: .5rem;
     width: 100%;
     height: 68px;
     padding: 2px 30px 0;
     background: white;
-    box-shadow: none;
 
     h1 {
         position: absolute;
-        left: 50%;
         top: 50%;
-        max-width: calc(100% - 320px);
+        left: 50%;
+        width: calc(100% - 230px);
+        max-width: calc(100% - 230px);
         margin: 0;
         overflow: hidden;
         color: $prim-color;
@@ -3361,34 +3360,83 @@ body.app-layout-page {
         text-overflow: ellipsis;
         transform: translate(-50%, -50%);
         white-space: nowrap;
-        display:none;
+    }
+
+    &.menu-open h1 {
+        left: calc(50% + 107px);
+        width: calc(100% - var(--sidebar-width) - 230px);
+        max-width: none;
     }
 
     .app-logo {
-        justify-self: start;
+        position: absolute;
+        top: 50%;
+        right: 30px;
         width: 200px;
-        max-width: 100%;
+        max-width: calc(100% - 240px);
         height: auto;
         margin: 0;
+        transform: translateY(-50%);
     }
+}
 
-    .mobile-menu-toggle {
-        display: none !important;
+.mobile-menu-toggle,
+.sidebar-menu-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: $prim-color;
+    font-size: 22px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+        background: rgba(18, 105, 176, .12);
+    }
+}
+
+.app-header .mobile-menu-toggle {
+    position: absolute;
+    left: 12px;
+    display: none;
+}
+
+.app-header:not(.menu-open) .mobile-menu-toggle {
+    display: inline-flex;
+}
+
+.sidebar-menu-close {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    margin: 8px 10px 4px;
+    color: $white;
+
+    &:hover,
+    &:focus-visible {
+        background: rgba(255, 255, 255, .15);
     }
 }
 
 .logout-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: center;
+    gap: .4rem;
     min-width: 0;
-    height: 30px;
-    padding: 18px;
+    min-height: 42px;
+    margin: auto 10px 14px;
+    padding: 10px 12px;
     border-radius: 4px;
     background: #000000;
     color: $white !important;
     font-size: 1.1em;
-    line-height: 1;
+    line-height: 1.2;
     white-space: nowrap;
     font-weight: bold;
 
@@ -3399,7 +3447,6 @@ body.app-layout-page {
     }
 }
 
-.mobile-menu-toggle,
 .app-menu-backdrop {
     display: none;
 }
@@ -3412,12 +3459,23 @@ body.app-layout-page {
 }
 
 .app-sidebar {
-    width: 190px;
-    max-height: 100%;
+    order: 0;
+    display: flex;
+    flex: 0 0 214px;
+    flex-direction: column;
+    width: 214px;
+    min-height: calc(100vh - 68px);
     overflow: hidden;
     border-radius: 0;
     background: $sec-color;
     font-size: 12px;
+
+    .RadTreeView {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 
     .RadTreeView {
         width: 100%;
@@ -3427,7 +3485,7 @@ body.app-layout-page {
         > .rtUL {
             width: 100%;
             height: auto;
-            max-height: calc(100vh - 88px);
+            max-height: calc(100vh - 200px);
             padding: .5rem 0 .75rem;
             overflow-x: hidden;
             overflow-y: auto;
@@ -3538,9 +3596,23 @@ body.app-layout-page {
 }
 
 .app-main {
-    width: calc(100% - 190px);
+    order: 1;
+    width: calc(100% - 214px);
     min-width: 0;
     margin-left: 0;
+}
+
+.app-shell:not(.menu-open) {
+    .app-sidebar {
+        flex-basis: 0;
+        width: 0;
+        min-height: 0;
+        visibility: hidden;
+    }
+
+    .app-main {
+        width: 100%;
+    }
 }
 
 .app-footer {
@@ -3602,67 +3674,94 @@ body.app-layout-page {
     }
 }
 
+@media (min-width: 768px) and (max-width: 900px) {
+    .app-header {
+        h1 {
+            font-size: $m;
+        }
+
+        .app-logo {
+            width: 120px;
+        }
+    }
+}
+
 @media (max-width: 767px) {
     .app-header {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 44px 28px;
         height: 84px;
         min-height: 84px;
         padding: 4px;
-        row-gap: 2px;
 
-        .app-logo {
-            grid-column: 1;
-            grid-row: 1;
-            width: 150px;
-            align-self: center;
-        }
-
-        h1 {
-            position: static;
+        h1,
+        &.menu-open h1 {
             top: auto;
-            grid-column: 1 / -1;
-            grid-row: 2;
-            max-width: 100%;
+            bottom: 8px;
+            left: 0;
+            width: 100%;
+            max-width: calc(100% - 16px);
             font-size: $m;
             transform: none;
         }
-    }
 
-    .logout-link {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: end;
-        align-self: center;
+        .app-logo,
+        &.menu-open .app-logo {
+            top: 4px;
+            right: 8px;
+            width: 150px;
+            max-width: calc(100% - 72px);
+            transform: none;
+        }
+
+        .mobile-menu-toggle {
+            top: 4px;
+            left: 8px;
+        }
     }
 
     .app-shell {
-        flex-direction: column;
+        display: block;
         min-height: calc(100vh - 84px);
     }
 
     .app-sidebar {
-        position: relative;
-        top: auto;
-        bottom: auto;
-        left: auto;
-        align-self: flex-start;
-        width: 190px;
-        max-width: calc(100vw - 2px);
-        max-height: calc(100vh - 104px);
-        margin: 5px 0 0 1px;
-        transform: none;
-        transition: none;
+        position: fixed;
+        z-index: 1050;
+        top: 84px;
+        left: 0;
+        right: auto;
+        bottom: 0;
+        display: flex;
+        width: 214px;
+        max-width: 85vw;
+        min-height: 0;
+        max-height: none;
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition: transform .2s ease, visibility .2s ease;
 
         .RadTreeView > .rtUL {
             height: auto;
-            max-height: calc(100vh - 104px);
+            max-height: none;
         }
     }
 
+    .app-shell.menu-open .app-sidebar {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
     .app-menu-backdrop {
-        display: none !important;
+        position: fixed;
+        z-index: 1040;
+        inset: 84px 0 0;
+        width: 100%;
+        height: calc(100vh - 84px);
+        border: 0;
+        background: rgba(0, 0, 0, .35);
+    }
+
+    .app-shell.menu-open .app-menu-backdrop {
+        display: block;
     }
 
     .app-main {

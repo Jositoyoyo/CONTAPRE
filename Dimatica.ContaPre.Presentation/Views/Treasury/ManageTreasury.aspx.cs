@@ -90,7 +90,7 @@
 
         #region Public Static Methods
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public static int DeleteTreasury()
         {
             try
