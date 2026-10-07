@@ -22,6 +22,7 @@ namespace Dimatica.ContaPre.Presentation.Views.Shared
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::Telerik.Web.UI.RadTreeView RadTreeViewMenu;
 
         /// <summary>
         /// Control form1.
@@ -31,51 +32,6 @@ namespace Dimatica.ContaPre.Presentation.Views.Shared
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
-        /// <summary>
-        /// Control RadScriptManager.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadScriptManager RadScriptManager;
-
-        /// <summary>
-        /// Control rskmPrincipal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadSkinManager rskmPrincipal;
-
-        /// <summary>
-        /// Control rwmPrincipal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadWindowManager rwmPrincipal;
-
-        /// <summary>
-        /// Control ralPrincipal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxLoadingPanel ralPrincipal;
-
-        /// <summary>
-        /// Control RadTreeViewMenu.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadTreeView RadTreeViewMenu;
 
         /// <summary>
         /// Control ContentPlaceHolder1.
