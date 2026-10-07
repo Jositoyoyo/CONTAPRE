@@ -3405,11 +3405,16 @@ body.app-layout-page {
 .app-header .mobile-menu-toggle {
     position: absolute;
     left: 12px;
+    display: inline-flex;
+}
+
+.app-header .mobile-menu-toggle .fa-times,
+.app-header.menu-open .mobile-menu-toggle .fa-bars {
     display: none;
 }
 
-.app-header:not(.menu-open) .mobile-menu-toggle {
-    display: inline-flex;
+.app-header.menu-open .mobile-menu-toggle .fa-times {
+    display: inline-block;
 }
 
 .sidebar-menu-close {
@@ -3495,7 +3500,7 @@ body.app-layout-page {
 
         > .rtUL > .rtLI {
             width: 100%;
-            padding: 0;
+            margin-bottom: 4px;
 
             &:hover,
             &.rtHover {
@@ -3541,6 +3546,16 @@ body.app-layout-page {
             font-size: $m;
             line-height: 1.25;
             vertical-align: baseline;
+        }
+
+        .rtPlus::before {
+            color: $white;
+            content: "\E000";
+        }
+
+        .rtMinus::before {
+            color: $white;
+            content: "\E002";
         }
 
         .menu-icon-chart-pie .rtText::before,

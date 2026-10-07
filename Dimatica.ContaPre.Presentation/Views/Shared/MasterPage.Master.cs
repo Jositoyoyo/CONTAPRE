@@ -8,7 +8,6 @@
     using System.Web;
     using Dimatica.ContaPre.Presentation.Helpers;
     using Dimatica.ContaPre.Presentation.Helpers.SiteData;
-    using Telerik.Web.UI;
 
     #endregion
 
@@ -59,15 +58,7 @@
 
             this.RadTreeViewMenu.DataSource = dataSource;
             this.RadTreeViewMenu.DataBind();
-            this.RadTreeViewMenu.CollapseAllNodes();
-
-            foreach (RadTreeNode node in this.RadTreeViewMenu.Nodes)
-            {
-                if (node.Text == "Presupuestos" || node.Text == "Ingresos" || node.Text == "Gastos" || node.Text == "Tesorería")
-                {
-                    node.Expanded = true;
-                }
-            }
+            this.RadTreeViewMenu.ExpandAllNodes();
         }
 
         #endregion

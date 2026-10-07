@@ -2862,11 +2862,16 @@ body.app-layout-page {
 .app-header .mobile-menu-toggle {
   position: absolute;
   left: 12px;
+  display: inline-flex;
+}
+
+.app-header .mobile-menu-toggle .fa-times,
+.app-header.menu-open .mobile-menu-toggle .fa-bars {
   display: none;
 }
 
-.app-header:not(.menu-open) .mobile-menu-toggle {
-  display: inline-flex;
+.app-header.menu-open .mobile-menu-toggle .fa-times {
+  display: inline-block;
 }
 
 .sidebar-menu-close {
@@ -2946,7 +2951,7 @@ body.app-layout-page {
 }
 .app-sidebar .RadTreeView > .rtUL > .rtLI {
   width: 100%;
-  padding: 0;
+  margin-bottom: 4px;
 }
 .app-sidebar .RadTreeView > .rtUL > .rtLI:hover, .app-sidebar .RadTreeView > .rtUL > .rtLI.rtHover {
   background-color: #1269b0;
@@ -2982,6 +2987,14 @@ body.app-layout-page {
   font-size: 14px;
   line-height: 1.25;
   vertical-align: baseline;
+}
+.app-sidebar .RadTreeView .rtPlus::before {
+  color: #fff;
+  content: "\e000";
+}
+.app-sidebar .RadTreeView .rtMinus::before {
+  color: #fff;
+  content: "\e002";
 }
 .app-sidebar .RadTreeView .menu-icon-chart-pie .rtText::before,
 .app-sidebar .RadTreeView .menu-icon-money-bill-wave .rtText::before,
