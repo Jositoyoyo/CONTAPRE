@@ -28,7 +28,7 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 - `Dimatica.ContaPre.DAL`: acceso a datos y contextos de persistencia.
 - `Dimatica.ContaPre.OL`: modelos, objetos de dominio y componentes relacionados con Entity Framework.
 - `Dimatica.ContaPre.Tests\Dimatica.ContaPre.UnitTest`: pruebas unitarias MSTest sobre .NET Framework 4.8.
-- `Dimatica.ContaPre.Tests\Dimatica.ContaPre.BLL.IntegrationTest`: pruebas de integración de los servicios BLL sobre .NET Framework 4.8.
+- `Dimatica.ContaPre.Tests\Dimatica.ContaPre.IntegrationTest`: pruebas de integración de los servicios BLL sobre .NET Framework 4.8.
 
 ### Persistencia y configuración
 
@@ -60,7 +60,7 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 ### Pruebas
 
 - El proyecto de pruebas unitarias es `Dimatica.ContaPre.Tests\Dimatica.ContaPre.UnitTest`.
-- El proyecto de integración de BLL es `Dimatica.ContaPre.Tests\Dimatica.ContaPre.BLL.IntegrationTest`; usa la conexión `ContaPreModel` de `Presentation\Web.config` y sus escenarios actuales son de solo lectura.
+- El proyecto de integración de BLL es `Dimatica.ContaPre.Tests\Dimatica.ContaPre.IntegrationTest`; usa la conexión `ContaPreModel` de `Presentation\Web.config` y sus escenarios actuales son de solo lectura.
 - Ambos proyectos usan MSTest 2.1.1, `Microsoft.NET.TestPlatform` compatible y .NET Framework 4.8.
 - Las pruebas unitarias deben ser deterministas y no depender de IIS, Oracle, SQL Server, SMTP, LDAP, rutas UNC, datos reales ni servicios externos.
 - Ejemplos de verificación:
@@ -74,11 +74,11 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
       'artifacts\bin\Dimatica.ContaPre.UnitTest\Debug\Dimatica.ContaPre.UnitTest.dll'
 
   & '...\MSBuild.exe' `
-      'Dimatica.ContaPre.Tests\Dimatica.ContaPre.BLL.IntegrationTest\Dimatica.ContaPre.BLL.IntegrationTest.csproj' `
+      'Dimatica.ContaPre.Tests\Dimatica.ContaPre.IntegrationTest\Dimatica.ContaPre.IntegrationTest.csproj' `
       /t:Build /p:Configuration=Debug /p:Platform=AnyCPU
 
   & '...\vstest.console.exe' `
-      'artifacts\bin\Dimatica.ContaPre.BLL.IntegrationTest\Debug\Dimatica.ContaPre.BLL.IntegrationTest.dll'
+      'artifacts\bin\Dimatica.ContaPre.IntegrationTest\Debug\Dimatica.ContaPre.IntegrationTest.dll'
   ```
 
 - Antes de modificar pruebas, reutilizar fixtures y utilidades existentes. Restaurar siempre el estado global de `HttpContext.Current` y limpiar temporales creados por las pruebas.

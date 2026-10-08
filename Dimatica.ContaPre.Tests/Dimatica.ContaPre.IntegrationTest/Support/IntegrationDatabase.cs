@@ -1,4 +1,4 @@
-namespace Dimatica.ContaPre.BLL.IntegrationTest.Support
+namespace Dimatica.ContaPre.IntegrationTest.Support
 {
     using System;
     using System.IO;

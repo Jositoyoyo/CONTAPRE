@@ -8,8 +8,8 @@
     <ProjectGuid>{AA3C9336-EFD3-45A9-AB1F-5DF529733217}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dimatica.ContaPre.BLL.IntegrationTest</RootNamespace>
-    <AssemblyName>Dimatica.ContaPre.BLL.IntegrationTest</AssemblyName>
+    <RootNamespace>Dimatica.ContaPre.IntegrationTest</RootNamespace>
+    <AssemblyName>Dimatica.ContaPre.IntegrationTest</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -21,19 +21,19 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\artifacts\bin\Dimatica.ContaPre.BLL.IntegrationTest\Debug\</OutputPath>
+    <OutputPath>..\..\artifacts\bin\Dimatica.ContaPre.IntegrationTest\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\artifacts\bin\Dimatica.ContaPre.BLL.IntegrationTest\Release\</OutputPath>
+    <OutputPath>..\..\artifacts\bin\Dimatica.ContaPre.IntegrationTest\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
-    <OutputPath>..\..\artifacts\bin\Dimatica.ContaPre.BLL.IntegrationTest\Development\</OutputPath>
+    <OutputPath>..\..\artifacts\bin\Dimatica.ContaPre.IntegrationTest\Development\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>

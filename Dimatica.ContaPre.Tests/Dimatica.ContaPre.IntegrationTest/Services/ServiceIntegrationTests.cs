@@ -1,7 +1,7 @@
-namespace Dimatica.ContaPre.BLL.IntegrationTest.Services
+namespace Dimatica.ContaPre.IntegrationTest.Services
 {
     using Dimatica.ContaPre.BLL.Services;
-    using Dimatica.ContaPre.BLL.IntegrationTest.Support;
+    using Dimatica.ContaPre.IntegrationTest.Support;
     using Dimatica.ContaPre.DAL.DataContexts;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
