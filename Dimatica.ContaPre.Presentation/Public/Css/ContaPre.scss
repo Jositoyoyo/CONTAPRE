@@ -222,6 +222,16 @@
         font-size: $m;
     }
 
+    .rwOkBtn {
+        @extend %button;
+        font-size: $m;
+    }
+
+    .rwCancelBtn {
+        @extend %button;
+        font-size: $m;
+    }
+
     a,
     button {
         @extend %button;
@@ -1129,6 +1139,16 @@ body {
                             @extend %button;
                             background-color: $prim-color;
                         }
+                    }
+
+                    .rwOkBtn,
+                    .rwCancelBtn {
+                        background-color: $prim-color !important;
+                        color: white !important;
+                        width: 150px !important;
+                        min-width: 150px !important;
+                        height: 40px !important;
+                        padding: 0 !important;
                     }
                 }
             }

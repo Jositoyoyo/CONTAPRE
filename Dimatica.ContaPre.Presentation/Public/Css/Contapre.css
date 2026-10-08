@@ -11,7 +11,9 @@ body .RadCalendarFastNavPopup table.RadCalendarMonthView td.rcButtons input, bod
 .container .RadGrid .rgMasterTable .rgEditForm .buttons a, .container .buttons a,
 .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons button,
 .container .RadGrid .rgMasterTable .rgEditForm .buttons button,
-.container .buttons button, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .RadButton,
+.container .buttons button, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .rwCancelBtn,
+.container .RadGrid .rgMasterTable .rgEditForm .buttons .rwCancelBtn, .container .buttons .rwCancelBtn, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .rwOkBtn,
+.container .RadGrid .rgMasterTable .rgEditForm .buttons .rwOkBtn, .container .buttons .rwOkBtn, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .RadButton,
 .container .RadGrid .rgMasterTable .rgEditForm .buttons .RadButton, .container .buttons .RadButton {
   background-color: #1269b0;
   color: white;
@@ -39,7 +41,9 @@ body .RadCalendarFastNavPopup table.RadCalendarMonthView td.rcButtons input:hove
 .container .RadGrid .rgMasterTable .rgEditForm .buttons a:hover, .container .buttons a:hover,
 .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons button:hover,
 .container .RadGrid .rgMasterTable .rgEditForm .buttons button:hover,
-.container .buttons button:hover, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .RadButton:hover,
+.container .buttons button:hover, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .rwCancelBtn:hover,
+.container .RadGrid .rgMasterTable .rgEditForm .buttons .rwCancelBtn:hover, .container .buttons .rwCancelBtn:hover, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .rwOkBtn:hover,
+.container .RadGrid .rgMasterTable .rgEditForm .buttons .rwOkBtn:hover, .container .buttons .rwOkBtn:hover, .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .RadButton:hover,
 .container .RadGrid .rgMasterTable .rgEditForm .buttons .RadButton:hover, .container .buttons .RadButton:hover {
   color: white;
   background: #1269b0;
@@ -254,6 +258,14 @@ body .RadPicker.rcTimePopupOpen .rcTimePopup {
 }
 .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .RadButton,
 .container .RadGrid .rgMasterTable .rgEditForm .buttons .RadButton, .container .buttons .RadButton {
+  font-size: 14px;
+}
+.container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .rwOkBtn,
+.container .RadGrid .rgMasterTable .rgEditForm .buttons .rwOkBtn, .container .buttons .rwOkBtn {
+  font-size: 14px;
+}
+.container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons .rwCancelBtn,
+.container .RadGrid .rgMasterTable .rgEditForm .buttons .rwCancelBtn, .container .buttons .rwCancelBtn {
   font-size: 14px;
 }
 .container .RadAjaxPanel .rgMasterTable .rgEditForm .buttons a,
@@ -985,6 +997,15 @@ body .RadWindow .rwWindowContent .rwDialogPopup div {
 body .RadWindow .rwWindowContent .rwDialogPopup div a {
   height: auto;
   margin: 0 !important;
+}
+body .RadWindow .rwWindowContent .rwDialogPopup div .rwOkBtn,
+body .RadWindow .rwWindowContent .rwDialogPopup div .rwCancelBtn {
+  background-color: #1269b0 !important;
+  color: white !important;
+  width: 150px !important;
+  min-width: 150px !important;
+  height: 40px !important;
+  padding: 0 !important;
 }
 body .RadWindow .rwWindowContent .rwDialogPopup div a .rwInnerSpan,
 body .RadWindow .rwWindowContent .rwDialogPopup div a .rwOuterSpan {
