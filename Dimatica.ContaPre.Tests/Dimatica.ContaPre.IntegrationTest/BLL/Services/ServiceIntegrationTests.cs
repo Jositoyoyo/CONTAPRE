@@ -1,4 +1,4 @@
-namespace Dimatica.ContaPre.IntegrationTest.Services
+namespace Dimatica.ContaPre.IntegrationTest.BLL.Services
 {
     using Dimatica.ContaPre.BLL.Services;
     using Dimatica.ContaPre.IntegrationTest.Support;

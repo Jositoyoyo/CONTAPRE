@@ -60,7 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\ServiceIntegrationTests.cs" />
+    <Compile Include="BLL\Services\ServiceIntegrationTests.cs" />
     <Compile Include="Support\IntegrationDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
