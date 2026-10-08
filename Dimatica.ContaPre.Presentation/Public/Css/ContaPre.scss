@@ -222,16 +222,6 @@
         font-size: $m;
     }
 
-    .rwOkBtn {
-        @extend %button;
-        font-size: $m;
-    }
-
-    .rwCancelBtn {
-        @extend %button;
-        font-size: $m;
-    }
-
     a,
     button {
         @extend %button;
@@ -322,9 +312,9 @@
     justify-content: flex-start;
     align-items: center;
     margin: .625rem .625rem 0;
-    padding: .625rem .625rem 0;    
+    padding: .625rem .625rem 0;
     width: 100%;
-    
+
     &:first-child {
         display: flex;
         justify-content: space-between;
@@ -459,24 +449,24 @@ body {
             }
         }
 
-        &.rbSkinnedButton,
-        &.rbSkinnedButton.rbHovered {
-            background-color: transparent;
-            color: $sec-color;
-
-            &:active,
-            &:focus {
-                border: none;
+            &.rbSkinnedButton,
+            &.rbSkinnedButton.rbHovered {
                 background-color: transparent;
                 color: $sec-color;
-            }
-        }
 
-        &.rbSkinnedButton,
-        &.rbSkinnedButton.rbHovered,
-        &.rbVerticalButton,
-        .rbDecorated {
-        }
+                &:active,
+                &:focus {
+                    border: none;
+                    background-color: transparent;
+                    color: $sec-color;
+                }
+            }
+
+                &.rbSkinnedButton,
+                &.rbSkinnedButton.rbHovered,
+                &.rbVerticalButton,
+                .rbDecorated {
+                }
 
         &.RadCheckBox,
         &.RadRadioButton {
@@ -534,7 +524,7 @@ body {
         a.rcCalPopup,
         .rcTimePopup {
             @extend %icons;
-            width:17px!important;
+            width: 17px !important;
 
             &:hover,
             &:active {
@@ -779,11 +769,11 @@ body {
         }
     }
 
-    .RadMenu .rmVertical .rmToggle .rmIcon::before,
-    .RadMenu .rmVertical .rmExpand::before,
-    .RadMenu .rmRightArrow .rmIcon::before {
-        content: "";
-    }
+        .RadMenu .rmVertical .rmToggle .rmIcon::before,
+        .RadMenu .rmVertical .rmExpand::before,
+        .RadMenu .rmRightArrow .rmIcon::before {
+            content: "";
+        }
 
     .RadCheckBox {
         &.rbHovered {
@@ -988,6 +978,16 @@ body {
         }
     }
 
+    .rwOkBtn,
+    .rwCancelBtn {
+        background-color: $prim-color !important;
+        color: white !important;
+        width: 80px !important;
+        min-width: 80px !important;
+        height: 20px !important;
+        padding: 0 !important;
+    }
+
     .RadCalendarPopup,
     .RadCalendar {
         display: table;
@@ -1139,16 +1139,6 @@ body {
                             @extend %button;
                             background-color: $prim-color;
                         }
-                    }
-
-                    .rwOkBtn,
-                    .rwCancelBtn {
-                        background-color: $prim-color !important;
-                        color: white !important;
-                        width: 150px !important;
-                        min-width: 150px !important;
-                        height: 40px !important;
-                        padding: 0 !important;
                     }
                 }
             }
@@ -1383,19 +1373,19 @@ td[align="right"] {
                     background-position: 8px -45px;
                 }
 
-                input[id*="lblUserName"] {
-                    @extend %user-icon;
-                }
+                    input[id*="lblUserName"] {
+                        @extend %user-icon;
+                    }
 
-                input[id*="txtCurrentPass"] {
-                    background-position: 8px 6px;
-                }
+                    input[id*="txtCurrentPass"] {
+                        background-position: 8px 6px;
+                    }
 
-                input[id*="txtCurrentPass"],
-                input[id*="txtNewPass"],
-                input[id*="txtConfirmNewPass"] {
-                    @extend %pass-icon;
-                }
+                    input[id*="txtCurrentPass"],
+                    input[id*="txtNewPass"],
+                    input[id*="txtConfirmNewPass"] {
+                        @extend %pass-icon;
+                    }
             }
 
             span[style*="hidden"] {
@@ -1619,7 +1609,7 @@ td[align="right"] {
         }
 
         .app-logo {
-            margin-top:4px;
+            margin-top: 4px;
             max-width: 220px;
             height: auto;
         }
@@ -1794,8 +1784,8 @@ td[align="right"] {
                 .icon {
                     background-image: url(/Public/Images/sprite-download.png);
                 }
-            } 
-            
+            }
+
             .list {
 
                 .icon {
@@ -2148,14 +2138,14 @@ td[align="right"] {
                 }
             }
 
-            tr:not([class]) {
-                // border-bottom: 1px solid $sec-color;
-                // border-top: 1px solid $sec-color;
-                .rgExpandCol {
-                    background-color: $sec-color;
-                    //display: none;
+                tr:not([class]) {
+                    // border-bottom: 1px solid $sec-color;
+                    // border-top: 1px solid $sec-color;
+                    .rgExpandCol {
+                        background-color: $sec-color;
+                        //display: none;
+                    }
                 }
-            }
 
             .rgDetailTable {
                 border: 0;
@@ -2991,9 +2981,9 @@ td[align="right"] {
                 }
             }
 
-            .RadGrid .rgSelectedRow {
-                color: black;
-            }
+                .RadGrid .rgSelectedRow {
+                    color: black;
+                }
         }
 
         .top-buttons {
@@ -3013,9 +3003,9 @@ td[align="right"] {
         }
     }
 
-    .divided-screen + .buttons {
-        margin: .625rem .625rem 1.25rem 1.25rem;
-    }
+        .divided-screen + .buttons {
+            margin: .625rem .625rem 1.25rem 1.25rem;
+        }
 
     &#section_rectification {
         .divided-screen {
@@ -3178,19 +3168,19 @@ td[align="right"] {
             transform: rotate(45deg) translate(-4px, -1px);
             background: #232323;
         }
-        /*
+            /*
         * But let's hide the middle one.
         */
-        &:checked ~ span:nth-last-child(3) {
-            opacity: 0;
-            transform: rotate(0deg) scale(0.2, 0.2);
-        }
-        /*
+            &:checked ~ span:nth-last-child(3) {
+                opacity: 0;
+                transform: rotate(0deg) scale(0.2, 0.2);
+            }
+            /*
         * Ohyeah and the last one should go the other direction
         */
-        &:checked ~ span:nth-last-child(2) {
-            transform: rotate(-45deg) translate(0, -1px);
-        }
+            &:checked ~ span:nth-last-child(2) {
+                transform: rotate(-45deg) translate(0, -1px);
+            }
         /*
         * And let's slide it in from the left
         */
@@ -3247,7 +3237,7 @@ td[align="right"] {
                 }
             }
         }
-    }    
+    }
 }
 
 
@@ -3429,10 +3419,10 @@ body.app-layout-page {
     display: inline-flex;
 }
 
-.app-header .mobile-menu-toggle .fa-times,
-.app-header.menu-open .mobile-menu-toggle .fa-bars {
-    display: none;
-}
+    .app-header .mobile-menu-toggle .fa-times,
+    .app-header.menu-open .mobile-menu-toggle .fa-bars {
+        display: none;
+    }
 
 .app-header.menu-open .mobile-menu-toggle .fa-times {
     display: inline-block;
@@ -3519,42 +3509,42 @@ body.app-layout-page {
             margin-top: 35px;
         }
 
-        > .rtUL > .rtLI {
-            width: 100%;
-            margin-bottom: 4px;
-
-            &:hover,
-            &.rtHover {
-                background-color: $prim-color;
-            }
-
-            &:hover .rtText,
-            &.rtHover .rtText {
-                color: $white;
-            }
-
-            > .rtUL {
-                position: static;
-                width: 100%;
-                height: auto;
-                margin: .1rem 0 0;
-                padding: 0;
-                overflow: visible;
-                border: 0;
-                border-left: 1px solid rgba(255, 255, 255, .3);
-                background: transparent;
-            }
-
             > .rtUL > .rtLI {
-                width: auto;
-                padding: .2rem 0 .2rem 1rem;
+                width: 100%;
+                margin-bottom: 4px;
 
                 &:hover,
                 &.rtHover {
-                    background-color: rgba(255, 255, 255, .12);
+                    background-color: $prim-color;
                 }
+
+                    &:hover .rtText,
+                    &.rtHover .rtText {
+                        color: $white;
+                    }
+
+                > .rtUL {
+                    position: static;
+                    width: 100%;
+                    height: auto;
+                    margin: .1rem 0 0;
+                    padding: 0;
+                    overflow: visible;
+                    border: 0;
+                    border-left: 1px solid rgba(255, 255, 255, .3);
+                    background: transparent;
+                }
+
+                    > .rtUL > .rtLI {
+                        width: auto;
+                        padding: .2rem 0 .2rem 1rem;
+
+                        &:hover,
+                        &.rtHover {
+                            background-color: rgba(255, 255, 255, .12);
+                        }
+                    }
             }
-        }
 
         .rtIn,
         .rtOut {
@@ -3598,17 +3588,49 @@ body.app-layout-page {
             text-align: center;
         }
 
-        .menu-icon-chart-pie .rtText::before { content: "\f200"; }
-        .menu-icon-money-bill-wave .rtText::before { content: "\f53a"; }
-        .menu-icon-file-invoice-dollar .rtText::before { content: "\f571"; }
-        .menu-icon-list-alt .rtText::before { content: "\f022"; }
-        .menu-icon-folder-open .rtText::before { content: "\f07c"; }
-        .menu-icon-university .rtText::before { content: "\f19c"; }
-        .menu-icon-edit .rtText::before { content: "\f044"; }
-        .menu-icon-calendar-check .rtText::before { content: "\f274"; }
-        .menu-icon-cog .rtText::before { content: "\f013"; }
-        .menu-icon-table .rtText::before { content: "\f0ce"; }
-        .menu-icon-code .rtText::before { content: "\f121"; }
+        .menu-icon-chart-pie .rtText::before {
+            content: "\f200";
+        }
+
+        .menu-icon-money-bill-wave .rtText::before {
+            content: "\f53a";
+        }
+
+        .menu-icon-file-invoice-dollar .rtText::before {
+            content: "\f571";
+        }
+
+        .menu-icon-list-alt .rtText::before {
+            content: "\f022";
+        }
+
+        .menu-icon-folder-open .rtText::before {
+            content: "\f07c";
+        }
+
+        .menu-icon-university .rtText::before {
+            content: "\f19c";
+        }
+
+        .menu-icon-edit .rtText::before {
+            content: "\f044";
+        }
+
+        .menu-icon-calendar-check .rtText::before {
+            content: "\f274";
+        }
+
+        .menu-icon-cog .rtText::before {
+            content: "\f013";
+        }
+
+        .menu-icon-table .rtText::before {
+            content: "\f0ce";
+        }
+
+        .menu-icon-code .rtText::before {
+            content: "\f121";
+        }
 
         .rtSelected .rtIn {
             border-color: transparent;
