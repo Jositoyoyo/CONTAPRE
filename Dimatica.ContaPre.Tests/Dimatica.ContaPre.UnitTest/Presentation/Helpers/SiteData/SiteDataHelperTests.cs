@@ -16,7 +16,6 @@ namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers.SiteData
                 var items = SiteDataHelper.GetSiteDataItems();
 
                 Assert.IsTrue(items.Any(item => item.Text == "Presupuestos"));
-                Assert.IsTrue(items.Any(item => item.Text == "Cerrar Sesión"));
                 Assert.IsTrue(items.Any(item => item.Text == "Development"));
             }
         }

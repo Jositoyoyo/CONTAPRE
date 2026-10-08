@@ -4,7 +4,7 @@ const externalBaseURL = process.env.PLAYWRIGHT_BASE_URL;
 const baseURL = (externalBaseURL || 'http://localhost:54234').replace(/\/+$/, '');
 
 const config = {
-  testDir: './tests/integration',
+  testDir: './Dimatica.ContaPre.PlaywrightTest',
   fullyParallel: true,
   reporter: 'list',
   use: {
@@ -16,7 +16,7 @@ const config = {
 
 if (!externalBaseURL) {
   config.webServer = {
-    command: 'powershell -NoProfile -ExecutionPolicy Bypass -File ..\Support\Utils\StartLocal.ps1',
+    command: 'powershell -NoProfile -ExecutionPolicy Bypass -File ../Support/Utils/StartLocal.ps1',
     url: `${baseURL}/Views/Account/Login.aspx`,
     reuseExistingServer: !process.env.CI,
     timeout: 180000,
