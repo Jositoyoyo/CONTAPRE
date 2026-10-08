@@ -2,11 +2,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Dimatica.ContaPre.PresentationUnitTest")]
+[assembly: AssemblyTitle("Dimatica.ContaPre.UnitTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Dimatica.ContaPre.PresentationUnitTest")]
+[assembly: AssemblyProduct("Dimatica.ContaPre.UnitTest")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

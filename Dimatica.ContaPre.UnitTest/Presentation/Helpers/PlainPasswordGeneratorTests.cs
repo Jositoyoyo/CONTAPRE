@@ -3,7 +3,7 @@ using Dimatica.ContaPre.Presentation.Helpers;
 using Dimatica.ContaPre.Presentation.Helpers.PlainPassword;
 using System.Linq;
 
-namespace Dimatica.ContaPre.PresentationUnitTest.Helpers.DataValidation
+namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers.DataValidation
 {
     [TestClass()]
     public class PlainPasswordGeneratorTests

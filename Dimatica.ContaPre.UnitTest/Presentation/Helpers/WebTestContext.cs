@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Web;
 
-namespace Dimatica.ContaPre.PresentationUnitTest.Helpers
+namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers
 {
     internal sealed class WebTestContext : IDisposable
     {

@@ -3,7 +3,7 @@ using Dimatica.ContaPre.Presentation.Helpers;
 using Dimatica.ContaPre.Presentation.Helpers.SiteData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dimatica.ContaPre.PresentationUnitTest.Helpers
+namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers
 {
     [TestClass]
     public class SiteDataHelperTests

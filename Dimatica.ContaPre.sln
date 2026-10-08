@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.DAL", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.OL", "Dimatica.ContaPre.OL\Dimatica.ContaPre.OL.csproj", "{FFC53514-9D68-407C-AB21-955AA7C47EB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.PresentationUnitTest", "Dimatica.ContaPre.PresentationUnitTest\Dimatica.ContaPre.PresentationUnitTest.csproj", "{4B03244F-08B2-4E01-8127-D34A16241D21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.UnitTest", "Dimatica.ContaPre.UnitTest\Dimatica.ContaPre.UnitTest.csproj", "{4B03244F-08B2-4E01-8127-D34A16241D21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Dimatica.ContaPre.Presentation.Helpers.Email;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dimatica.ContaPre.PresentationUnitTest.Helpers.Email
+namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers.Email
 {
     [TestClass]
     public class EmailTemplateHelperTests

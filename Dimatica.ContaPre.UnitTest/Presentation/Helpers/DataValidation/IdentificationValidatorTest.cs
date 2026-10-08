@@ -1,7 +1,7 @@
 ﻿using Dimatica.ContaPre.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Dimatica.ContaPre.PresentationUnitTest.Helpers.DataValidation
+namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers.DataValidation
 {
     [TestClass]
     public class IdentificationValidatorTest

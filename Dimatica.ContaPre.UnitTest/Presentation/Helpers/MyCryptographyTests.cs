@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dimatica.ContaPre.Presentation.Helpers.Cryptography;
 using System;
 
-namespace Dimatica.ContaPre.PresentationUnitTest.Helpers
+namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers
 {
 
     [TestClass()]

@@ -27,7 +27,7 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 - `Dimatica.ContaPre.BLL`: servicios y reglas de negocio.
 - `Dimatica.ContaPre.DAL`: acceso a datos y contextos de persistencia.
 - `Dimatica.ContaPre.OL`: modelos, objetos de dominio y componentes relacionados con Entity Framework.
-- `Dimatica.ContaPre.PresentationUnitTest`: pruebas unitarias MSTest sobre .NET Framework 4.8.
+- `Dimatica.ContaPre.UnitTest`: pruebas unitarias MSTest sobre .NET Framework 4.8.
 
 ### Persistencia y configuración
 
@@ -58,18 +58,18 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 
 ### Pruebas
 
-- El proyecto reutilizable de pruebas es `Dimatica.ContaPre.PresentationUnitTest`.
+- El proyecto reutilizable de pruebas es `Dimatica.ContaPre.UnitTest`.
 - Usa MSTest 2.1.1, `Microsoft.NET.TestPlatform` compatible y .NET Framework 4.8.
 - Las pruebas unitarias deben ser deterministas y no depender de IIS, Oracle, SQL Server, SMTP, LDAP, rutas UNC, datos reales ni servicios externos.
 - Ejemplos de verificación:
 
   ```powershell
   & '...\MSBuild.exe' `
-      'Dimatica.ContaPre.PresentationUnitTest\Dimatica.ContaPre.PresentationUnitTest.csproj' `
+      'Dimatica.ContaPre.UnitTest\Dimatica.ContaPre.UnitTest.csproj' `
       /t:Rebuild /p:Configuration=Debug /p:Platform=AnyCPU
 
   & '...\vstest.console.exe' `
-      'Dimatica.ContaPre.PresentationUnitTest\bin\Debug\Dimatica.ContaPre.PresentationUnitTest.dll'
+      'Dimatica.ContaPre.UnitTest\bin\Debug\Dimatica.ContaPre.UnitTest.dll'
   ```
 
 - Antes de modificar pruebas, reutilizar fixtures y utilidades existentes. Restaurar siempre el estado global de `HttpContext.Current` y limpiar temporales creados por las pruebas.

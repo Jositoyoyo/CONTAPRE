@@ -1,4 +1,4 @@
-namespace Dimatica.ContaPre.PresentationUnitTest.Services
+namespace Dimatica.ContaPre.UnitTest.Services
 {
     using System;
     using System.Collections.Generic;
