@@ -3332,6 +3332,8 @@ body.app-layout-page {
 }
 
 .app-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: auto;
     min-height: 100vh;
@@ -3339,8 +3341,11 @@ body.app-layout-page {
 }
 
 .container form.app-form {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
     width: 100%;
-    min-height: 100vh;
+    min-height: 0;
     margin: 0;
     overflow: visible;
 }
@@ -3470,8 +3475,9 @@ body.app-layout-page {
 
 .app-shell {
     display: flex;
+    flex: 1 0 auto;
     width: 100%;
-    min-height: calc(100vh - 68px);
+    min-height: 0;
     align-items: stretch;
 }
 
@@ -3481,7 +3487,7 @@ body.app-layout-page {
     flex: 0 0 280px;
     flex-direction: column;
     width: 280px;
-    min-height: calc(100vh - 68px);
+    min-height: 0;
     overflow: hidden;
     border-radius: 0;
     background: $sec-color;
@@ -3671,8 +3677,15 @@ body.app-layout-page {
     }
 }
 
+@media (min-width: 768px) {
+    .app-shell:not(.menu-open) .app-sidebar {
+        display: none;
+    }
+}
+
 .app-footer {
     display: flex;
+    flex: 0 0 auto;
     justify-content: space-between;
     padding: .5rem 1rem;
     background: $azul-claro;
@@ -3775,8 +3788,9 @@ body.app-layout-page {
     }
 
     .app-shell {
-        display: block;
-        min-height: calc(100vh - 84px);
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
     }
 
     .app-sidebar {
@@ -3844,4 +3858,9 @@ body.app-layout-page {
         padding-right: .45rem;
         padding-left: .45rem;
     }
+}
+
+// Telerik reserves the scrollbar width beside static headers; remove it only for this grid.
+.RadGrid.notesTreasuries-table .rgHeaderDiv {
+    margin-right: 0 !important;
 }

@@ -85,13 +85,14 @@
                 
             </div>
 
+            <%-- FOOTER --%>
+            <footer class="app-footer">
+                <asp:Label ID="lblCurrentHost" runat="server" Text=""></asp:Label>
+                <asp:Label ID="lblCurrentDateTime" runat="server" Text=""></asp:Label>
+            </footer>
+
         </form>
     </div>
-    <%-- FOOTER --%>
-    <footer class="app-footer">
-        <asp:Label ID="lblCurrentHost" runat="server" Text=""></asp:Label>
-        <asp:Label ID="lblCurrentDateTime" runat="server" Text=""></asp:Label>
-    </footer>
 
    <script>
        $(document).ready(function () {

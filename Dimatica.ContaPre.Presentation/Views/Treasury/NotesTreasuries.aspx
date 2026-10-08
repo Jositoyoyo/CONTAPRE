@@ -444,7 +444,7 @@
                             </telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="TES_APLICACION"
                                 DataField="TES_APLICACION"
-                                HeaderText="Aplic."
+                                HeaderText="Aplicación."
                                 AutoPostBackOnFilter="true"
                                 CurrentFilterFunction="Contains"
                                 ShowFilterIcon="false">
