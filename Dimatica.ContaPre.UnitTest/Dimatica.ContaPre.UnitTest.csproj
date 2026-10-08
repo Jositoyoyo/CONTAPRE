@@ -54,11 +54,11 @@
     <Compile Include="Presentation\Helpers\DataValidation\IbanValidatorTest.cs" />
     <Compile Include="Presentation\Helpers\DataValidation\IdentificationValidatorTest.cs" />
     <Compile Include="Presentation\Helpers\Email\EmailTemplateHelperTests.cs" />
-    <Compile Include="Presentation\Helpers\MyCryptographyTests.cs" />
-    <Compile Include="Presentation\Helpers\PlainPasswordGeneratorTests.cs" />
-    <Compile Include="Presentation\Helpers\SessionHelperTests.cs" />
-    <Compile Include="Presentation\Helpers\SiteDataHelperTests.cs" />
-    <Compile Include="Presentation\Helpers\UrlHelperTests.cs" />
+    <Compile Include="Presentation\Helpers\Cryptography\MyCryptographyTests.cs" />
+    <Compile Include="Presentation\Helpers\PlainPassword\PlainPasswordGeneratorTests.cs" />
+    <Compile Include="Presentation\Helpers\Session\SessionHelperTests.cs" />
+    <Compile Include="Presentation\Helpers\SiteData\SiteDataHelperTests.cs" />
+    <Compile Include="Presentation\Helpers\Url\UrlHelperTests.cs" />
     <Compile Include="Presentation\Helpers\WebTestContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

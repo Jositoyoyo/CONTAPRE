@@ -1,8 +1,9 @@
 using System.Web;
 using Dimatica.ContaPre.Presentation.Helpers.Url;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Dimatica.ContaPre.UnitTest.Presentation.Helpers;
 
-namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers
+namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers.Url
 {
     [TestClass]
     public class UrlHelperTests
