@@ -17,6 +17,7 @@ body .RadCalendarFastNavPopup table.RadCalendarMonthView td.rcButtons input, bod
   color: white;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: auto;
   min-width: 120px;
   text-align: center;
