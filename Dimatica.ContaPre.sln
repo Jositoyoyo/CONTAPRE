@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.DAL", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.OL", "Dimatica.ContaPre.OL\Dimatica.ContaPre.OL.csproj", "{FFC53514-9D68-407C-AB21-955AA7C47EB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.UnitTest", "Dimatica.ContaPre.UnitTest\Dimatica.ContaPre.UnitTest.csproj", "{4B03244F-08B2-4E01-8127-D34A16241D21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.UnitTest", "Dimatica.ContaPre.Tests\Dimatica.ContaPre.UnitTest\Dimatica.ContaPre.UnitTest.csproj", "{4B03244F-08B2-4E01-8127-D34A16241D21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.BLL.IntegrationTest", "Dimatica.ContaPre.BLL.IntegrationTest\Dimatica.ContaPre.BLL.IntegrationTest.csproj", "{AA3C9336-EFD3-45A9-AB1F-5DF529733217}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.BLL.IntegrationTest", "Dimatica.ContaPre.Tests\Dimatica.ContaPre.BLL.IntegrationTest\Dimatica.ContaPre.BLL.IntegrationTest.csproj", "{AA3C9336-EFD3-45A9-AB1F-5DF529733217}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dimatica.ContaPre.Tests", "Dimatica.ContaPre.Tests", "{1F781E82-E7ED-454C-BC56-194D54768C7F}"
 EndProject
@@ -66,6 +66,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4B03244F-08B2-4E01-8127-D34A16241D21} = {1F781E82-E7ED-454C-BC56-194D54768C7F}
+		{AA3C9336-EFD3-45A9-AB1F-5DF529733217} = {1F781E82-E7ED-454C-BC56-194D54768C7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75145412-FA7D-4F88-9260-A30A4BFA809A}
