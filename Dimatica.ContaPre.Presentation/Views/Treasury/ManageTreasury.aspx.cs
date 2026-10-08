@@ -703,6 +703,19 @@
             this.Response.Redirect("~/Views/Treasury/NotesTreasuries.aspx");
         }
 
+        protected void btnDelete_OnClick(object sender, EventArgs e)
+        {
+
+            if (this.Treasury.TES_CODIGO == 0)
+            {
+                return;
+            }
+
+            var message = "¿ Está seguro que desea eliminar el expediente extrapresupuestario en cuestión ?<br/>Se eliminarán todos los datos asociados a dicho expediente:<br/>- Apuntes de tesorería.<br/>- Hojas de arqueo.";
+
+            this.rwmManageTreasury.RadConfirm(message, "confirmDeleteCallBackFn", 330, 140, null, "Confirmación");
+        }
+
         protected void Page_PreRender(object sender, EventArgs e)
         {
             if (this.Treasury == null || this.Treasury.TES_CODIGO == 0)

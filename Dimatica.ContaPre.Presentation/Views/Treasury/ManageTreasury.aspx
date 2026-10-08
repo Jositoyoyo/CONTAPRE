@@ -13,7 +13,7 @@
     ContentPlaceHolderID="ContentPlaceHolder1"
     runat="server">
     <%--Modales--%>
-    <telerik:RadWindowManager ID="rwmManageTreasury" runat="server">
+    <telerik:RadWindowManager ID="rwmManageTreasury" runat="server" RenderMode="Lightweight">
         <Windows>
 
             <%--Documentos Enlazados--%>
@@ -337,9 +337,8 @@
                         runat="server"
                         RenderMode="Native"
                         Text="Eliminar Apunte"
-                        AutoPostBack="False"
-                        OnClientClicked="btnDeleteOnClientClicked"
-                        CausesValidation="False">
+                        AutoPostBack="True"
+                        OnClick="btnDelete_OnClick">
                     </telerik:RadButton>
                     <telerik:RadButton ButtonType="LinkButton" ID="btnNew"
                         runat="server"
@@ -407,7 +406,13 @@
             }
 
             function btnDeleteOnClientClicked(sender, eventArgs) {
-                confirmDeleteCallBackFn(window.confirm("¿Desea realmente eliminar el apunte de tesorería?\nSe eliminarán también los enlaces con documentos, en caso de tenerlos."));
+                radconfirm("¿Desea realmente eliminar el apunte de tesorería?\nSe eliminarán también los enlaces con documentos, en caso de tenerlos.",
+                    confirmDeleteCallBackFn,
+                    330,
+                    140,
+                    null,
+                    "Confirmación",
+                    null);
             }
 
             function confirmDeleteCallBackFn(arg)
@@ -428,17 +433,17 @@
                             radalert("Ha ocurrido un error eliminando el Apunte de Tesorería en cuestión.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
                             break;
                         case 1:
-                                var url = '<%= ResolveUrl("~/Views/Treasury/NotesTreasuries.aspx") %>';
+                            var url = '<%= ResolveUrl("~/Views/Treasury/NotesTreasuries.aspx") %>';
                             window.location.href = url;
                             break;
                         case 2:
-                                radalert("No se puede eliminar el Apunte de Tesorería en cuestión debido a que no se ha encontrado en la BD.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
+                            radalert("No se puede eliminar el Apunte de Tesorería en cuestión debido a que no se ha encontrado en la BD.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
                             break;
                         case 3:
-                                radalert("No se puede eliminar el apunte porque ha sido enlazado con un Derecho Reconocido en la aplicación de Convenios.<br/>Informe a Convenios para que elimine el enlace, y vuelva a intentarlo.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
+                            radalert("No se puede eliminar el apunte porque ha sido enlazado con un Derecho Reconocido en la aplicación de Convenios.<br/>Informe a Convenios para que elimine el enlace, y vuelva a intentarlo.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
                             break;
                         case 4:
-                                radalert("No se ha podido eliminar el ingreso en la aplicación de Convenios. Para poder eliminarlo en Contabilidad es necesario eliminarlo también en Convenios.<br/>Informe a Convenios para que elimine el apunte, y vuelva a intentarlo.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
+                            radalert("No se ha podido eliminar el ingreso en la aplicación de Convenios. Para poder eliminarlo en Contabilidad es necesario eliminarlo también en Convenios.<br/>Informe a Convenios para que elimine el apunte, y vuelva a intentarlo.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
                             break;
                         }
                     }, error: function (xhr, ajaxOptions, thrownError) {
