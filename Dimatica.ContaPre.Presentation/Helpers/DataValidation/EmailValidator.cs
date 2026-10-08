@@ -1,4 +1,4 @@
-﻿namespace Dimatica.ContaPre.Presentation.DataValidation
+﻿namespace Dimatica.ContaPre.Presentation.Helpers.DataValidation
 {
 
     using System.Text.RegularExpressions;

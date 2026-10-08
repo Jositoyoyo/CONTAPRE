@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dimatica.ContaPre.Presentation.Helpers;
 using Dimatica.ContaPre.Presentation.Helpers.PlainPassword;
 using System.Linq;
 

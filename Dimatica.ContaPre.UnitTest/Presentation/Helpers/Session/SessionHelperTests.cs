@@ -1,4 +1,3 @@
-using Dimatica.ContaPre.Presentation.Helpers;
 using Dimatica.ContaPre.Presentation.Helpers.Session;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

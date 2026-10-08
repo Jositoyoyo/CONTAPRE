@@ -12,9 +12,8 @@
     using Dimatica.ContaPre.BLL.Interfaces;
     using Dimatica.ContaPre.OL.Business;
     using Dimatica.ContaPre.OL.Models;
-    using Dimatica.ContaPre.Presentation.Helpers;
-    using Dimatica.ContaPre.Presentation.Views.Shared;
-    using Dimatica.ContaPre.Presentation.DataValidation;
+        using Dimatica.ContaPre.Presentation.Views.Shared;
+    using Dimatica.ContaPre.Presentation.Helpers.DataValidation;
     using Dimatica.ContaPre.Presentation.Helpers.Email;
     using Dimatica.ContaPre.Presentation.Helpers.PlainPassword;
     using Dimatica.ContaPre.Presentation.Helpers.Session;

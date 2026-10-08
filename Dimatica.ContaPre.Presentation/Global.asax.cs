@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using Dimatica.ContaPre.Presentation.Common;
-using Dimatica.ContaPre.Presentation.Helpers;
 using Telerik.Web.UI.Diagram;
 
 namespace Dimatica.ContaPre.Presentation

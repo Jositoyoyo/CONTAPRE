@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Dimatica.ContaPre.Helpers
+namespace Dimatica.ContaPre.Presentation.Helpers.DataValidation
 {
     public class IdentificationValidator
     {

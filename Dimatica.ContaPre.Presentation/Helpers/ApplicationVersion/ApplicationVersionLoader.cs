@@ -1,4 +1,4 @@
-namespace Dimatica.ContaPre.Presentation.Helpers
+namespace Dimatica.ContaPre.Presentation.Helpers.ApplicationVersion
 {
     #region NameSpaces
 

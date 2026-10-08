@@ -1,5 +1,4 @@
-﻿using Dimatica.ContaPre.Presentation.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dimatica.ContaPre.Presentation.Helpers.Cryptography;
 using System;
 

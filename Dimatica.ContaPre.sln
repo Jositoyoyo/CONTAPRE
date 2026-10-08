@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.OL", "Dim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.UnitTest", "Dimatica.ContaPre.UnitTest\Dimatica.ContaPre.UnitTest.csproj", "{4B03244F-08B2-4E01-8127-D34A16241D21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dimatica.ContaPre.BLL.IntegrationTest", "Dimatica.ContaPre.BLL.IntegrationTest\Dimatica.ContaPre.BLL.IntegrationTest.csproj", "{AA3C9336-EFD3-45A9-AB1F-5DF529733217}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,12 +52,18 @@ Global
 		{4B03244F-08B2-4E01-8127-D34A16241D21}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{4B03244F-08B2-4E01-8127-D34A16241D21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B03244F-08B2-4E01-8127-D34A16241D21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3C9336-EFD3-45A9-AB1F-5DF529733217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3C9336-EFD3-45A9-AB1F-5DF529733217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3C9336-EFD3-45A9-AB1F-5DF529733217}.Development|Any CPU.ActiveCfg = Development|Any CPU
+		{AA3C9336-EFD3-45A9-AB1F-5DF529733217}.Development|Any CPU.Build.0 = Development|Any CPU
+		{AA3C9336-EFD3-45A9-AB1F-5DF529733217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3C9336-EFD3-45A9-AB1F-5DF529733217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {75145412-FA7D-4F88-9260-A30A4BFA809A}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+		SolutionGuid = {75145412-FA7D-4F88-9260-A30A4BFA809A}
 	EndGlobalSection
 EndGlobal

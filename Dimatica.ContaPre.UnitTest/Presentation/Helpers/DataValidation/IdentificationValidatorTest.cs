@@ -1,4 +1,4 @@
-﻿using Dimatica.ContaPre.Helpers;
+﻿using Dimatica.ContaPre.Presentation.Helpers.DataValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dimatica.ContaPre.UnitTest.Presentation.Helpers.DataValidation

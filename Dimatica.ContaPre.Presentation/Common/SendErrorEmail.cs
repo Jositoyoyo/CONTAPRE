@@ -1,5 +1,4 @@
-﻿using Dimatica.ContaPre.Presentation.Helpers;
-using Dimatica.ContaPre.Presentation.Helpers.Email;
+﻿using Dimatica.ContaPre.Presentation.Helpers.Email;
 using System;
 using System.Collections.Specialized;
 using System.Configuration;

@@ -6,8 +6,7 @@
     using System.Globalization;
     using System.Threading;
     using System.Web;
-    using Dimatica.ContaPre.Presentation.Helpers;
-    using Dimatica.ContaPre.Presentation.Helpers.SiteData;
+        using Dimatica.ContaPre.Presentation.Helpers.SiteData;
 
     #endregion
 

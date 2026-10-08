@@ -10,10 +10,9 @@
     using Dimatica.ContaPre.Presentation.Helpers.Email;
     using Dimatica.ContaPre.Presentation.Helpers.PlainPassword;
     using Dimatica.ContaPre.Presentation.Helpers.Session;
-    using Dimatica.ContaPre.Presentation.Helpers;
-    using Dimatica.ContaPre.Presentation.Views.Shared;
+        using Dimatica.ContaPre.Presentation.Views.Shared;
     using System.Collections.Specialized;
-    using Dimatica.ContaPre.Presentation.DataValidation;
+    using Dimatica.ContaPre.Presentation.Helpers.DataValidation;
     using System.Collections.Generic;
     using Dimatica.ContaPre.OL.Business;
 
