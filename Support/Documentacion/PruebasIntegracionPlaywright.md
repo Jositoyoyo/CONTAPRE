@@ -10,7 +10,7 @@ Las pruebas de interfaz se ejecutan con Playwright Test y Chromium, de forma ind
 
 ## Preparación y ejecución
 
-Desde la raíz del repositorio:
+Desde la carpeta `Dimatica.ContaPre.Tests` del repositorio:
 
 ```powershell
 npm ci
@@ -27,4 +27,4 @@ npm run test:integration
 
 La prueba inicial recorre las pantallas de inicio de sesión y recuperación de contraseña y vuelve al inicio de sesión. No rellena ni envía credenciales, no actualiza datos y no dispara el envío de correo.
 
-Los informes HTML y resultados de ejecución se guardan localmente en `playwright-report/` y `test-results/`; ambos directorios están excluidos de Git.
+Los informes HTML y resultados de ejecución se guardan localmente en `Dimatica.ContaPre.Tests/playwright-report/` y `Dimatica.ContaPre.Tests/test-results/`; ambos directorios están excluidos de Git.
