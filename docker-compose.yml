@@ -12,7 +12,7 @@ services:
       - "127.0.0.1:14333:1433"
     volumes:
       - contapre-sqlserver-data:/var/opt/mssql
-      - ./Support/Database:/var/backups:ro
+      - ./.support/database:/var/backups:ro
     restart: unless-stopped
 
 volumes:

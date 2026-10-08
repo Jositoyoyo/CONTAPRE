@@ -16,7 +16,7 @@ const config = {
 
 if (!externalBaseURL) {
   config.webServer = {
-    command: 'powershell -NoProfile -ExecutionPolicy Bypass -File ../Support/Utils/StartLocal.ps1',
+    command: 'powershell -NoProfile -ExecutionPolicy Bypass -File ../.support/utils/StartLocal.ps1',
     url: `${baseURL}/Views/Account/Login.aspx`,
     reuseExistingServer: !process.env.CI,
     timeout: 180000,

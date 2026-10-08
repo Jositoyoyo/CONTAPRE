@@ -39,9 +39,9 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 
 ## Estructura de documentación y soporte
 
-- `Support\Documentacion` contiene documentación funcional, descripción del entorno, operación, despliegue, desarrollo, pruebas, arquitectura y conexiones.
-- `Support\Deploy` contiene scripts operativos de desarrollo, producción, limpieza de logs y apertura de IIS.
-- `Support/Changelog/YYYY-MM-DD.md` contiene el diario de cambios realizados en cada fecha.
+- `.support\documentacion` contiene documentación funcional, descripción del entorno, operación, despliegue, desarrollo, pruebas, arquitectura y conexiones.
+- `.support\deploy` contiene scripts operativos de desarrollo, producción, limpieza de logs y apertura de IIS.
+- `.support/changelog/YYYY-MM-DD.md` contiene el diario de cambios realizados en cada fecha.
 - Tratar la documentación como referencia del comportamiento y del procedimiento; verificar siempre el código y la configuración actuales antes de aplicar una instrucción operativa.
 
 ## Desarrollo, pruebas y despliegue
@@ -86,14 +86,14 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 
 ### Ejecución local
 
-- `Support\Deploy\StartLocal.ps1` reconstruye la solución con `Development` y levanta `Dimatica.ContaPre.Presentation` mediante IIS Express.
+- `.support\utils\StartLocal.ps1` reconstruye la solución con `Development` y levanta `Dimatica.ContaPre.Presentation` mediante IIS Express.
 - La URL local es `http://localhost:54234/` y la configuración procede de `.vs\Dimatica.ContaPre\config\applicationhost.config`.
 - El script comprueba el puerto antes de iniciar y no detiene procesos existentes si está ocupado.
 - La ejecución local no publica en servidores remotos, no limpia logs, no crea backups y no copia `ClearLogs.ps1`.
 
 ### Despliegue de desarrollo
 
-- `Support\Deploy\DeployDesarrollo.ps1` compila con configuración `Development` y publica directamente en el destino IIS remoto configurado en el script.
+- `.support\deploy\DeployDesarrollo.ps1` compila con configuración `Development` y publica directamente en el destino IIS remoto configurado en el script.
 - El destino actual es `\\suimpappmad021\C$\inetpub\wwwroot\CONTAPRE`; no se utiliza una carpeta de staging o publicación intermedia.
 - Solicita confirmación antes de modificar el destino.
 - Tras confirmar, elimina los archivos de logs configurados y publica únicamente `ClearLogs.ps1` desde `Support\Deploy` fuera de la publicación de la aplicación.
@@ -101,7 +101,7 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 
 ### Despliegue de producción
 
-- `Support\Deploy\DeployProduccion.ps1` utiliza `Release` y `PRODUCCION.pubxml`.
+- `.support\deploy\DeployProduccion.ps1` utiliza `Release` y `PRODUCCION.pubxml`.
 - Publica directamente en el destino IIS de producción configurado en el script.
 - Pregunta si se desea realizar un backup antes de publicar.
 - El destino actual es `\\suimpappmad041\C$\inetpub\wwwroot\CONTAPRE` y la carpeta de backups es `\\suimpappmad041\CONTAPRE\backups`.
@@ -138,6 +138,6 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 4. Implementar el cambio mínimo compatible con .NET Framework 4.8.
 5. Ejecutar compilación, pruebas o verificaciones estáticas proporcionales al riesgo.
 6. Revisar el diff, retirar diagnósticos o secretos accidentales y comprobar que no se han modificado archivos fuera del alcance.
-7. Documentar los cambios realizados en `Support/Changelog/YYYY-MM-DD.md`, usando la fecha del cambio. Crear el archivo diario si no existe y no incluir secretos, credenciales, cadenas de conexión, datos personales ni logs sensibles.
+7. Documentar los cambios realizados en `.support/changelog/YYYY-MM-DD.md`, usando la fecha del cambio. Crear el archivo diario si no existe y no incluir secretos, credenciales, cadenas de conexión, datos personales ni logs sensibles.
 
 Al informar del resultado, indicar los ficheros modificados, las verificaciones ejecutadas, advertencias conocidas y cualquier prueba bloqueada por dependencias del entorno.
