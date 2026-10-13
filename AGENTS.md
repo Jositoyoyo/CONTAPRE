@@ -61,8 +61,11 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 
 - El proyecto de pruebas unitarias es `Dimatica.ContaPre.Tests\Dimatica.ContaPre.UnitTest`.
 - El proyecto de integración de BLL es `Dimatica.ContaPre.Tests\Dimatica.ContaPre.IntegrationTest`; usa la conexión `ContaPreModel` de `Presentation\Web.config` y sus escenarios actuales son de solo lectura.
-- Ambos proyectos usan MSTest 2.1.1, `Microsoft.NET.TestPlatform` compatible y .NET Framework 4.8.
+- Los proyectos de pruebas usan MSTest 2.1.1, `Microsoft.NET.TestPlatform` compatible y .NET Framework 4.8.
 - Las pruebas unitarias deben ser deterministas y no depender de IIS, Oracle, SQL Server, SMTP, LDAP, rutas UNC, datos reales ni servicios externos.
+- El proyecto de pruebas funcionales HTTP es `Dimatica.ContaPre.Tests\Dimatica.ContaPre.HttpTest`; comprueba la aplicación Web Forms a través de `HttpClient` y requiere que la instancia objetivo ya esté levantada. Usa `http://localhost:54234` por defecto; `CONTAPRE_BASE_URL` permite indicar otra URL base.
+- La cobertura HTTP actual solicita únicamente `GET /Views/Account/Login.aspx` y verifica HTTP 200 y el texto «Contabilidad Presupuestaria». No envía credenciales ni modifica datos; no comprueba JavaScript ni la interacción visual en un navegador.
+- Las pruebas funcionales HTTP pueden depender de una instancia local de IIS Express ya iniciada; no ejecutarlas contra producción.
 - Ejemplos de verificación:
 
   ```powershell
@@ -80,6 +83,19 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
   & '...\vstest.console.exe' `
       'artifacts\bin\Dimatica.ContaPre.IntegrationTest\Debug\Dimatica.ContaPre.IntegrationTest.dll'
   ```
+
+  Para compilar y ejecutar las pruebas funcionales HTTP, con la aplicación ya iniciada:
+
+  ```powershell
+  & '...\MSBuild.exe' `
+      'Dimatica.ContaPre.Tests\Dimatica.ContaPre.HttpTest\Dimatica.ContaPre.HttpTest.csproj' `
+      /t:Build /p:Configuration=Debug /p:Platform=AnyCPU
+
+  & '...\vstest.console.exe' `
+      'artifacts\bin\Dimatica.ContaPre.HttpTest\Debug\Dimatica.ContaPre.HttpTest.dll'
+  ```
+
+  Para usar otra instancia, establecer `$env:CONTAPRE_BASE_URL` antes de ejecutar VSTest.
 
 - Antes de modificar pruebas, reutilizar fixtures y utilidades existentes. Restaurar siempre el estado global de `HttpContext.Current` y limpiar temporales creados por las pruebas.
 - Si una prueba requiere Oracle, SQL Server, SMTP, IIS o una ruta remota, aislarla mediante mocks o seams; no ejecutar la operación externa como verificación rutinaria.
