@@ -69,7 +69,7 @@ Global
 		{AA3C9336-EFD3-45A9-AB1F-5DF529733217} = {1F781E82-E7ED-454C-BC56-194D54768C7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {75145412-FA7D-4F88-9260-A30A4BFA809A}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
+		SolutionGuid = {75145412-FA7D-4F88-9260-A30A4BFA809A}
 	EndGlobalSection
 EndGlobal
