@@ -528,9 +528,21 @@
             string emailBody = EmailTemplate.GetEmailBodyRecoveryCredentias("~/Views/EmailTemplates/CredentialsTemplate.html", userName, userLogin, password);
             bool isBodyHtml  = true;
 
-            EmailSender.SendEmail(from,userEmail, subject, emailBody, isBodyHtml);
-
-            return js.Serialize(new
+            try
+            {
+                EmailSender.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
+            }
+            catch (Exception ex)
+            {
+                return js.Serialize(new
+                {
+                    date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    id = user_id,
+                    message = "Error al enviar el correo" + ex.Message,
+                    status = "error"
+                });
+            }
+                return js.Serialize(new
             {
                 date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 id = user_id,
