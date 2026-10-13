@@ -107,8 +107,30 @@
             string emailBody = EmailTemplate.GetEmailBodyDynamicParams("~/Views/EmailTemplates/CredentialsTemplate.html", parameters);
             bool isBodyHtml  = true;
 
-            EmailSender.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
-            
+            try
+            {
+                EmailSender.SendEmail(from, userEmail, subject, emailBody, isBodyHtml);
+            }
+            catch (Exception ex)
+            {
+                LogError(ex, "Error enviando el correo de recuperación de contraseña.");
+
+                string errorMessage = "No se pudo enviar el correo: " + ex.Message;
+
+                this.lblError.Visible = true;
+                this.lblError.InnerText = errorMessage;
+
+                strBuilder.Clear();
+                strBuilder.Append(System.Web.HttpUtility.HtmlEncode(errorMessage));
+                this.ShowMessage(
+                    this.RadNotification,
+                    "Error al enviar el correo",
+                    strBuilder,
+                    MessageType.Warning);
+
+                return;
+            }
+
             strBuilder.Append("Se ha enviado un correo electrónico con las credenciales de acceso.");
             this.ShowMessage(this.RadNotification, "Correo electrónico enviado", strBuilder, MessageType.Ok);
             
