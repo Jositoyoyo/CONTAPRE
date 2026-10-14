@@ -21,4 +21,6 @@ Por defecto, las pruebas usan `http://localhost:54234`. Para apuntar a otra inst
 $env:CONTAPRE_BASE_URL = 'http://localhost:54234'
 ```
 
-La cobertura inicial solicita `GET /Views/Account/Login.aspx` y comprueba que la respuesta sea HTTP 200 y que el HTML incluya «Contabilidad Presupuestaria». No envía credenciales ni modifica datos. Si no se puede conectar, la prueba falla con una indicación para iniciar la aplicación o configurar la URL base.
+La cobertura HTTP solicita las páginas públicas de inicio de sesión y recuperación de contraseña para comprobar el estado HTTP, el contenido funcional y los enlaces de navegación. También solicita `GET /Default.aspx` y verifica que la aplicación redirija a la página de inicio de sesión. El cliente no sigue automáticamente las redirecciones para poder comprobar el estado HTTP 302 y su destino.
+
+Las pruebas solo realizan solicitudes GET: no envían credenciales, no ejecutan la recuperación de contraseña ni modifican datos. No prueban JavaScript ni la interacción visual en un navegador. No las ejecutes contra producción. Si no se puede conectar, la prueba falla con una indicación para iniciar la aplicación o configurar la URL base.

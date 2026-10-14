@@ -64,7 +64,7 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 - Los proyectos de pruebas usan MSTest 2.1.1, `Microsoft.NET.TestPlatform` compatible y .NET Framework 4.8.
 - Las pruebas unitarias deben ser deterministas y no depender de IIS, Oracle, SQL Server, SMTP, LDAP, rutas UNC, datos reales ni servicios externos.
 - El proyecto de pruebas funcionales HTTP es `Dimatica.ContaPre.Tests\Dimatica.ContaPre.HttpTest`; comprueba la aplicación Web Forms a través de `HttpClient` y requiere que la instancia objetivo ya esté levantada. Usa `http://localhost:54234` por defecto; `CONTAPRE_BASE_URL` permite indicar otra URL base.
-- La cobertura HTTP actual solicita únicamente `GET /Views/Account/Login.aspx` y verifica HTTP 200 y el texto «Contabilidad Presupuestaria». No envía credenciales ni modifica datos; no comprueba JavaScript ni la interacción visual en un navegador.
+- La cobertura HTTP solicita `GET /Views/Account/Login.aspx` y `GET /Views/Account/ForgotPassword.aspx` para verificar estado, contenido y navegación, y `GET /Default.aspx` para comprobar la redirección a inicio de sesión. Solo usa GET; no envía credenciales ni realiza recuperación de contraseña o cambios de datos. No comprueba JavaScript ni la interacción visual en un navegador.
 - Las pruebas funcionales HTTP pueden depender de una instancia local de IIS Express ya iniciada; no ejecutarlas contra producción.
 - Ejemplos de verificación:
 
