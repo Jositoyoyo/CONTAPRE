@@ -4,7 +4,7 @@ namespace Dimatica.ContaPre.UnitTest.BLL
     using System.Collections.Generic;
 
     using Dimatica.ContaPre.BLL.Interfaces;
-    using Dimatica.ContaPre.BLL.UseCases;
+    using Dimatica.ContaPre.BLL.UseCases.Treasury;
     using Dimatica.ContaPre.OL.Business;
     using Dimatica.ContaPre.OL.Models;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

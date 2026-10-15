@@ -1,4 +1,4 @@
-namespace Dimatica.ContaPre.BLL.UseCases
+namespace Dimatica.ContaPre.BLL.UseCases.Treasury
 {
     public enum DeleteTreasuryResult
     {

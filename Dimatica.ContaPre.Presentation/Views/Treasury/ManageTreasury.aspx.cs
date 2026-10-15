@@ -13,7 +13,7 @@
 
     using Dimatica.ContaPre.BLL.Configs;
     using Dimatica.ContaPre.BLL.Interfaces;
-    using Dimatica.ContaPre.BLL.UseCases;
+    using Dimatica.ContaPre.BLL.UseCases.Treasury;
     using Dimatica.ContaPre.OL.Business;
     using Dimatica.ContaPre.OL.Models;
     using Dimatica.ContaPre.Presentation.Views.Shared;

@@ -139,7 +139,7 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 
 ### Casos de uso BLL
 
-- Ubicar los casos de uso en `Dimatica.ContaPre.BLL\UseCases`, junto con su interfaz, y registrarlos en `ServiceRegister`.
+- Ubicar los casos de uso en `Dimatica.ContaPre.BLL\UseCases\<Modulo>`, junto con sus interfaces y resultados propios, usando el namespace `Dimatica.ContaPre.BLL.UseCases.<Modulo>`, y registrarlos en `ServiceRegister`.
 - Usar los casos de uso para coordinar servicios BLL mediante sus interfaces. Presentation debe obtener los datos de sesión y configuración, invocar el caso de uso y conservar las responsabilidades propias de Web Forms, incluidos los contratos públicos y el registro de excepciones.
 - Preferir resultados tipados para representar los estados de un caso de uso. Cuando deban mantenerse códigos numéricos expuestos por un contrato público, asignar valores explícitos y preservar la compatibilidad con sus consumidores.
 - Probar la lógica de los casos de uso con MSTest y dobles de servicios, sin depender de proveedores o bases de datos reales. Reservar las pruebas de integración para validar la comunicación con proveedores, siguiendo los patrones existentes.

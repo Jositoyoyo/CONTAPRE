@@ -4,7 +4,7 @@
 
     using Dimatica.ContaPre.BLL.Interfaces;
     using Dimatica.ContaPre.BLL.Services;
-    using Dimatica.ContaPre.BLL.UseCases;
+    using Dimatica.ContaPre.BLL.UseCases.Treasury;
 
     using LightInject;
 

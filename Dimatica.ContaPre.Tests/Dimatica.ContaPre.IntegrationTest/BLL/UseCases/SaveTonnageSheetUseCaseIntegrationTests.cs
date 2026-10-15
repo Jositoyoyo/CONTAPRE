@@ -5,7 +5,7 @@ namespace Dimatica.ContaPre.IntegrationTest.BLL.UseCases
 
     using Dimatica.ContaPre.BLL.Interfaces;
     using Dimatica.ContaPre.BLL.Services;
-    using Dimatica.ContaPre.BLL.UseCases;
+    using Dimatica.ContaPre.BLL.UseCases.Treasury;
     using Dimatica.ContaPre.DAL.DataContexts;
     using Dimatica.ContaPre.IntegrationTest.Support;
     using Dimatica.ContaPre.OL.Business;
