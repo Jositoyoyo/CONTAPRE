@@ -13,6 +13,7 @@
 
     using Dimatica.ContaPre.BLL.Configs;
     using Dimatica.ContaPre.BLL.Interfaces;
+    using Dimatica.ContaPre.BLL.UseCases;
     using Dimatica.ContaPre.OL.Business;
     using Dimatica.ContaPre.OL.Models;
     using Dimatica.ContaPre.Presentation.Views.Shared;
@@ -28,6 +29,8 @@
         private static IAccountingDocumentsService accountingDocumentsService = DependencyFactory.GetInstance<IAccountingDocumentsService>();
 
         private static ITreasuriesService treasuriesService = DependencyFactory.GetInstance<ITreasuriesService>();
+
+        private static IDeleteTreasuryUseCase deleteTreasuryUseCase = DependencyFactory.GetInstance<IDeleteTreasuryUseCase>();
 
         #endregion
 
@@ -102,68 +105,8 @@
                     return 2;
                 }
 
-                var foundInOracle = false;
-                var recognizedRights = string.Empty;
-
-                var connectToToOracle = Convert.ToBoolean(ConfigurationManager.AppSettings["connectToOracle"]);
-                if (connectToToOracle)
-                {
-                    var found = treasuriesService.FoundTreasuryOracle(id);
-
-                    if (found)
-                    {
-                        foundInOracle = true;
-                        recognizedRights = treasuriesService.GetRecognizedRightsOracle(id);
-                    }
-                }
-
-                if (string.IsNullOrWhiteSpace(recognizedRights))
-                {
-                    var documents = treasuriesService.GetDocuments(null, null, id);
-
-                    foreach (var document in documents)
-                    {
-                        if (document.DOC_CODIGO != null)
-                        {
-                            var bills = accountingDocumentsService.GetPurchases((int)document.DOC_CODIGO);
-
-                            foreach (var bill in bills)
-                            {
-                                var updatePayBank = accountingDocumentsService.UpdatePayBankOracle((DateTime?)null, (int)bill.CODFACTURAGEI);
-
-                                var updateHistory = accountingDocumentsService.UpdateHistoryOracle(bill.NCERTIFICADO, "Se ha eliminado el apunte de tesorería vinculado al pago de la factura.");
-                            }
-                        }
-                    }
-
-                    if (foundInOracle)
-                    {
-                        var deleteTreasuryOracle = treasuriesService.DeleteTreasuryOracle(id);
-
-                        if (deleteTreasuryOracle.ResponseCode != ResponseCode.Ok)
-                        {
-                            return 4;
-                        }
-                    }
-
-                    var delete = treasuriesService.DeleteTreasury(id, LoginUser.USU_CODIGO);
-
-                    switch (delete.ResponseCode)
-                    {
-                        case ResponseCode.Invalid:
-                            return 0;
-                        case ResponseCode.Ok:
-                            return 1;
-                        case ResponseCode.NotFound:
-                            return 2;
-                    }
-                }
-                else
-                {
-                    return 3;
-                }
-
-                return 0;
+                var connectToOracle = Convert.ToBoolean(ConfigurationManager.AppSettings["connectToOracle"]);
+                return deleteTreasuryUseCase.DeleteTreasury(id, LoginUser.USU_CODIGO, connectToOracle);
             }
             catch (Exception ex)
             {

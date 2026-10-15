@@ -3,7 +3,7 @@
     MasterPageFile="~/Views/Shared/MasterPage.Master"
     AutoEventWireup="true"
     CodeBehind="ManageUser.aspx.cs"
-    Inherits="Dimatica.ContaPre.Presentation.Views.Systems.Users.ManageUser" %>
+    Inherits="Dimatica.ContaPre.Presentation.Views.Systems.ManageUser" %>
 
 <asp:Content ID="Content1"
     ContentPlaceHolderID="head"
@@ -351,7 +351,7 @@
 
                     $.ajax({
                         type: "POST",
-                        url: "<%= ResolveUrl("~/Views/Systems/Users/ManageUser.aspx/DeleteUser") %>",
+                        url: "<%= ResolveUrl("~/Views/Systems/ManageUser.aspx/DeleteUser") %>",
                         data: JSON.stringify({ user_id: currentUserId }),
                         contentType: "application/json; charset=utf-8",
                         async: true,
@@ -400,7 +400,7 @@
 
                     $.ajax({
                          type: "POST",
-                         url: "<%= ResolveUrl("~/Views/Systems/Users/ManageUser.aspx/SendEmail") %>",
+                         url: "<%= ResolveUrl("~/Views/Systems/ManageUser.aspx/SendEmail") %>",
                          data: JSON.stringify({ user_id: currentUserId }),
                          contentType: "application/json; charset=utf-8",
                          async: true,
@@ -451,7 +451,7 @@
 
                     $.ajax({
                          type: "POST",
-                         url: "<%= ResolveUrl("~/Views/Systems/Users/ManageUser.aspx/ResetPassword") %>",
+                         url: "<%= ResolveUrl("~/Views/Systems/ManageUser.aspx/ResetPassword") %>",
                          data: JSON.stringify({ user_id: currentUserId }),
                          contentType: "application/json; charset=utf-8",
                          async: true,

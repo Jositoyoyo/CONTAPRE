@@ -50,6 +50,8 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\DeleteTreasuryUseCaseTests.cs" />
+    <Compile Include="BLL\TreasuryDeletionServiceDoubleBases.cs" />
     <Compile Include="Presentation\Helpers\DataValidation\EmailValidatorTests.cs" />
     <Compile Include="Presentation\Helpers\DataValidation\IbanValidatorTest.cs" />
     <Compile Include="Presentation\Helpers\DataValidation\IdentificationValidatorTest.cs" />
@@ -70,6 +72,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Dimatica.ContaPre.BLL\Dimatica.ContaPre.BLL.csproj">
+      <Project>{053f62ce-899e-463d-a5c8-ef5263c61323}</Project>
+      <Name>Dimatica.ContaPre.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Dimatica.ContaPre.Presentation\Dimatica.ContaPre.Presentation.csproj">
       <Project>{544305a7-4c42-4fee-9423-508b0a7a9c05}</Project>
       <Name>Dimatica.ContaPre.Presentation</Name>

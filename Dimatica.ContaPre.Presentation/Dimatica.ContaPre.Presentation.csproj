@@ -494,8 +494,8 @@
     <Content Include="Views\Development\SendEmail.aspx" />
     <Content Include="Views\Development\HomeTest.aspx" />
     <Content Include="Views\Development\RadWindow.aspx" />
-    <Content Include="Views\Systems\Users\ManageUser.aspx" />
-    <Content Include="Views\Systems\Users\Users.aspx" />
+    <Content Include="Views\Systems\ManageUser.aspx" />
+    <Content Include="Views\Systems\Users.aspx" />
     <Content Include="Views\Treasury\BoundDocuments.aspx" />
     <Content Include="Views\Treasury\ManageTreasury.aspx" />
     <Content Include="Views\Treasury\ManageTonnageSheet.aspx" />
@@ -1188,18 +1188,18 @@
     <Compile Include="Views\Development\RadWindow.aspx.designer.cs">
       <DependentUpon>RadWindow.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Systems\Users\ManageUser.aspx.cs">
+    <Compile Include="Views\Systems\ManageUser.aspx.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Systems\Users\ManageUser.aspx.designer.cs">
+    <Compile Include="Views\Systems\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Systems\Users\Users.aspx.cs">
+    <Compile Include="Views\Systems\Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Systems\Users\Users.aspx.designer.cs">
+    <Compile Include="Views\Systems\Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Treasury\BoundDocuments.aspx.cs">

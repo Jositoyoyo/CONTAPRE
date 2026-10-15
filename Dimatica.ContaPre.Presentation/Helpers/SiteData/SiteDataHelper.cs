@@ -54,7 +54,7 @@
             siteDataItems.Add(new SiteDataItem(80, 0, "Sistema"));
             siteDataItems.Add(new SiteDataItem(82, 80, "Parámetros", "~/Views/Systems/Parameters.aspx"));
             siteDataItems.Add(new SiteDataItem(83, 80, "Cambiar Password", "~/Views/Systems/ChangePassword.aspx"));
-            siteDataItems.Add(new SiteDataItem(84, 80, "Gestion Usuarios", "~/Views/Systems/Users/Users.aspx"));
+            siteDataItems.Add(new SiteDataItem(84, 80, "Gestion Usuarios", "~/Views/Systems/Users.aspx"));
 
             siteDataItems.Add(new SiteDataItem(90, 0, "Tablas"));
             siteDataItems.Add(new SiteDataItem(91, 90, "Aplicaciones", "~/Views/Maintenance/Applications.aspx"));

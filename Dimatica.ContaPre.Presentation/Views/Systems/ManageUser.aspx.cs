@@ -1,4 +1,4 @@
-﻿namespace Dimatica.ContaPre.Presentation.Views.Systems.Users
+﻿namespace Dimatica.ContaPre.Presentation.Views.Systems
 {
     #region NameSpaces
 
@@ -43,7 +43,7 @@
             if (LoginUser.USU_NIVEL.ToString() != "100")
             {
                 Session["ErrorMessage"] = "No tienes permiso para acceder a esta página";
-                this.Response.Redirect("~/Views/Systems/Users/Users.aspx");
+                this.Response.Redirect("~/Views/Systems/Users.aspx");
             }
 
         }
@@ -311,7 +311,7 @@
 
         protected void btnBack_OnClick(object sender, EventArgs e)
         {
-            this.Response.Redirect("~/Views/Systems/Users/Users.aspx");
+            this.Response.Redirect("~/Views/Systems/Users.aspx");
         }
 
         protected void btnSendMailNewUser_Onclick(object sender, EventArgs e)

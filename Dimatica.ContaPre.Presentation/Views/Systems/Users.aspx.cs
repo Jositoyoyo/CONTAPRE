@@ -1,4 +1,4 @@
-﻿namespace Dimatica.ContaPre.Presentation.Views.Systems.Users
+﻿namespace Dimatica.ContaPre.Presentation.Views.Systems
 {
     #region NameSpaces
 
@@ -116,7 +116,7 @@
                 var item   = e.Item as GridDataItem;
                 var UserId = (int) item.GetDataKeyValue("USU_CODIGO");
 
-                this.Response.Redirect($"~/Views/Systems/Users/ManageUser.aspx?id={UserId}");
+                this.Response.Redirect($"~/Views/Systems/ManageUser.aspx?id={UserId}");
             }
         }
 

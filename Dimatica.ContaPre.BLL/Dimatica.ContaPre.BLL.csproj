@@ -74,6 +74,7 @@
     <Compile Include="Configs\DependencyFactory.cs" />
     <Compile Include="Configs\ServiceRegister.cs" />
     <Compile Include="Interfaces\IAccountingDocumentsService.cs" />
+    <Compile Include="UseCases\IDeleteTreasuryUseCase.cs" />
     <Compile Include="Interfaces\IAdministrativeRecordsService.cs" />
     <Compile Include="Interfaces\IBillPurchasesService.cs" />
     <Compile Include="Interfaces\IBudgetApplicationsService.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountingDocumentsService.cs" />
+    <Compile Include="UseCases\DeleteTreasuryUseCase.cs" />
     <Compile Include="Services\AccountPgcpService.cs" />
     <Compile Include="Services\AccountRestrictedService.cs" />
     <Compile Include="Services\AdministrativeRecordsService.cs" />

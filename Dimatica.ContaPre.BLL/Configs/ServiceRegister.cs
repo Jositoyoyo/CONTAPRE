@@ -4,6 +4,7 @@
 
     using Dimatica.ContaPre.BLL.Interfaces;
     using Dimatica.ContaPre.BLL.Services;
+    using Dimatica.ContaPre.BLL.UseCases;
 
     using LightInject;
 
@@ -16,6 +17,7 @@
         public void Compose(IServiceRegistry serviceRegistry)
         {
             serviceRegistry.Register<IAccountingDocumentsService, AccountingDocumentsService>();
+            serviceRegistry.Register<IDeleteTreasuryUseCase, DeleteTreasuryUseCase>();
             serviceRegistry.Register<IAccountingRecordsService, AccountingRecordsService>();
             serviceRegistry.Register<IAccountPgcpService, AccountPgcpService>();
             serviceRegistry.Register<IAccountRestrictedService, AccountRestrictedService>();

@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Dimatica.ContaPre.Presentation.Views.Systems.Users
+namespace Dimatica.ContaPre.Presentation.Views.Systems
 {
 
 

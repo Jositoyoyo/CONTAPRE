@@ -3,7 +3,7 @@
     MasterPageFile="~/Views/Shared/MasterPage.Master"
     AutoEventWireup="true"
     CodeBehind="Users.aspx.cs"
-    Inherits="Dimatica.ContaPre.Presentation.Views.Systems.Users.Users" %>
+    Inherits="Dimatica.ContaPre.Presentation.Views.Systems.Users" %>
 
 <asp:Content ID="Content1"
     ContentPlaceHolderID="head"
