@@ -216,16 +216,16 @@
                     else
                     {
                         var sheetId = (int)insert.ResponseMethod;
-                        foreach (GridDataItem ss in this.RgTonnageSheet.Items)
+                        foreach (GridDataItem tonnageSheetItem in this.RgTonnageSheet.Items)
                         {
-                            var documentId = item.GetDataKeyValue("DOC_CODIGO") == null ? (int?)null : (int)item.GetDataKeyValue("DOC_CODIGO");
-                            var fileId = item.GetDataKeyValue("EXP_EXTRAP_CODIGO") == null ? (int?)null : (int)item.GetDataKeyValue("EXP_EXTRAP_CODIGO");
-                            var date = (DateTime)item.GetDataKeyValue("DET_FECHA_APUNTE");
-                            var amount = (decimal)item.GetDataKeyValue("DET_IMPORTE");
-                            var lineNumber = item.GetDataKeyValue("LIN_NUMERO") == null ? (int?)null : (int)item.GetDataKeyValue("LIN_NUMERO");
-                            var fileNumber = item.GetDataKeyValue("DET_NUMERO_EXPEDIENTE") == null ? (int?)null : (int)item.GetDataKeyValue("DET_NUMERO_EXPEDIENTE");
-                            var budgetYear = (int)item.GetDataKeyValue("EXP_ANO_PRESUPUESTO");
-                            var check = item.Selected;
+                            var documentId = tonnageSheetItem.GetDataKeyValue("DOC_CODIGO") == null ? (int?)null : (int)tonnageSheetItem.GetDataKeyValue("DOC_CODIGO");
+                            var fileId = tonnageSheetItem.GetDataKeyValue("EXP_EXTRAP_CODIGO") == null ? (int?)null : (int)tonnageSheetItem.GetDataKeyValue("EXP_EXTRAP_CODIGO");
+                            var date = (DateTime)tonnageSheetItem.GetDataKeyValue("DET_FECHA_APUNTE");
+                            var amount = (decimal)tonnageSheetItem  .GetDataKeyValue("DET_IMPORTE");
+                            var lineNumber = tonnageSheetItem.GetDataKeyValue("LIN_NUMERO") == null ? (int?)null : (int)tonnageSheetItem.GetDataKeyValue("LIN_NUMERO");
+                            var fileNumber = tonnageSheetItem.GetDataKeyValue("DET_NUMERO_EXPEDIENTE") == null ? (int?)null : (int)tonnageSheetItem.GetDataKeyValue("DET_NUMERO_EXPEDIENTE");
+                            var budgetYear = (int)tonnageSheetItem.GetDataKeyValue("EXP_ANO_PRESUPUESTO");
+                            var check = tonnageSheetItem.Selected;
 
                             var tonnageSheetDetail = new PRE_DETALLE_HOJA_ARQUEO
                             {
