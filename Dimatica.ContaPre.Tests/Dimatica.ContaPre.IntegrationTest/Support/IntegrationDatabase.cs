@@ -22,6 +22,20 @@ namespace Dimatica.ContaPre.IntegrationTest.Support
             ContextModel.Db = new SqlDatabase(connectionString);
         }
 
+        public static void ConfigureFromExplicitWebConfig(object initializedDataContext, string environmentVariable)
+        {
+            Assert.IsNotNull(initializedDataContext, "Debe inicializarse primero el contexto DAL del servicio.");
+
+            var webConfigPath = Environment.GetEnvironmentVariable(environmentVariable);
+            if (string.IsNullOrWhiteSpace(webConfigPath) || !File.Exists(webConfigPath))
+            {
+                Assert.Inconclusive("Define " + environmentVariable + " con la ruta de una configuración de base de pruebas aislada.");
+            }
+
+            var connectionString = GetConnectionStringFromWebConfig(webConfigPath);
+            ContextModel.Db = new SqlDatabase(connectionString);
+        }
+
         private static string GetConnectionString()
         {
             var configuredPath = Environment.GetEnvironmentVariable(WebConfigEnvironmentVariable);
@@ -34,6 +48,11 @@ namespace Dimatica.ContaPre.IntegrationTest.Support
                 Assert.Inconclusive("No se encontró Presentation/Web.config. Define CONTAPRE_WEB_CONFIG_PATH para indicar su ubicación.");
             }
 
+            return GetConnectionStringFromWebConfig(webConfigPath);
+        }
+
+        private static string GetConnectionStringFromWebConfig(string webConfigPath)
+        {
             var document = new XmlDocument();
             document.Load(webConfigPath);
 

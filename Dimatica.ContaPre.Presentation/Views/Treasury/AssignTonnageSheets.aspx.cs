@@ -11,6 +11,7 @@
 
     using Dimatica.ContaPre.BLL.Configs;
     using Dimatica.ContaPre.BLL.Interfaces;
+    using Dimatica.ContaPre.BLL.UseCases;
     using Dimatica.ContaPre.OL.Business;
     using Dimatica.ContaPre.OL.Models;
     using Dimatica.ContaPre.Presentation.Views.Shared;
@@ -26,6 +27,8 @@
         private ITonnageSheetsService tonnageSheetsService = DependencyFactory.GetInstance<ITonnageSheetsService>();
 
         private ITreasuriesService treasuriesService = DependencyFactory.GetInstance<ITreasuriesService>();
+
+        private ISaveTonnageSheetUseCase saveTonnageSheetUseCase = DependencyFactory.GetInstance<ISaveTonnageSheetUseCase>();
 
         #endregion
 
@@ -104,155 +107,71 @@
                 return;
             }
 
-            if (this.TonnageSheetCode != 0)
+            var isUpdate = this.TonnageSheetCode != 0;
+
+            try
             {
-                try
+                var userId = LoginUser.USU_CODIGO;
+                var tonnageSheet = new PRE_HOJA_ARQUEO
                 {
-                    var tonnageSheet = new PRE_HOJA_ARQUEO
-                    {
-                        HOJ_CODIGO = this.TonnageSheetCode,
-                        HOJ_FECHA = this.RdDate.SelectedDate,
-                        USU_CODIGO = LoginUser.USU_CODIGO
-                    };
+                    HOJ_CODIGO = this.TonnageSheetCode,
+                    HOJ_FECHA = this.RdDate.SelectedDate
+                };
 
-                    var update = this.tonnageSheetsService.UpdateTonnageSheet(tonnageSheet);
-
-                    switch (update.ResponseCode)
-                    {
-                        case ResponseCode.Invalid:
-                            strBuilder.Append("Debe completar todos los datos de la Hoja de Arqueo.");
-
-                            break;
-                        case ResponseCode.NotFound:
-                            strBuilder.Append("No se ha encontrado la Hoja de Arqueo en cuestión.");
-
-                            break;
-                    }
-
-                    if (update.ResponseCode != ResponseCode.Ok)
-                    {
-                        this.ShowMessage(this.RadNotification, "Error modificando la Hoja de Arqueo", strBuilder, MessageType.Warning);
-                    }
-                    else
-                    {
-                        foreach (GridDataItem item in this.RgTonnageSheet.Items)
-                        {
-                            var documentId = item.GetDataKeyValue("DOC_CODIGO") == null ? (int?)null : (int)item.GetDataKeyValue("DOC_CODIGO");
-                            var fileId = item.GetDataKeyValue("EXP_EXTRAP_CODIGO") == null ? (int?)null : (int)item.GetDataKeyValue("EXP_EXTRAP_CODIGO");
-                            var date = (DateTime)item.GetDataKeyValue("DET_FECHA_APUNTE");
-                            var amount = (decimal)item.GetDataKeyValue("DET_IMPORTE");
-                            var lineNumber = item.GetDataKeyValue("LIN_NUMERO") == null ? (int?)null : (int)item.GetDataKeyValue("LIN_NUMERO");
-                            var fileNumber = item.GetDataKeyValue("DET_NUMERO_EXPEDIENTE") == null ? (int?)null : (int)item.GetDataKeyValue("DET_NUMERO_EXPEDIENTE");
-                            var budgetYear = (int)item.GetDataKeyValue("EXP_ANO_PRESUPUESTO");
-                            var check = item.Selected;
-
-                            var detail = this.tonnageSheetsService.GetDetailByFilters(this.TonnageSheetCode, fileNumber, lineNumber);
-
-                            if (detail != null)
-                            {
-                                var updateDetail = this.tonnageSheetsService.UpdateTonnageSheetDetail(detail.DET_CODIGO, check, LoginUser.USU_CODIGO);
-                            }
-                            else
-                            {
-                                var tonnageSheetDetail = new PRE_DETALLE_HOJA_ARQUEO
-                                {
-                                    HOJ_CODIGO = this.TonnageSheetCode,
-                                    DET_FECHA_APUNTE = date,
-                                    DET_IMPORTE = amount,
-                                    DOC_CODIGO = documentId,
-                                    EXP_EXTRAP_CODIGO = fileId,
-                                    DET_NUMERO_EXPEDIENTE = fileNumber,
-                                    EXP_ANO_PRESUPUESTO = Convert.ToInt16(budgetYear),
-                                    LIN_NUMERO = lineNumber,
-                                    MARCADO = check,
-                                    USU_CODIGO = LoginUser.USU_CODIGO
-                                };
-
-                                var insertDetail = this.tonnageSheetsService.InsertTonnageSheetDetail(tonnageSheetDetail);
-                            }
-                        }
-
-                        this.FillTonnageSheets(true);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    LogError(ex, "Error modificando la Hoja de Arqueo.");
-                    strBuilder.Append("Ha ocurrido un error modificando la Hoja de Arqueo en cuestión.");
-                    this.ShowMessage(this.RadNotification, "Error modificando la Hoja de Arqueo", strBuilder, MessageType.Deny);
-                }
-            }
-            else
-            {
-                try
+                if (!isUpdate)
                 {
                     var item = (GridDataItem)this.RgTonnageSheet.Items[0];
-                    var restrictedAccount = item.GetDataKeyValue("CUE_CODIGO") == null ? (int?)null : (int)item.GetDataKeyValue("CUE_CODIGO");
-
-                    var tonnageSheet = new PRE_HOJA_ARQUEO
-                    {
-                        HOJ_ANO = Convert.ToInt16(((DateTime)this.RmyExerciseYear.SelectedDate).Year),
-                        HOJ_NUMERO = Convert.ToInt32(this.RntSheetNumber.Value),
-                        HOJ_ARQUEO50 = this.RrbFifty.SelectedValue == "1",
-                        HOJ_FECHA = this.RdDate.SelectedDate,
-                        CUE_CODIGO = restrictedAccount,
-                        USU_CODIGO = LoginUser.USU_CODIGO
-                    };
-
-                    var insert = this.tonnageSheetsService.InsertTonnageSheet(tonnageSheet);
-
-                    switch (insert.ResponseCode)
-                    {
-                        case ResponseCode.Invalid:
-                            strBuilder.Append("Debe completar todos los datos de la Hoja de Arqueo.");
-
-                            break;
-                    }
-
-                    if (insert.ResponseCode != ResponseCode.Ok)
-                    {
-                        this.ShowMessage(this.RadNotification, "Error insertando la Hoja de Arqueo", strBuilder, MessageType.Warning);
-                    }
-                    else
-                    {
-                        var sheetId = (int)insert.ResponseMethod;
-                        foreach (GridDataItem tonnageSheetItem in this.RgTonnageSheet.Items)
-                        {
-                            var documentId = tonnageSheetItem.GetDataKeyValue("DOC_CODIGO") == null ? (int?)null : (int)tonnageSheetItem.GetDataKeyValue("DOC_CODIGO");
-                            var fileId = tonnageSheetItem.GetDataKeyValue("EXP_EXTRAP_CODIGO") == null ? (int?)null : (int)tonnageSheetItem.GetDataKeyValue("EXP_EXTRAP_CODIGO");
-                            var date = (DateTime)tonnageSheetItem.GetDataKeyValue("DET_FECHA_APUNTE");
-                            var amount = (decimal)tonnageSheetItem  .GetDataKeyValue("DET_IMPORTE");
-                            var lineNumber = tonnageSheetItem.GetDataKeyValue("LIN_NUMERO") == null ? (int?)null : (int)tonnageSheetItem.GetDataKeyValue("LIN_NUMERO");
-                            var fileNumber = tonnageSheetItem.GetDataKeyValue("DET_NUMERO_EXPEDIENTE") == null ? (int?)null : (int)tonnageSheetItem.GetDataKeyValue("DET_NUMERO_EXPEDIENTE");
-                            var budgetYear = (int)tonnageSheetItem.GetDataKeyValue("EXP_ANO_PRESUPUESTO");
-                            var check = tonnageSheetItem.Selected;
-
-                            var tonnageSheetDetail = new PRE_DETALLE_HOJA_ARQUEO
-                            {
-                                HOJ_CODIGO = sheetId,
-                                DET_FECHA_APUNTE = date,
-                                DET_IMPORTE = amount,
-                                DOC_CODIGO = documentId,
-                                EXP_EXTRAP_CODIGO = fileId,
-                                DET_NUMERO_EXPEDIENTE = fileNumber,
-                                EXP_ANO_PRESUPUESTO = Convert.ToInt16(budgetYear),
-                                LIN_NUMERO = lineNumber,
-                                MARCADO = check,
-                                USU_CODIGO = LoginUser.USU_CODIGO
-                            };
-
-                            var insertDetail = this.tonnageSheetsService.InsertTonnageSheetDetail(tonnageSheetDetail);
-                        }
-
-                        this.FillTonnageSheets(true);
-                    }
+                    tonnageSheet.HOJ_ANO = Convert.ToInt16(((DateTime)this.RmyExerciseYear.SelectedDate).Year);
+                    tonnageSheet.HOJ_NUMERO = Convert.ToInt32(this.RntSheetNumber.Value);
+                    tonnageSheet.HOJ_ARQUEO50 = this.RrbFifty.SelectedValue == "1";
+                    tonnageSheet.CUE_CODIGO = item.GetDataKeyValue("CUE_CODIGO") == null
+                        ? (int?)null
+                        : (int)item.GetDataKeyValue("CUE_CODIGO");
                 }
-                catch (Exception ex)
+
+                var details = new List<PRE_DETALLE_HOJA_ARQUEO>();
+                foreach (GridDataItem item in this.RgTonnageSheet.Items)
                 {
-                    LogError(ex, "Error insertando la Hoja de Arqueo.");
-                    strBuilder.Append("Ha ocurrido un error insertando la Hoja de Arqueo en cuestión.");
-                    this.ShowMessage(this.RadNotification, "Error insertando la Hoja de Arqueo", strBuilder, MessageType.Deny);
+                    details.Add(new PRE_DETALLE_HOJA_ARQUEO
+                    {
+                        DET_FECHA_APUNTE = (DateTime)item.GetDataKeyValue("DET_FECHA_APUNTE"),
+                        DET_IMPORTE = (decimal)item.GetDataKeyValue("DET_IMPORTE"),
+                        DOC_CODIGO = item.GetDataKeyValue("DOC_CODIGO") == null ? (int?)null : (int)item.GetDataKeyValue("DOC_CODIGO"),
+                        EXP_EXTRAP_CODIGO = item.GetDataKeyValue("EXP_EXTRAP_CODIGO") == null ? (int?)null : (int)item.GetDataKeyValue("EXP_EXTRAP_CODIGO"),
+                        DET_NUMERO_EXPEDIENTE = item.GetDataKeyValue("DET_NUMERO_EXPEDIENTE") == null ? (int?)null : (int)item.GetDataKeyValue("DET_NUMERO_EXPEDIENTE"),
+                        EXP_ANO_PRESUPUESTO = Convert.ToInt16((int)item.GetDataKeyValue("EXP_ANO_PRESUPUESTO")),
+                        LIN_NUMERO = item.GetDataKeyValue("LIN_NUMERO") == null ? (int?)null : (int)item.GetDataKeyValue("LIN_NUMERO"),
+                        MARCADO = item.Selected
+                    });
                 }
+
+                var result = this.saveTonnageSheetUseCase.SaveTonnageSheet(tonnageSheet, details, userId);
+
+                if (result.ResponseCode != ResponseCode.Ok)
+                {
+                    if (result.ResponseCode == ResponseCode.Invalid)
+                    {
+                        strBuilder.Append("Debe completar todos los datos de la Hoja de Arqueo.");
+                    }
+                    else if (isUpdate && result.ResponseCode == ResponseCode.NotFound)
+                    {
+                        strBuilder.Append("No se ha encontrado la Hoja de Arqueo en cuestión.");
+                    }
+
+                    var title = isUpdate ? "Error modificando la Hoja de Arqueo" : "Error insertando la Hoja de Arqueo";
+                    this.ShowMessage(this.RadNotification, title, strBuilder, MessageType.Warning);
+                    return;
+                }
+
+                this.FillTonnageSheets(true);
+            }
+            catch (Exception ex)
+            {
+                var operation = isUpdate ? "modificando" : "insertando";
+                var title = isUpdate ? "Error modificando la Hoja de Arqueo" : "Error insertando la Hoja de Arqueo";
+                LogError(ex, "Error " + operation + " la Hoja de Arqueo.");
+                strBuilder.Append("Ha ocurrido un error " + operation + " la Hoja de Arqueo en cuestión.");
+                this.ShowMessage(this.RadNotification, title, strBuilder, MessageType.Deny);
             }
         }
 

@@ -18,6 +18,7 @@
         {
             serviceRegistry.Register<IAccountingDocumentsService, AccountingDocumentsService>();
             serviceRegistry.Register<IDeleteTreasuryUseCase, DeleteTreasuryUseCase>();
+            serviceRegistry.Register<ISaveTonnageSheetUseCase, SaveTonnageSheetUseCase>();
             serviceRegistry.Register<IAccountingRecordsService, AccountingRecordsService>();
             serviceRegistry.Register<IAccountPgcpService, AccountPgcpService>();
             serviceRegistry.Register<IAccountRestrictedService, AccountRestrictedService>();

@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\DeleteTreasuryUseCaseTests.cs" />
+    <Compile Include="BLL\SaveTonnageSheetUseCaseTests.cs" />
     <Compile Include="BLL\TreasuryDeletionServiceDoubleBases.cs" />
     <Compile Include="Presentation\Helpers\DataValidation\EmailValidatorTests.cs" />
     <Compile Include="Presentation\Helpers\DataValidation\IbanValidatorTest.cs" />
