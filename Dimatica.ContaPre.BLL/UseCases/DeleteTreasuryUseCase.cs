@@ -27,11 +27,11 @@ namespace Dimatica.ContaPre.BLL.UseCases
             this.accountingDocumentsService = accountingDocumentsService;
         }
 
-        public int DeleteTreasury(int treasuryId, int userId, bool connectToOracle)
+        public DeleteTreasuryResult DeleteTreasury(int treasuryId, int userId, bool connectToOracle)
         {
             if (treasuryId == 0)
             {
-                return 2;
+                return DeleteTreasuryResult.NotFound;
             }
 
             var foundInOracle = false;
@@ -49,7 +49,7 @@ namespace Dimatica.ContaPre.BLL.UseCases
 
             if (!string.IsNullOrWhiteSpace(recognizedRights))
             {
-                return 3;
+                return DeleteTreasuryResult.RecognizedRights;
             }
 
             var documents = this.treasuriesService.GetDocuments(null, null, treasuryId);
@@ -74,7 +74,7 @@ namespace Dimatica.ContaPre.BLL.UseCases
 
                 if (deleteTreasuryOracle.ResponseCode != ResponseCode.Ok)
                 {
-                    return 4;
+                    return DeleteTreasuryResult.OracleDeleteFailed;
                 }
             }
 
@@ -83,13 +83,13 @@ namespace Dimatica.ContaPre.BLL.UseCases
             switch (delete.ResponseCode)
             {
                 case ResponseCode.Invalid:
-                    return 0;
+                    return DeleteTreasuryResult.Invalid;
                 case ResponseCode.Ok:
-                    return 1;
+                    return DeleteTreasuryResult.Ok;
                 case ResponseCode.NotFound:
-                    return 2;
+                    return DeleteTreasuryResult.NotFound;
                 default:
-                    return 0;
+                    return DeleteTreasuryResult.Invalid;
             }
         }
     }

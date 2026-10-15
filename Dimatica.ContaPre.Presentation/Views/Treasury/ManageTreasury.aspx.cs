@@ -94,7 +94,7 @@
         #region Public Static Methods
 
         [WebMethod(EnableSession = true)]
-        public static int DeleteTreasury()
+        public static DeleteTreasuryResult DeleteTreasury()
         {
             try
             {
@@ -102,16 +102,18 @@
 
                 if (id == 0)
                 {
-                    return 2;
+                    return DeleteTreasuryResult.NotFound;
                 }
 
                 var connectToOracle = Convert.ToBoolean(ConfigurationManager.AppSettings["connectToOracle"]);
-                return deleteTreasuryUseCase.DeleteTreasury(id, LoginUser.USU_CODIGO, connectToOracle);
+                var result = deleteTreasuryUseCase.DeleteTreasury(id, LoginUser.USU_CODIGO, connectToOracle);
+
+                return result;
             }
             catch (Exception ex)
             {
                 LogError(ex, "Error eliminando el apunte de tesorería.");
-                return 0;
+                return DeleteTreasuryResult.Invalid;
             }
         }
 

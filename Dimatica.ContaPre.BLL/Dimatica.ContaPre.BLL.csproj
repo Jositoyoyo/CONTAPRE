@@ -75,6 +75,7 @@
     <Compile Include="Configs\ServiceRegister.cs" />
     <Compile Include="Interfaces\IAccountingDocumentsService.cs" />
     <Compile Include="UseCases\IDeleteTreasuryUseCase.cs" />
+    <Compile Include="UseCases\DeleteTreasuryResult.cs" />
     <Compile Include="Interfaces\IAdministrativeRecordsService.cs" />
     <Compile Include="Interfaces\IBillPurchasesService.cs" />
     <Compile Include="Interfaces\IBudgetApplicationsService.cs" />

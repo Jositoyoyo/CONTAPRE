@@ -12,6 +12,16 @@ namespace Dimatica.ContaPre.UnitTest.BLL
     public class DeleteTreasuryUseCaseTests
     {
         [TestMethod]
+        public void DeleteTreasuryResult_PreservesWebMethodNumericCodes()
+        {
+            Assert.AreEqual(0, (int)DeleteTreasuryResult.Invalid);
+            Assert.AreEqual(1, (int)DeleteTreasuryResult.Ok);
+            Assert.AreEqual(2, (int)DeleteTreasuryResult.NotFound);
+            Assert.AreEqual(3, (int)DeleteTreasuryResult.RecognizedRights);
+            Assert.AreEqual(4, (int)DeleteTreasuryResult.OracleDeleteFailed);
+        }
+
+        [TestMethod]
         public void DeleteTreasury_ZeroId_ReturnsNotFoundWithoutCallingServices()
         {
             var treasuries = new TreasuryServiceDouble();
@@ -20,7 +30,7 @@ namespace Dimatica.ContaPre.UnitTest.BLL
 
             var result = useCase.DeleteTreasury(0, 22, true);
 
-            Assert.AreEqual(2, result);
+            Assert.AreEqual(DeleteTreasuryResult.NotFound, result);
             Assert.AreEqual(0, treasuries.Calls.Count);
             Assert.AreEqual(0, accountingDocuments.Calls.Count);
         }
@@ -38,7 +48,7 @@ namespace Dimatica.ContaPre.UnitTest.BLL
 
             var result = useCase.DeleteTreasury(15, 22, true);
 
-            Assert.AreEqual(3, result);
+            Assert.AreEqual(DeleteTreasuryResult.RecognizedRights, result);
             CollectionAssert.AreEqual(new[] { "FoundTreasuryOracle", "GetRecognizedRightsOracle" }, treasuries.Calls);
             Assert.AreEqual(0, accountingDocuments.Calls.Count);
         }
@@ -56,7 +66,7 @@ namespace Dimatica.ContaPre.UnitTest.BLL
 
             var result = useCase.DeleteTreasury(15, 22, true);
 
-            Assert.AreEqual(4, result);
+            Assert.AreEqual(DeleteTreasuryResult.OracleDeleteFailed, result);
             CollectionAssert.AreEqual(
                 new[] { "FoundTreasuryOracle", "GetRecognizedRightsOracle", "GetDocuments", "DeleteTreasuryOracle" },
                 treasuries.Calls);
@@ -64,10 +74,10 @@ namespace Dimatica.ContaPre.UnitTest.BLL
         }
 
         [DataTestMethod]
-        [DataRow(ResponseCode.Invalid, 0)]
-        [DataRow(ResponseCode.Ok, 1)]
-        [DataRow(ResponseCode.NotFound, 2)]
-        public void DeleteTreasury_MapsLocalDeleteResponse(ResponseCode responseCode, int expectedResult)
+        [DataRow(ResponseCode.Invalid, DeleteTreasuryResult.Invalid)]
+        [DataRow(ResponseCode.Ok, DeleteTreasuryResult.Ok)]
+        [DataRow(ResponseCode.NotFound, DeleteTreasuryResult.NotFound)]
+        public void DeleteTreasury_MapsLocalDeleteResponse(ResponseCode responseCode, DeleteTreasuryResult expectedResult)
         {
             var treasuries = new TreasuryServiceDouble
             {
@@ -116,7 +126,7 @@ namespace Dimatica.ContaPre.UnitTest.BLL
 
             var result = useCase.DeleteTreasury(15, 22, true);
 
-            Assert.AreEqual(1, result);
+            Assert.AreEqual(DeleteTreasuryResult.Ok, result);
             CollectionAssert.AreEqual(
                 new[] { "FoundTreasuryOracle", "GetRecognizedRightsOracle", "GetDocuments", "DeleteTreasuryOracle", "DeleteTreasury" },
                 treasuries.Calls);
