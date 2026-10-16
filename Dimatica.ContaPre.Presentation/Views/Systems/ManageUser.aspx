@@ -374,7 +374,7 @@
                                 $('#buttons_group').hide();
                                 showNotification("Éxito al borrar el usuario", "Se ha borrado con éxito el usuario. Redirigiendo...");
                                 setTimeout(function(){
-                                    window.location.href = window.location.origin + '\\Views\\Systems\\Users\\Users.aspx';
+                                    window.location.href = window.location.origin + '\\Views\\Systems\\Users.aspx';
                                 }, 3000);
                                 return;
                             }

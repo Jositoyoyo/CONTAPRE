@@ -26,7 +26,14 @@
 
             <telerik:RadScriptManager ID="RadScriptManager"
                 runat="server"
-                EnablePageMethods="True" />
+                EnablePageMethods="True"
+                EnableEmbeddedjQuery="False">
+                <Scripts>
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryExternal.js" />
+                    <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
+                </Scripts>
+            </telerik:RadScriptManager>
             <telerik:RadSkinManager ID="rskmPrincipal"
                 runat="server"
                 Skin="Metro"

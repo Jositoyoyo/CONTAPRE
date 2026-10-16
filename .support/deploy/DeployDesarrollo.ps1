@@ -12,6 +12,77 @@ function Stop-Deployment {
     throw $Message
 }
 
+function Update-LocalApplicationVersion {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$VersionJsonPath,
+
+        [Parameter(Mandatory = $true)]
+        [bool]$Increment
+    )
+
+    if (-not $Increment) {
+        Write-Host 'Se conserva la version actual de la aplicacion.'
+        return
+    }
+
+    if (-not (Test-Path -LiteralPath $VersionJsonPath -PathType Leaf)) {
+        Stop-Deployment "El fichero de version no existe: $VersionJsonPath"
+    }
+
+    try {
+        $versionData = ConvertFrom-Json -InputObject ([System.IO.File]::ReadAllText($VersionJsonPath)) -ErrorAction Stop
+    }
+    catch {
+        Stop-Deployment "El fichero de version no contiene un JSON valido: $($_.Exception.Message)"
+    }
+
+    if ($versionData -isnot [PSCustomObject] -or $versionData.version -isnot [string] -or $versionData.version -notmatch '^\d+$') {
+        Stop-Deployment 'La propiedad version de JSON.json debe ser un contador numerico expresado como texto.'
+    }
+
+    if ($versionData.releaseDate -isnot [string]) {
+        Stop-Deployment 'La propiedad releaseDate de JSON.json debe ser una fecha con formato yyyy-MM-dd.'
+    }
+
+    try {
+        [System.DateTime]::ParseExact(
+            $versionData.releaseDate,
+            'yyyy-MM-dd',
+            [System.Globalization.CultureInfo]::InvariantCulture,
+            [System.Globalization.DateTimeStyles]::None
+        ) | Out-Null
+
+        $currentVersionNumber = [long]::Parse(
+            $versionData.version,
+            [System.Globalization.NumberStyles]::None,
+            [System.Globalization.CultureInfo]::InvariantCulture
+        )
+
+        if ($currentVersionNumber -eq [long]::MaxValue) {
+            Stop-Deployment 'El contador de version ha alcanzado el valor maximo permitido.'
+        }
+
+        $versionData.version = ($currentVersionNumber + 1).ToString([System.Globalization.CultureInfo]::InvariantCulture)
+        $versionData.releaseDate = (Get-Date).ToString('yyyy-MM-dd', [System.Globalization.CultureInfo]::InvariantCulture)
+    }
+    catch {
+        Stop-Deployment "No se pudo validar o incrementar la version: $($_.Exception.Message)"
+    }
+
+    $updatedVersionJson = ConvertTo-Json -InputObject $versionData -Depth 10
+    $utf8WithoutBom = [System.Text.UTF8Encoding]::new($false)
+
+    try {
+        [System.IO.File]::WriteAllText($VersionJsonPath, $updatedVersionJson, $utf8WithoutBom)
+    }
+    catch {
+        Stop-Deployment "No se pudo actualizar JSON.json: $($_.Exception.Message)"
+    }
+
+    Write-Host "Version local actualizada a $($versionData.version) con fecha $($versionData.releaseDate)."
+}
+
 function Show-RemoteDeploymentInfo {
     param(
         [Parameter(Mandatory = $true)]
@@ -99,6 +170,7 @@ if (-not $projectRoot) {
 $solutionPath = Join-Path $projectRoot 'Dimatica.ContaPre.sln'
 $presentationPath = Join-Path $projectRoot 'Dimatica.ContaPre.Presentation'
 $artifactsPath = Join-Path $projectRoot 'artifacts'
+$versionJsonPath = Join-Path $presentationPath 'JSON.json'
 $publishProfilePath = Join-Path $presentationPath 'Properties\PublishProfiles\DESARROLLO.pubxml'
 $clearLogsPath = Join-Path $scriptDirectory 'ClearLogs.ps1'
 $deploymentHistoryPath = Join-Path $scriptDirectory 'Deployments.md'
@@ -160,6 +232,11 @@ if ($confirmation -ne 'S') {
     Write-Host 'Despliegue cancelado por el usuario. No se realizaron cambios remotos.'
     exit 0
 }
+
+$versionConfirmation = (Read-Host -Prompt 'Deseas incrementar la version de la aplicacion? (S/N)').Trim().ToUpperInvariant()
+Update-LocalApplicationVersion `
+    -VersionJsonPath $versionJsonPath `
+    -Increment ($versionConfirmation -eq 'S')
 
 try {
     Initialize-DeploymentHistory -Path $deploymentHistoryPath

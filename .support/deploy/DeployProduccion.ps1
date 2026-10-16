@@ -216,7 +216,6 @@ if (-not $projectRoot) {
 $solutionPath = Join-Path $projectRoot 'Dimatica.ContaPre.sln'
 $presentationPath = Join-Path $projectRoot 'Dimatica.ContaPre.Presentation'
 $artifactsPath = Join-Path $projectRoot 'artifacts'
-$versionJsonPath = Join-Path $presentationPath 'JSON.json'
 $unitTestProjectPath = Join-Path $projectRoot 'Dimatica.ContaPre.Tests\Dimatica.ContaPre.UnitTest\Dimatica.ContaPre.UnitTest.csproj'
 $unitTestAssemblyPath = Join-Path $artifactsPath 'bin\Dimatica.ContaPre.UnitTest\Debug\Dimatica.ContaPre.UnitTest.dll'
 $publishProfilePath = Join-Path $presentationPath 'Properties\PublishProfiles\PRODUCCION.pubxml'
@@ -279,60 +278,12 @@ foreach ($supportDeployFileName in $supportDeployFileNames) {
     }
 }
 
-if (-not (Test-Path -LiteralPath $versionJsonPath -PathType Leaf)) {
-    Stop-Deployment "El fichero de version no existe: $versionJsonPath"
-}
-
 if (-not $msbuildPath) {
     Stop-Deployment 'No se encontro MSBuild.exe en las instalaciones conocidas de Visual Studio.'
 }
 
 if (-not (Test-Path -LiteralPath $destinationPath -PathType Container)) {
     Stop-Deployment "El destino remoto no existe o no es accesible: $destinationPath"
-}
-
-$destinationVersionPath = Join-Path $destinationPath 'JSON.json'
-if (-not (Test-Path -LiteralPath $destinationVersionPath -PathType Leaf)) {
-    Stop-Deployment "El fichero de version de produccion no existe o no es accesible: $destinationVersionPath"
-}
-
-try {
-    $versionData = ConvertFrom-Json -InputObject ([System.IO.File]::ReadAllText($destinationVersionPath)) -ErrorAction Stop
-}
-catch {
-    Stop-Deployment "El fichero de version de produccion no contiene un JSON valido: $($_.Exception.Message)"
-}
-
-if ($versionData -isnot [PSCustomObject] -or $versionData.version -isnot [string] -or $versionData.version -notmatch '^\d+$') {
-    Stop-Deployment 'La propiedad version del JSON.json de produccion debe ser un contador numerico expresado como texto.'
-}
-
-if ($versionData.releaseDate -isnot [string]) {
-    Stop-Deployment 'La propiedad releaseDate del JSON.json de produccion debe ser una fecha con formato yyyy-MM-dd.'
-}
-
-try {
-    [System.DateTime]::ParseExact(
-        $versionData.releaseDate,
-        'yyyy-MM-dd',
-        [System.Globalization.CultureInfo]::InvariantCulture,
-        [System.Globalization.DateTimeStyles]::None
-    ) | Out-Null
-
-    $currentVersionNumber = [long]::Parse(
-        $versionData.version,
-        [System.Globalization.NumberStyles]::None,
-        [System.Globalization.CultureInfo]::InvariantCulture
-    )
-
-    if ($currentVersionNumber -eq [long]::MaxValue) {
-        Stop-Deployment 'El contador de version ha alcanzado el valor maximo permitido.'
-    }
-
-    $nextVersion = ($currentVersionNumber + 1).ToString([System.Globalization.CultureInfo]::InvariantCulture)
-}
-catch {
-    Stop-Deployment "No se pudo validar o incrementar la version de produccion: $($_.Exception.Message)"
 }
 
 Show-RemoteDeploymentInfo -ComputerName 'suimpappmad041' -DestinationPath $destinationPath
@@ -440,11 +391,7 @@ $msbuildArguments = @(
     '/verbosity:minimal'
 )
 
-$utf8WithoutBom = [System.Text.UTF8Encoding]::new($false)
-$deploymentDate = (Get-Date).ToString('yyyy-MM-dd', [System.Globalization.CultureInfo]::InvariantCulture)
-$nextVersionJson = ConvertTo-Json -InputObject ([ordered]@{ version = $nextVersion; releaseDate = $deploymentDate }) -Depth 2
-
-Write-Host "Publicando la version $nextVersion con fecha $deploymentDate en produccion..."
+Write-Host 'Publicando en produccion...'
 try {
     & $msbuildPath @msbuildArguments
     $msbuildExitCode = $LASTEXITCODE
@@ -460,29 +407,6 @@ if ($msbuildExitCode -ne 0) {
 $destinationWebConfig = Join-Path $destinationPath 'Web.config'
 if (-not (Test-Path -LiteralPath $destinationWebConfig -PathType Leaf)) {
     Stop-Deployment "La publicacion termino, pero no se encontro Web.config en $destinationPath."
-}
-
-if (-not (Test-Path -LiteralPath $destinationVersionPath -PathType Leaf)) {
-    Stop-Deployment "La publicacion termino, pero no se encontro JSON.json en $destinationPath."
-}
-
-try {
-    [System.IO.File]::WriteAllText($destinationVersionPath, $nextVersionJson, $utf8WithoutBom)
-}
-catch {
-    Stop-Deployment "La publicacion termino, pero no se pudo actualizar JSON.json en el destino: $($_.Exception.Message)"
-}
-
-try {
-    $publishedVersionData = ConvertFrom-Json -InputObject ([System.IO.File]::ReadAllText($destinationVersionPath)) -ErrorAction Stop
-}
-catch {
-    Stop-Deployment "No se pudo verificar JSON.json en el destino: $($_.Exception.Message)"
-}
-
-if ($publishedVersionData.version -isnot [string] -or $publishedVersionData.version -cne $nextVersion -or
-    $publishedVersionData.releaseDate -isnot [string] -or $publishedVersionData.releaseDate -cne $deploymentDate) {
-    Stop-Deployment "La version o la fecha publicada no coinciden con los valores esperados ($nextVersion, $deploymentDate)."
 }
 
 Write-Host 'Publicando y verificando Support\Utils...'
