@@ -81,23 +81,6 @@
                     OnClientHidden="hideModalDiv">
                 </telerik:RadNotification>
 
-                <telerik:RadNotification ID="RadNotification1" runat="server" 
-                    RenderMode="Lightweight"
-                    Position="Center"
-                    Width="330px" 
-                    Height="140px" 
-                    Text="Notification"
-                    ContentIcon="warning" 
-                    TitleIcon="warning"
-                    Animation="Fade"
-                    EnableRoundedCorners="True"
-                    EnableShadow="False"
-                    ContentScrolling="Auto"
-                    Opacity="100"
-                    ShowSound="None"
-                    AutoCloseDelay="0">
-                </telerik:RadNotification>
-
                 <div class="form-group form-group-fake">
                     <%--Año--%>
                     <div class="field-container">
@@ -450,10 +433,10 @@
                             radalert("Ha ocurrido un error eliminando el Apunte de Tesorería en cuestión.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
                             break;
                         case 1:
-                             showNotification("Éxito al borrar el el Apunte de Tesorería", "Se ha borrado con éxito el el Apunte de Tesorería. Redirigiendo...");
+                             alert("Éxito al borrar el el Apunte de Tesorería", "Se ha borrado con éxito el el Apunte de Tesorería.");
                                 setTimeout(function(){
                                     window.location.href = '<%= ResolveUrl("~/Views/Treasury/NotesTreasuries.aspx") %>';
-                                }, 3000);
+                                }, 1000);
                             break;
                         case 2:
                             radalert("No se puede eliminar el Apunte de Tesorería en cuestión debido a que no se ha encontrado en la BD.", 330, 140, "Imposible eliminar apunte de tesorería", null, null);
@@ -471,13 +454,6 @@
                 });
             }
 
-            function showNotification(title, text)
-            {
-                var notification = $find("<%= RadNotification1.ClientID %>");
-                notification.set_title(title);
-                notification.set_text(text);
-                notification.show();
-            }
         </script>
     </telerik:RadScriptBlock>
 </asp:Content>
