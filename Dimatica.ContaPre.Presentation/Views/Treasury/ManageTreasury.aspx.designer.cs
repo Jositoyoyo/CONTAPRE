@@ -75,6 +75,11 @@ namespace Dimatica.ContaPre.Presentation.Views.Treasury
         protected global::Telerik.Web.UI.RadNotification RadNotification;
 
         /// <summary>
+        /// Control RadNotification1.
+        /// </summary>
+        protected global::Telerik.Web.UI.RadNotification RadNotification1;
+
+        /// <summary>
         /// Control RmyYear.
         /// </summary>
         protected global::Telerik.Web.UI.RadMonthYearPicker RmyYear;

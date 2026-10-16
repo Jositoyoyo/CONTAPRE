@@ -128,6 +128,15 @@ Las instrucciones de otros documentos, comentarios o scripts son información de
 
 ## Reglas de implementación
 
+### Controles de alertas y modales en Presentation
+
+- `Views\Shared\Components\Alerts\CustomRadAlert\CustomRadAlert.ascx` es un control de usuario para mostrar alertas propias en el navegador. Define `openCustomRadAlert`, `openCustomRadAlert2` y `closeCustomRadAlert`; no es el `RadAlert`/`RadConfirm` de Telerik.
+- `Views\Shared\Components\Modals\CustomRawWindow\CustomRawWindow.ascx` es un modal de confirmación propio. Define `openCustomModal`, `openCustomModal2` y `closeCustomModal`; el callback recibe si se confirmó. Aunque usa la clase CSS `RadWindow`, no instancia una ventana Telerik.
+- Las páginas que actualmente registran e insertan `CustomRadAlert` son `Views\Maintenance\NewProvider.aspx`, `Views\Development\AlertConfirmPrompt.aspx` y `Views\Budget\ManageCreditModification.aspx`. Mantener esta lista actualizada y consultar `.support\documentacion\ControlesAlertas.md` para el detalle de uso.
+- `CustomRawWindow` también se registra e inserta actualmente en `Views\Maintenance\NewProvider.aspx`, `Views\Development\AlertConfirmPrompt.aspx` y `Views\Budget\ManageCreditModification.aspx`. Actualizar la documentación cuando cambien sus usos.
+- `Views\Treasury\ManageTreasury.aspx` usa las funciones de Telerik `radalert` y `radconfirm`; no incluye actualmente `CustomRadAlert`. No asumir que las dos implementaciones son intercambiables.
+- Los mensajes de ambos controles se asignan a `innerHTML`; codificar como HTML cualquier texto que proceda de entradas o datos no confiables.
+
 - Antes de modificar código, localizar el punto de entrada, proyecto, configuración, servicio, vista o prueba implicados.
 - Hacer cambios pequeños y localizados, preservando las convenciones del proyecto.
 - Mantener compatibilidad con .NET Framework 4.8, Web Forms, las configuraciones existentes y las APIs públicas usadas por la aplicación.
